@@ -8,7 +8,26 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
+struct ScreenSize
+{
+    static let width                = Int(UIScreen.mainScreen().bounds.size.width)
+    static let height               = Int(UIScreen.mainScreen().bounds.size.height)
+    static let length1              = max(width, height)
+    static let length0              = min(width, height)
+    static let diagonal             = Int(Math.sqrt(width*width+height*height))
+}
+
+struct DeviceType
+{
+    static let iPhone4              = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.length1 < 568
+    static let iPhone5              = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.length1 == 568
+    static let iPhone6              = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.length1 == 667
+    static let iPhone6p             = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.length1 == 736
+    static let iPad                 = UIDevice.currentDevice().userInterfaceIdiom == .Pad   && ScreenSize.length1 == 1024
+    static let iPadPro              = UIDevice.currentDevice().userInterfaceIdiom == .Pad   && ScreenSize.length1 == 1366
+}
 
 struct UITableViewTap
 {
@@ -304,6 +323,15 @@ extension AppDelegate
 }
 
 
+extension UIView
+{
+    class func createWithBackgroundColor(color:UIColor) -> UIView
+    {
+        let result = UIView()
+        result.backgroundColor = color
+        return result
+    }
+}
 
 
 extension CollectionType {
