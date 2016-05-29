@@ -10,23 +10,43 @@ import Foundation
 import UIKit
 import AVFoundation
 
-struct ScreenSize
+public struct TGF
 {
-    static let width                = Int(UIScreen.mainScreen().bounds.size.width)
-    static let height               = Int(UIScreen.mainScreen().bounds.size.height)
-    static let length1              = max(width, height)
-    static let length0              = min(width, height)
-    static let diagonal             = Int(Math.sqrt(width*width+height*height))
-}
-
-struct DeviceType
-{
-    static let iPhone4              = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.length1 < 568
-    static let iPhone5              = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.length1 == 568
-    static let iPhone6              = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.length1 == 667
-    static let iPhone6p             = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.length1 == 736
-    static let iPad                 = UIDevice.currentDevice().userInterfaceIdiom == .Pad   && ScreenSize.length1 == 1024
-    static let iPadPro              = UIDevice.currentDevice().userInterfaceIdiom == .Pad   && ScreenSize.length1 == 1366
+    public struct Environment
+    {
+        public static let IDIOM             = UIDevice.currentDevice().userInterfaceIdiom
+        public static let SCREEN            = UIScreen.mainScreen().bounds.size
+        
+        public struct Screen
+        {
+            static let WIDTH                = Int(UIScreen.mainScreen().bounds.size.width)
+            static let HEIGHT               = Int(UIScreen.mainScreen().bounds.size.height)
+            static let LENGTH1              = max(WIDTH, HEIGHT)
+            static let LENGTH0              = min(WIDTH, HEIGHT)
+            static let DIAGONAL             = Int(sqrt(Double(WIDTH*WIDTH+HEIGHT*HEIGHT)))
+            static let CENTER               = CGPoint(x:Double(WIDTH)/2.0,y:Double(HEIGHT)/2.0)
+            static func diagonal(fraction:CGFloat = 1) -> CGFloat {
+                return CGFloat(DIAGONAL) * fraction
+            }
+            
+        }
+        
+        public struct DeviceType
+        {
+            static let IPHONE4              = UIDevice.currentDevice().userInterfaceIdiom == .Phone && Screen.LENGTH1 < 568
+            static let IPHONE5              = UIDevice.currentDevice().userInterfaceIdiom == .Phone && Screen.LENGTH1 == 568
+            static let IPHONE6              = UIDevice.currentDevice().userInterfaceIdiom == .Phone && Screen.LENGTH1 == 667
+            static let IPHONE6p             = UIDevice.currentDevice().userInterfaceIdiom == .Phone && Screen.LENGTH1 == 736
+            static let IPAD                 = UIDevice.currentDevice().userInterfaceIdiom == .Pad   && Screen.LENGTH1 == 1024
+            static let IPADPRO              = UIDevice.currentDevice().userInterfaceIdiom == .Pad   && Screen.LENGTH1 == 1366
+        }
+        
+    }
+    
+    public struct Utility
+    {
+        
+    }
 }
 
 struct UITableViewTap
@@ -206,11 +226,11 @@ extension UIColor
     public convenience init(hue:CGFloat,saturation:CGFloat = 1,brightness:CGFloat = 1) {
         self.init(hue:hue,saturation:saturation,brightness:brightness,alpha:1)
     }
-
+    
     public convenience init(hsb:[CGFloat],alpha:CGFloat = 1) {
         self.init(hue:hsb[0],saturation:hsb[1],brightness:hsb[2],alpha:alpha)
     }
-
+    
     public convenience init(hsba:[CGFloat]) {
         self.init(hue:hsba[0],saturation:hsba[1],brightness:hsba[2],alpha:hsba[3])
     }
@@ -278,10 +298,15 @@ extension UIColor
         return (h,s,b,a)
     }
     
-    public func alpha() -> CGFloat {
-        return RGBA().alpha
-    }
-    
+    public var red          :CGFloat    { return RGBA().red }
+    public var green        :CGFloat    { return RGBA().green }
+    public var blue         :CGFloat    { return RGBA().blue }
+    public var alpha        :CGFloat    { return RGBA().alpha }
+
+    public var hue          :CGFloat    { return HSBA().hue }
+    public var saturation   :CGFloat    { return HSBA().saturation }
+    public var brightness   :CGFloat    { return HSBA().brightness }
+
     public class func GRAY(v:Float, _ a:Float = 1.0) -> UIColor
     {
         return UIColor(white:CGFloat(v),alpha:CGFloat(a))

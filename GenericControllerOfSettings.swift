@@ -84,7 +84,33 @@ class GenericControllerOfSettings : UITableViewController
     
     
     
+    var colorForHeaderText:UIColor?
+    var colorForFooterText:UIColor?
     
+    
+    
+    override func tableView                     (tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        if let view = view as? UITableViewHeaderFooterView {
+            if let color = colorForHeaderText {
+                view.textLabel?.textColor = colorForHeaderText
+            }
+        }
+        
+    }
+    
+
+    override func tableView                     (tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        
+        if let view = view as? UITableViewHeaderFooterView {
+            if let color = colorForFooterText {
+                view.textLabel?.textColor = colorForFooterText
+            }
+        }
+        
+    }
+    
+
     
     
     
