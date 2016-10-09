@@ -32,6 +32,8 @@
 		57EF46DF1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46DE1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift */; };
 		57EF46E11DAA882600D514A1 /* TGFExtension+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46E01DAA882600D514A1 /* TGFExtension+Collection.swift */; };
 		57EF46E31DAA884B00D514A1 /* TGFExtension+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46E21DAA884B00D514A1 /* TGFExtension+Operators.swift */; };
+		57EF46E81DAA8FF300D514A1 /* Euler in Resources */ = {isa = PBXBuildFile; fileRef = 57EF46E71DAA8FF300D514A1 /* Euler */; };
+		57EF46EA1DAA93C800D514A1 /* TGFExtension+Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46E91DAA93C800D514A1 /* TGFExtension+Numeric.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		57EF46DE1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+UserDefaults.swift"; sourceTree = "<group>"; };
 		57EF46E01DAA882600D514A1 /* TGFExtension+Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Collection.swift"; sourceTree = "<group>"; };
 		57EF46E21DAA884B00D514A1 /* TGFExtension+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Operators.swift"; sourceTree = "<group>"; };
+		57EF46E71DAA8FF300D514A1 /* Euler */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Euler; sourceTree = "<group>"; };
+		57EF46E91DAA93C800D514A1 /* TGFExtension+Numeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Numeric.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 		5779AEE41CFB4B40006F8E4D = {
 			isa = PBXGroup;
 			children = (
+				57EF46E71DAA8FF300D514A1 /* Euler */,
 				5779AEF01CFB4B40006F8E4D /* TGF */,
 				5779AEFC1CFB4B41006F8E4D /* TGFTests */,
 				5779AEEF1CFB4B40006F8E4D /* Products */,
@@ -127,6 +132,7 @@
 				57EF46DE1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift */,
 				57EF46E01DAA882600D514A1 /* TGFExtension+Collection.swift */,
 				57EF46E21DAA884B00D514A1 /* TGFExtension+Operators.swift */,
+				57EF46E91DAA93C800D514A1 /* TGFExtension+Numeric.swift */,
 			);
 			path = TGF;
 			sourceTree = "<group>";
@@ -235,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57EF46E81DAA8FF300D514A1 /* Euler in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5779AF0C1CFB4B67006F8E4D /* TGFMath.swift in Sources */,
+				57EF46EA1DAA93C800D514A1 /* TGFExtension+Numeric.swift in Sources */,
 				57EF46DB1DAA877C00D514A1 /* TGFExtension+UIView.swift in Sources */,
 				5779AF0D1CFB4B67006F8E4D /* TGFSpriteKit.swift in Sources */,
 				57EF46E11DAA882600D514A1 /* TGFExtension+Collection.swift in Sources */,

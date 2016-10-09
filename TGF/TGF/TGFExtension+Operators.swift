@@ -9,3 +9,9 @@
 import Foundation
 
 //public func ^^(lhs:Bool,rhs:Bool) -> Bool { return lhs && rhs }
+
+prefix operator ++ {}
+public prefix func ++<T: Numeric>(rhs:inout T) -> T {
+    rhs = rhs + 1
+    return rhs
+}

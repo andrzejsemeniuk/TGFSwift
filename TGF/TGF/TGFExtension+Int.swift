@@ -15,6 +15,6 @@ extension Int
     }
     public var isOdd:Bool {
         return self % 2 == 1
-    }
+    }    
 }
 
