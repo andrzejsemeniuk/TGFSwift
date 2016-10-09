@@ -1,0 +1,3 @@
+[submodule "TGF/Euler"]
+	path = TGF/Euler
+	url = https://github.com/mattt/Euler.git

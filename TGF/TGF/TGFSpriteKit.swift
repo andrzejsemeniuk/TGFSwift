@@ -11,7 +11,7 @@ import SpriteKit
 
 
 
-typealias CGxy              = (x:CGFloat,y:CGFloat)
+public typealias CGXY              = (x:CGFloat,y:CGFloat)
 
 
 
@@ -21,27 +21,24 @@ public struct CGProportion
 {
     public var value:CGFloat = 0
     
-    public func of      (length length:CGFloat) -> CGFloat              { return value * length }
-    public func lerp    (from from:CGFloat,to:CGFloat) -> CGFloat       { return from + value * (to - from) }
-    public func lerp01  (from from:CGFloat,to:CGFloat) -> CGFloat       { return min(1,max(0,from + value * (to - from))) }
-
-    public func lerp    (from from:CGFloat,length:CGFloat) -> CGFloat   { return lerp(from:from,to:from + length) }
-    public func lerp01  (from from:CGFloat,length:CGFloat) -> CGFloat   { return lerp01(from:from,to:from + length) }
+    public func of      (length:CGFloat) -> CGFloat                 { return value * length }
+    public func lerp    (from:CGFloat,to:CGFloat) -> CGFloat        { return from + value * (to - from) }
+    public func lerp01  (from:CGFloat,to:CGFloat) -> CGFloat        { return min(1,max(0,from + value * (to - from))) }
+    
+    public func lerp    (from:CGFloat,length:CGFloat) -> CGFloat    { return lerp(from:from,to:from + length) }
+    public func lerp01  (from:CGFloat,length:CGFloat) -> CGFloat    { return lerp01(from:from,to:from + length) }
 }
 
 public struct CGRatio
 {
     public var h:CGFloat = 0
     public var v:CGFloat = 0
-
-    func __conversion() -> (CGFloat, CGFloat)               { return (h, v) }
+    
+    func __conversion() -> (CGFloat, CGFloat)                       { return (h, v) }
 }
 
-public func CGDegrees2Radians(angle:CGFloat) -> CGFloat     { return angle / 180.0 * Math.PI }
-public func CGRadians2Degrees(angle:CGFloat) -> CGFloat     { return angle / Math.PI * 180.0 }
-
-public func CGDegreesToRadians(angle:CGFloat) -> CGFloat    { return CGDegrees2Radians(angle) }
-public func CGRadiansToDegrees(angle:CGFloat) -> CGFloat    { return CGRadians2Degrees(angle) }
+public func CGAsRadians(degrees:CGFloat) -> CGFloat                 { return degrees / 180.0 * Math.PI }
+public func CGAsDegrees(radians:CGFloat) -> CGFloat                 { return radians / Math.PI * 180.0 }
 
 public struct CGDegrees
 {
@@ -50,7 +47,7 @@ public struct CGDegrees
     public init(angle:CGFloat) {
         self.angle = angle
     }
-    public func toRadians   () -> CGFloat           { return CGDegrees2Radians(angle) }
+    public func toRadians   () -> CGFloat           { return CGAsRadians(degrees:angle) }
     public func asCGRadians () -> CGRadians         { return CGRadians(angle:toRadians()) }
 }
 
@@ -61,7 +58,7 @@ public struct CGRadians
     public init(angle:CGFloat) {
         self.angle = angle
     }
-    public func toDegrees   ()  -> CGFloat          { return CGRadians2Degrees(angle) }
+    public func toDegrees   ()  -> CGFloat          { return CGAsDegrees(radians:angle) }
     public func asCGDegrees ()  -> CGDegrees        { return CGDegrees(angle:toDegrees()) }
 }
 
@@ -69,10 +66,10 @@ public struct CGAngle
 {
     private var angle:CGFloat
     
-    public      init(degrees angle:CGFloat)         { self.angle = CGDegrees2Radians(angle) }
+    public      init(degrees angle:CGFloat)         { self.angle = CGAsRadians(degrees:angle) }
     public      init(radians angle:CGFloat)         { self.angle = angle }
     
-    public func toDegrees   ()  -> CGFloat          { return CGRadians2Degrees(angle) }
+    public func toDegrees   ()  -> CGFloat          { return CGAsDegrees(radians:angle) }
     public func toRadians   ()  -> CGFloat          { return angle }
     
     public func asCGDegrees ()  -> CGDegrees        { return CGDegrees(angle:toDegrees()) }
@@ -87,79 +84,77 @@ extension CGPoint
 
 extension CGRect
 {
-    var midpoint            :CGPoint                { return pointFromRatio(0.5,0.5) }
+    public var midpoint        :CGPoint        { return pointFromRatio(x:0.5,y:0.5) }
     
-    var tl:CGPoint      { return pointFromRatio(0,1) }
-    var tr:CGPoint      { return pointFromRatio(1,1) }
-    var bl:CGPoint      { return pointFromRatio(0,0) }
-    var br:CGPoint      { return pointFromRatio(1,0) }
-    var c:CGPoint       { return midpoint }
+    public var tl              :CGPoint        { return pointFromRatio(x:0,y:1) }
+    public var tr              :CGPoint        { return pointFromRatio(x:1,y:1) }
+    public var bl              :CGPoint        { return pointFromRatio(x:0,y:0) }
+    public var br              :CGPoint        { return pointFromRatio(x:1,y:0) }
+    public var c               :CGPoint        { return midpoint }
     
-    var center:CGPoint  { return midpoint }
+    public var center          :CGPoint        { return midpoint }
     
-    var top     :CGFloat    { return origin.y + height }
-    var left    :CGFloat    { return origin.x }
-    var bottom  :CGFloat    { return origin.y }
-    var right   :CGFloat    { return origin.x + width }
-
-    func pointFromRatio         (x:CGFloat, _ y:CGFloat)    -> CGPoint { return CGPointMake(origin.x + width * x, origin.y + height * y) }
-    func pointFromRatio         (ratio:CGxy)                -> CGPoint { return pointFromRatio(ratio.x,ratio.y) }
+    public var top             :CGFloat        { return origin.y + height }
+    public var left            :CGFloat        { return origin.x }
+    public var bottom          :CGFloat        { return origin.y }
+    public var right           :CGFloat        { return origin.x + width }
     
-    func ratioFromPoint         (point:CGPoint)             -> CGPoint { return CGPointMake(width != 0.0 ? ((point.x - origin.x) / width) : 0.0, height != 0.0 ? ((point.y - origin.y) / height) : 0.0 ) }
+    public func pointFromRatio         (x:CGFloat, y:CGFloat)      -> CGPoint { return CGPoint(x: origin.x + width * x, y: origin.y + height * y) }
+    public func pointFrom              (ratio:CGXY)                -> CGPoint { return pointFromRatio(x:ratio.x,y:ratio.y) }
+    
+    public func ratioFrom              (point:CGPoint)             -> CGPoint { return CGPoint(x: width != 0.0 ? ((point.x - origin.x) / width) : 0.0, y: height != 0.0 ? ((point.y - origin.y) / height) : 0.0 ) }
 }
 
 extension CGSize
 {
-    var midpoint:CGPoint {
-        return pointFromRatio(0.5,0.5)
-    }
+    public var midpoint        :CGPoint        { return pointFromRatio(x:0.5,y:0.5) }
     
-    var tl:CGPoint      { return pointFromRatio(0,1) }
-    var tr:CGPoint      { return pointFromRatio(1,1) }
-    var bl:CGPoint      { return pointFromRatio(0,0) }
-    var br:CGPoint      { return pointFromRatio(1,0) }
-    var c:CGPoint       { return midpoint }
-
-    var center:CGPoint  { return midpoint }
+    public var tl              :CGPoint        { return pointFromRatio(x:0,y:1) }
+    public var tr              :CGPoint        { return pointFromRatio(x:1,y:1) }
+    public var bl              :CGPoint        { return pointFromRatio(x:0,y:0) }
+    public var br              :CGPoint        { return pointFromRatio(x:1,y:0) }
+    public var c               :CGPoint        { return midpoint }
     
-    var top     :CGFloat    { return height }
-    var left    :CGFloat    { return 0 }
-    var bottom  :CGFloat    { return 0 }
-    var right   :CGFloat    { return width }
-
-    func pointFromRatio         (x:CGFloat, _ y:CGFloat)    -> CGPoint { return CGPointMake(width * x, height * y) }
-    func pointFromRatio         (ratio:CGxy)                -> CGPoint { return pointFromRatio(ratio.x, ratio.y) }
+    public var center          :CGPoint        { return midpoint }
     
-    func ratioFromPoint         (point:CGPoint)             -> CGPoint { return CGPointMake(width != 0.0 ? (point.x / width) : 0.0, height != 0.0 ? (point.y / height) : 0.0 ) }
+    public var top             :CGFloat        { return height }
+    public var left            :CGFloat        { return 0 }
+    public var bottom          :CGFloat        { return 0 }
+    public var right           :CGFloat        { return width }
+    
+    public func pointFromRatio         (x:CGFloat, y:CGFloat)      -> CGPoint { return CGPoint(x: width * x, y: height * y) }
+    public func pointFrom              (ratio:CGXY)                -> CGPoint { return pointFromRatio(x:ratio.x, y:ratio.y) }
+    
+    public func ratioFrom              (point:CGPoint)             -> CGPoint { return CGPoint(x: width != 0.0 ? (point.x / width) : 0.0, y: height != 0.0 ? (point.y / height) : 0.0 ) }
 }
 
-func UIScreenGetCenter() -> CGPoint {
+public func UIScreenGetCenter() -> CGPoint {
     
-    return CGPoint(x:UIScreen.mainScreen().bounds.width/2.0,
-                   y:UIScreen.mainScreen().bounds.height/2.0)
+    return CGPoint(x:UIScreen.main().bounds.width/2.0,
+                   y:UIScreen.main().bounds.height/2.0)
 }
 
 
-struct CGScreen
+public struct CGScreen
 {
-    static var bounds:CGRect = CGRect(x:UIScreen.mainScreen().bounds.origin.x,
-                                        y:UIScreen.mainScreen().bounds.origin.y,
-                                        width:UIScreen.mainScreen().bounds.width * UIScreen.mainScreen().scale,
-                                        height:UIScreen.mainScreen().bounds.height * UIScreen.mainScreen().scale)
+    public static var bounds:CGRect = CGRect(x:UIScreen.main().bounds.origin.x,
+                                      y:UIScreen.main().bounds.origin.y,
+                                      width:UIScreen.main().bounds.width * UIScreen.main().scale,
+                                      height:UIScreen.main().bounds.height * UIScreen.main().scale)
     
-    static var origin                                                   :CGPoint    { return bounds.origin }
-    static var size                                                     :CGSize     { return bounds.size }
-    static var width                                                    :CGFloat    { return size.width }
-    static var height                                                   :CGFloat    { return size.height }
-    static var scale                                                    :CGFloat    { return UIScreen.mainScreen().scale }
+    public static var origin                                                   :CGPoint    { return bounds.origin }
+    public static var size                                                     :CGSize     { return bounds.size }
+    public static var width                                                    :CGFloat    { return size.width }
+    public static var height                                                   :CGFloat    { return size.height }
+    public static var scale                                                    :CGFloat    { return UIScreen.main().scale }
     
     
-    static func diagonal                (fraction:CGFloat = 1.0)        -> CGFloat  { return TGF.Environment.Screen.diagonal(fraction) }
-
-    static func pointFromRatio          (x:CGFloat, _ y:CGFloat)        -> CGPoint  { return bounds.pointFromRatio(x,y) }
-    static func pointFromRatio          (ratio:CGxy)                    -> CGPoint  { return pointFromRatio(ratio.x,ratio.y) }
+    public static func diagonal                (fraction:CGFloat = 1.0)        -> CGFloat  { return TGF.Environment.Screen.diagonal(fraction) }
     
-    static func ratioFromPoint          (point:CGPoint)                 -> CGPoint  { return bounds.ratioFromPoint(point) }
+    public static func pointFromRatio          (x:CGFloat, y:CGFloat)          -> CGPoint  { return bounds.pointFromRatio(x:x,y:y) }
+    public static func pointFrom               (ratio:CGXY)                    -> CGPoint  { return pointFromRatio(x:ratio.x,y:ratio.y) }
+    
+    public static func ratioFrom               (point:CGPoint)                 -> CGPoint  { return bounds.ratioFrom(point:point) }
 }
 
 // From GitHub: ldesroziers/CGRect+OperatorsAdditions
@@ -179,153 +174,153 @@ struct CGScreen
  */
 
 
-func += (inout rect: CGRect, size: CGSize) {
+public func += (rect: inout CGRect, size: CGSize) {
     rect.size += size
 }
-func -= (inout rect: CGRect, size: CGSize) {
+public func -= (rect: inout CGRect, size: CGSize) {
     rect.size -= size
 }
-func *= (inout rect: CGRect, size: CGSize) {
+public func *= (rect: inout CGRect, size: CGSize) {
     rect.size *= size
 }
-func /= (inout rect: CGRect, size: CGSize) {
+public func /= (rect: inout CGRect, size: CGSize) {
     rect.size /= size
 }
-func += (inout rect: CGRect, origin: CGPoint) {
+public func += (rect: inout CGRect, origin: CGPoint) {
     rect.origin += origin
 }
-func -= (inout rect: CGRect, origin: CGPoint) {
+public func -= (rect: inout CGRect, origin: CGPoint) {
     rect.origin -= origin
 }
-func *= (inout rect: CGRect, origin: CGPoint) {
+public func *= (rect: inout CGRect, origin: CGPoint) {
     rect.origin *= origin
 }
-func /= (inout rect: CGRect, origin: CGPoint) {
+public func /= (rect: inout CGRect, origin: CGPoint) {
     rect.origin /= origin
 }
 
 
 /** CGSize+OperatorsAdditions */
-func += (inout size: CGSize, right: CGFloat) {
+public func += (size: inout CGSize, right: CGFloat) {
     size.width += right
     size.height += right
 }
-func -= (inout size: CGSize, right: CGFloat) {
+public func -= (size: inout CGSize, right: CGFloat) {
     size.width -= right
     size.height -= right
 }
-func *= (inout size: CGSize, right: CGFloat) {
+public func *= (size: inout CGSize, right: CGFloat) {
     size.width *= right
     size.height *= right
 }
-func /= (inout size: CGSize, right: CGFloat) {
+public func /= (size: inout CGSize, right: CGFloat) {
     size.width /= right
     size.height /= right
 }
 
-func += (inout left: CGSize, right: CGSize) {
+public func += (left: inout CGSize, right: CGSize) {
     left.width += right.width
     left.height += right.height
 }
-func -= (inout left: CGSize, right: CGSize) {
+public func -= (left: inout CGSize, right: CGSize) {
     left.width -= right.width
     left.height -= right.height
 }
-func *= (inout left: CGSize, right: CGSize) {
+public func *= (left: inout CGSize, right: CGSize) {
     left.width *= right.width
     left.height *= right.height
 }
-func /= (inout left: CGSize, right: CGSize) {
+public func /= (left: inout CGSize, right: CGSize) {
     left.width /= right.width
     left.height /= right.height
 }
 
-func + (size: CGSize, right: CGFloat) -> CGSize {
+public func + (size: CGSize, right: CGFloat) -> CGSize {
     return CGSize(width: size.width + right, height: size.height + right)
 }
-func - (size: CGSize, right: CGFloat) -> CGSize {
+public func - (size: CGSize, right: CGFloat) -> CGSize {
     return CGSize(width: size.width - right, height: size.height - right)
 }
-func * (size: CGSize, right: CGFloat) -> CGSize {
+public func * (size: CGSize, right: CGFloat) -> CGSize {
     return CGSize(width: size.width * right, height: size.height * right)
 }
-func / (size: CGSize, right: CGFloat) -> CGSize {
+public func / (size: CGSize, right: CGFloat) -> CGSize {
     return CGSize(width: size.width / right, height: size.height / right)
 }
 
-func + (left: CGSize, right: CGSize) -> CGSize {
+public func + (left: CGSize, right: CGSize) -> CGSize {
     return CGSize(width: left.width + right.width, height: left.height + right.height)
 }
-func - (left: CGSize, right: CGSize) -> CGSize {
+public func - (left: CGSize, right: CGSize) -> CGSize {
     return CGSize(width: left.width - right.width, height: left.height - right.height)
 }
-func * (left: CGSize, right: CGSize) -> CGSize {
+public func * (left: CGSize, right: CGSize) -> CGSize {
     return CGSize(width: left.width * right.width, height: left.height * right.height)
 }
-func / (left: CGSize, right: CGSize) -> CGSize {
+public func / (left: CGSize, right: CGSize) -> CGSize {
     return CGSize(width: left.width / right.width, height: left.height / right.height)
 }
 
 
 
 /** CGPoint+OperatorsAdditions */
-func += (inout point: CGPoint, right: CGFloat) {
+public func += (point: inout CGPoint, right: CGFloat) {
     point.x += right
     point.y += right
 }
-func -= (inout point: CGPoint, right: CGFloat) {
+public func -= (point: inout CGPoint, right: CGFloat) {
     point.x -= right
     point.y -= right
 }
-func *= (inout point: CGPoint, right: CGFloat) {
+public func *= (point: inout CGPoint, right: CGFloat) {
     point.x *= right
     point.y *= right
 }
-func /= (inout point: CGPoint, right: CGFloat) {
+public func /= (point: inout CGPoint, right: CGFloat) {
     point.x /= right
     point.y /= right
 }
 
-func += (inout left: CGPoint, right: CGPoint) {
+public func += (left: inout CGPoint, right: CGPoint) {
     left.x += right.x
     left.y += right.y
 }
-func -= (inout left: CGPoint, right: CGPoint) {
+public func -= (left: inout CGPoint, right: CGPoint) {
     left.x -= right.x
     left.y -= right.y
 }
-func *= (inout left: CGPoint, right: CGPoint) {
+public func *= (left: inout CGPoint, right: CGPoint) {
     left.x *= right.x
     left.y *= right.y
 }
-func /= (inout left: CGPoint, right: CGPoint) {
+public func /= (left: inout CGPoint, right: CGPoint) {
     left.x /= right.x
     left.y /= right.y
 }
 
-func + (point: CGPoint, right: CGFloat) -> CGPoint {
+public func + (point: CGPoint, right: CGFloat) -> CGPoint {
     return CGPoint(x: point.x + right, y: point.y + right)
 }
-func - (point: CGPoint, right: CGFloat) -> CGPoint {
+public func - (point: CGPoint, right: CGFloat) -> CGPoint {
     return CGPoint(x: point.x - right, y: point.y - right)
 }
-func * (point: CGPoint, right: CGFloat) -> CGPoint {
+public func * (point: CGPoint, right: CGFloat) -> CGPoint {
     return CGPoint(x: point.x * right, y: point.y * right)
 }
-func / (point: CGPoint, right: CGFloat) -> CGPoint {
+public func / (point: CGPoint, right: CGFloat) -> CGPoint {
     return CGPoint(x: point.x / right, y: point.y / right)
 }
 
-func + (left: CGPoint, right: CGPoint) -> CGPoint {
+public func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
 }
-func - (left: CGPoint, right: CGPoint) -> CGPoint {
+public func - (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x - right.x, y: left.y - right.y)
 }
-func * (left: CGPoint, right: CGPoint) -> CGPoint {
+public func * (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x * right.x, y: left.y * right.y)
 }
-func / (left: CGPoint, right: CGPoint) -> CGPoint {
+public func / (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x / right.x, y: left.y / right.y)
 }
 
@@ -336,23 +331,23 @@ extension SKNode
     var width   :CGFloat                                                                    { return 0 }
     var height  :CGFloat                                                                    { return 0 }
     
-    func hFromRatio             (ratio:CGFloat)                                 -> CGFloat  { return self.width * ratio }
-    func vFromRatio             (ratio:CGFloat)                                 -> CGFloat  { return self.height * ratio }
+    public func hFrom                  (ratio:CGFloat)                                 -> CGFloat  { return self.width * ratio }
+    public func vFrom                  (ratio:CGFloat)                                 -> CGFloat  { return self.height * ratio }
     
-    func xFromRatio             (ratio:CGFloat)                                 -> CGFloat  { return self.position.x + hFromRatio(ratio) }
-    func yFromRatio             (ratio:CGFloat)                                 -> CGFloat  { return self.position.y + vFromRatio(ratio) }
+    public func xFrom                  (ratio:CGFloat)                                 -> CGFloat  { return self.position.x + hFrom(ratio:ratio) }
+    public func yFrom                  (ratio:CGFloat)                                 -> CGFloat  { return self.position.y + vFrom(ratio:ratio) }
     
-    func ratioFromH             (h:CGFloat)                                     -> CGFloat  { return h / (width != 0 ? width : 1.0) }
-    func ratioFromV             (v:CGFloat)                                     -> CGFloat  { return v / (height != 0 ? height : 1.0) }
+    public func ratioFromH             (h:CGFloat)                                     -> CGFloat  { return h / (width != 0 ? width : 1.0) }
+    public func ratioFromV             (v:CGFloat)                                     -> CGFloat  { return v / (height != 0 ? height : 1.0) }
     
-    func ratioFromX             (x:CGFloat)                                     -> CGFloat  { return (x - position.x) / (width != 0 ? width : 1.0) }
-    func ratioFromY             (y:CGFloat)                                     -> CGFloat  { return (y - position.y) / (height != 0 ? height : 1.0) }
+    public func ratioFromX             (x:CGFloat)                                     -> CGFloat  { return (x - position.x) / (width != 0 ? width : 1.0) }
+    public func ratioFromY             (y:CGFloat)                                     -> CGFloat  { return (y - position.y) / (height != 0 ? height : 1.0) }
     
-    func pointFromRatio         (ratio:CGPoint)                                 -> CGPoint  { return CGPointMake(hFromRatio(ratio.x), vFromRatio(ratio.y)) }
-    func pointFromRatio         (h:CGFloat, _ v:CGFloat)                        -> CGPoint  { return CGPointMake(hFromRatio(h),vFromRatio(v)) }
+    public func pointFromRatio         (ratio:CGPoint)                                 -> CGPoint  { return CGPoint(x: hFrom(ratio:ratio.x), y: vFrom(ratio:ratio.y)) }
+    public func pointFromRatio         (h:CGFloat, v:CGFloat)                          -> CGPoint  { return CGPoint(x: hFrom(ratio:h),y: vFrom(ratio:v)) }
     
-    func positionFromRatio      (x:CGFloat, _ y:CGFloat)                        -> CGPoint  { return position + pointFromRatio(x,y) }
-
+    public func positionFromRatio      (x:CGFloat, y:CGFloat)                          -> CGPoint  { return position + pointFromRatio(h:x,v:y) }
+    
     
     public var z:CGFloat {
         get {
@@ -364,12 +359,12 @@ extension SKNode
     }
     
     
-    class func resolveResourceImageName(name:String, suffix:String = ".png") -> String {
+    class public func resolveResourceImageName(name:String, suffix:String = ".png") -> String {
         
         // if has .suffix
         // if is suffixed with ~5
         // if not has .suffix
-
+        
         if TGF.Environment.DeviceType.IPHONE5 {
             return name + (name.hasSuffix("~5") ? "" : "~5") + suffix
         }
@@ -383,176 +378,107 @@ extension SKNode
         return name
     }
     
-    func addChild               (sprite sprite:SKSpriteNode)                    -> SKSpriteNode
+    public func addChild               (sprite:SKSpriteNode)                    -> SKSpriteNode
     {
         addChild(sprite)
         return sprite
     }
-
-    func addChildSprite         (imageNamed imageNamed:String, suffix:String = ".png")                  -> SKSpriteNode
+    
+    public func addChildSprite         (imageNamed:String, suffix:String = ".png")                  -> SKSpriteNode
     {
-        let name = SKNode.resolveResourceImageName(imageNamed,suffix:suffix)
+        let name = SKNode.resolveResourceImageName(name:imageNamed,suffix:suffix)
         let node = SKSpriteNode(imageNamed:name)
         addChild(node)
-        node.anchorPoint = CGPointMake(0.5,0.5)
+        node.anchorPoint = CGPoint(x: 0.5,y: 0.5)
         return node
     }
     
-    func addChildSpriteEmpty    ()                                              -> SKSpriteNode
+    public func addChildSpriteEmpty    ()                                              -> SKSpriteNode
     {
         let node = SKSpriteNode()
         addChild(node)
-        node.anchorPoint = CGPointMake(0.5,0.5)
+        node.anchorPoint = CGPoint(x: 0.5,y: 0.5)
         return node
     }
     
     
     
-
-    func withNodeName                   (name:String)                               -> SKNode
-    {
-        self.name = name
-        return self
-    }
-    
-    func withNodeZRotation              (rotation:CGFloat)                          -> SKNode
-    {
-        self.zRotation = rotation
-        return self
-    }
-
-    func withNodeScaleX                 (scale:CGFloat)                             -> SKNode
-    {
-        self.xScale = scale
-        return self
-    }
-
-    func withNodeScaleY                 (scale:CGFloat)                             -> SKNode
-    {
-        self.yScale = scale
-        return self
-    }
-    
-    func withNodeScale                  (scale:CGFloat)                             -> SKNode
-    {
-        self.xScale = scale
-        self.yScale = scale
-        return self
-    }
-    
-    func withNodeScale                  (x:CGFloat, _ y:CGFloat)                    -> SKNode
-    {
-        self.xScale = x
-        self.yScale = y
-        return self
-    }
-    
-    func withNodeAlpha                  (alpha:CGFloat)                             -> SKNode
-    {
-        self.alpha = alpha
-        return self
-    }
-
-    func withNodePositionX              (v:CGFloat)                                 -> SKNode
-    {
-        self.position.x = v
-        return self
-    }
-    
-    func withNodePositionY              (v:CGFloat)                                 -> SKNode
-    {
-        self.position.y = v
-        return self
-    }
-    
-    func withNodePosition               (position:CGPoint)                          -> SKNode
-    {
-        self.position = position
-        return self
-    }
-
-    func withNodeZPosition              (p:CGFloat)                                 -> SKNode
-    {
-        self.zPosition = p
-        return self
-    }
-
     
     
-
-    func positionFromScreenRatio  (to:CGxy)
+    
+    public func positionFromScreenRatio  (to:CGXY)
     {
         if let parent = self.scene
         {
-            let position = parent.position + CGScreen.pointFromRatio(to)
-//            print("positionFromScreen(\(to))=\(position),screen=\(CGScreen.bounds)")
-            self.position = (self.parent?.convertPoint(position,fromNode:parent))!
+            let position = parent.position + CGScreen.pointFrom(ratio:to)
+            //            print("positionFromScreen(\(to))=\(position),screen=\(CGScreen.bounds)")
+            self.position = (self.parent?.convert(position,from:parent))!
         }
     }
     
-    func positionFromScreenRatio          (x:CGFloat,_ y:CGFloat)
+    public func positionFromScreenRatio          (x:CGFloat,y:CGFloat)
     {
-        positionFromScreenRatio(CGxy(x,y))
+        positionFromScreenRatio(to:CGXY(x,y))
     }
     
     
     
     
-    func positionFromSceneRatio  (to:CGxy)
+    public func positionFromSceneRatio  (to:CGXY)
     {
         if let parent = self.scene
         {
-            self.position.x = parent.xFromRatio(to.x)
-            self.position.y = parent.yFromRatio(to.y)
+            self.position.x = parent.xFrom(ratio:to.x)
+            self.position.y = parent.yFrom(ratio:to.y)
             
-            self.position = (self.parent?.convertPoint(position,fromNode:parent))!
+            self.position = (self.parent?.convert(position,from:parent))!
         }
     }
     
-    func positionFromSceneRatio          (x:CGFloat,_ y:CGFloat)
+    public func positionFromSceneRatio          (x:CGFloat,y:CGFloat)
     {
-        positionFromSceneRatio(CGxy(x,y))
+        positionFromSceneRatio(to:CGXY(x,y))
     }
-
     
     
     
-    func positionFromParentRatio  (to:CGxy)
+    
+    public func positionFromParentRatio  (to:CGXY)
     {
         if let parent = self.parent as? SKSpriteNode {
-            self.position.x = parent.xFromRatio(to.x - parent.anchorPoint.x)
-            self.position.y = parent.yFromRatio(to.y - parent.anchorPoint.y)
+            self.position.x = parent.xFrom(ratio:to.x - parent.anchorPoint.x)
+            self.position.y = parent.yFrom(ratio:to.y - parent.anchorPoint.y)
         }
         else if let parent = self.parent as? SKScene {
-            self.position.x = parent.xFromRatio(to.x)
-            self.position.y = parent.yFromRatio(to.y)
+            self.position.x = parent.xFrom(ratio:to.x)
+            self.position.y = parent.yFrom(ratio:to.y)
         }
     }
     
-    func positionFromParentRatio          (x:CGFloat,_ y:CGFloat)
+    public func positionFromParentRatio          (x:CGFloat,y:CGFloat)
     {
-        positionFromParentRatio(CGxy(x,y))
+        positionFromParentRatio(to:CGXY(x,y))
     }
     
-    func positionFromParentCenter ()
+    public func positionFromParentCenter ()
     {
-        positionFromParentRatio((0.5,0.5))
+        positionFromParentRatio(to:(x:0.5,y:0.5))
     }
     
     
     
     
-    func withNodePositionToParentRatio  (to:CGxy)                                    -> SKNode
+    public func onNodePositionToParentRatio  (to:CGXY)                                    -> SKNode
     {
-        positionFromParentRatio(to)
+        positionFromParentRatio(to:to)
         return self
     }
     
-    func withNodePositionToParentCenter ()                                              -> SKNode
+    public func onNodePositionToParentCenter ()                                              -> SKNode
     {
-        return withNodePositionToParentRatio((0.5,0.5))
+        return onNodePositionToParentRatio(to:(x:0.5,y:0.5))
     }
-
+    
     
     
 }
@@ -565,7 +491,7 @@ extension SKScene
 {
     override var  width   :CGFloat                                                                    { return self.size.width }
     override var  height  :CGFloat                                                                    { return self.size.height }
-
+    
     // NOTE: NEED TO OVERRIDE position TO FIX BUG IN SpriteKit
     override public var  position:CGPoint {
         get {
@@ -595,156 +521,21 @@ extension SKShapeNode
 
 extension SKSpriteNode
 {
-
+    
     override var  width   :CGFloat                                                                    { return self.size.width }
     override var  height  :CGFloat                                                                    { return self.size.height }
     
-
     
     
     
     
-    override func positionFromRatio      (h:CGFloat, _ v:CGFloat)                        -> CGPoint { return CGPoint(x:xFromRatio(h - anchorPoint.x),y:yFromRatio(v - anchorPoint.y)) }
-
-    
-    
-    
-    
-    
-    
-    func withSpriteName                   (name:String)                               -> SKSpriteNode
-    {
-        withNodeName(name)
-        return self
-    }
-    
-    func withSpriteZRotation              (rotation:CGFloat)                          -> SKSpriteNode
-    {
-        withNodeZRotation(rotation)
-        return self
-    }
-    
-    func withSpriteScaleX                 (scale:CGFloat)                             -> SKSpriteNode
-    {
-        withNodeScaleX(scale)
-        return self
-    }
-    
-    func withSpriteScaleY                 (scale:CGFloat)                             -> SKSpriteNode
-    {
-        withNodeScaleY(scale)
-        return self
-    }
-    
-    func withSpriteScale                  (scale:CGFloat)                             -> SKSpriteNode
-    {
-        withNodeScale(scale)
-        return self
-    }
-    
-    func withSpriteScale                  (x:CGFloat, _ y:CGFloat)                    -> SKSpriteNode
-    {
-        withNodeScale(x,y)
-        return self
-    }
-    
-    func withSpriteAlpha                  (alpha:CGFloat)                             -> SKSpriteNode
-    {
-        withNodeAlpha(alpha)
-        return self
-    }
-    
-    func withSpritePositionX              (v:CGFloat)                                 -> SKSpriteNode
-    {
-        withNodePositionX(v)
-        return self
-    }
-    
-    func withSpritePositionY              (v:CGFloat)                                 -> SKSpriteNode
-    {
-        withNodePositionY(v)
-        return self
-    }
-    
-    func withSpritePosition               (position:CGPoint)                          -> SKSpriteNode
-    {
-        withNodePosition(position)
-        return self
-    }
-    
-    func withSpriteZPosition              (p:CGFloat)                                 -> SKSpriteNode
-    {
-        withNodeZPosition(p)
-        return self
-    }
-
+    override public func positionFromRatio      (x:CGFloat, y:CGFloat)                     -> CGPoint { return CGPoint(x:xFrom(ratio:x - anchorPoint.x),y:yFrom(ratio:y - anchorPoint.y)) }
     
     
     
     
     
-    
-    
-    
-    
-    
-    
-    func withSpriteAnchor             (x:CGFloat, _ y:CGFloat)                        -> SKSpriteNode
-    {
-        self.anchorPoint.x = x
-        self.anchorPoint.y = y
-        return self
-    }
-    
-    func withSpriteAnchor             (anchor:CGPoint)                                -> SKSpriteNode
-    {
-        self.anchorPoint = anchor
-        return self
-    }
-
-    func withSpriteColor              (color:UIColor,andAlpha:Bool = true)            -> SKSpriteNode
-    {
-        self.color = color
-        if andAlpha {
-            self.alpha = color.alpha
-        }
-        return self
-    }
-    
-    func withSpriteColorBlendFactor   (colorBlendFactor:CGFloat)                      -> SKSpriteNode
-    {
-        self.colorBlendFactor = colorBlendFactor
-        return self
-    }
-    
-    func withSpriteBlendMode          (blendMode:SKBlendMode)                         -> SKSpriteNode
-    {
-        self.blendMode = blendMode
-        return self
-    }
-    
-    
-//    func with                   (size size:CGSize)                              -> SKSpriteNode
-//    {
-//        self.size = size
-//        return self
-//    }
-    
-//    func with                   (width width:CGFloat)                           -> SKSpriteNode
-//    {
-//        self.size.width = width
-//        return self
-//    }
-
-//    func with                   (height height:CGFloat)                         -> SKSpriteNode
-//    {
-//        self.size.height = height
-//        return self
-//    }
-    
-    
-    
-    func withSpriteAlignX                 (from from:CGFloat, to:CGFloat)                 -> SKSpriteNode
+    public func onSpriteAlignX                 (from:CGFloat, to:CGFloat)                  -> SKSpriteNode
     {
         // POSITION IS WRT TO PARENT'S ANCHOR
         
@@ -753,38 +544,38 @@ extension SKSpriteNode
         return self
     }
     
-    func withSpriteAlignX                 (fromRatio fromRatio:CGFloat, to:CGFloat)       -> SKSpriteNode
+    public func onSpriteAlignX                 (fromRatio:CGFloat, to:CGFloat)             -> SKSpriteNode
     {
-        let from        = hFromRatio(fromRatio - anchorPoint.x)
-
+        let from        = hFrom(ratio:fromRatio - anchorPoint.x)
+        
         self.position.x = to - from
         
         return self
     }
-
-    func withSpriteAlignX                 (fromRatio fromRatio:CGFloat, toRatio:CGFloat)  -> SKSpriteNode
+    
+    public func onSpriteAlignX                 (fromRatio:CGFloat, toRatio:CGFloat)        -> SKSpriteNode
     {
         if let parent = self.parent as? SKSpriteNode {
-            let from        = self  .hFromRatio(fromRatio - anchorPoint.x)
-            let to          = parent.hFromRatio(toRatio - parent.anchorPoint.x)
+            let from        = self  .hFrom(ratio:fromRatio - anchorPoint.x)
+            let to          = parent.hFrom(ratio:toRatio - parent.anchorPoint.x)
             self.position.x = to - from
         }
         else if let parent = self.parent as? SKScene {
-            let from        = self  .hFromRatio(fromRatio - anchorPoint.x)
-            let to          = parent.hFromRatio(toRatio - parent.anchorPoint.x)
+            let from        = self  .hFrom(ratio:fromRatio - anchorPoint.x)
+            let to          = parent.hFrom(ratio:toRatio - parent.anchorPoint.x)
             self.position.x = to - from
         }
         return self
     }
     
-    func withSpriteAlignX                 (from from:CGFloat, toRatio:CGFloat)            -> SKSpriteNode
+    public func onSpriteAlignX                 (from:CGFloat, toRatio:CGFloat)             -> SKSpriteNode
     {
         if let parent = self.parent as? SKSpriteNode {
-            let to          = parent.hFromRatio(toRatio - parent.anchorPoint.x)
+            let to          = parent.hFrom(ratio:toRatio - parent.anchorPoint.x)
             self.position.x = to - from
         }
         else if let parent = self.parent as? SKScene {
-            let to          = parent.hFromRatio(toRatio - parent.anchorPoint.x)
+            let to          = parent.hFrom(ratio:toRatio - parent.anchorPoint.x)
             self.position.x = to - from
         }
         return self
@@ -794,109 +585,109 @@ extension SKSpriteNode
     
     
     
-    func withSpriteAlignY                 (from from:CGFloat, to:CGFloat)                 -> SKSpriteNode
+    public func onSpriteAlignY                 (from:CGFloat, to:CGFloat)                  -> SKSpriteNode
     {
         self.position.y = to - from
         
         return self
     }
     
-    func withSpriteAlignY                 (fromRatio fromRatio:CGFloat, to:CGFloat)       -> SKSpriteNode
+    public func onSpriteAlignY                 (fromRatio:CGFloat, to:CGFloat)             -> SKSpriteNode
     {
-        let from        = vFromRatio(fromRatio - anchorPoint.y)
+        let from        = vFrom(ratio:fromRatio - anchorPoint.y)
         
         self.position.y = to - from
         
         return self
     }
     
-    func withSpriteAlignY                 (fromRatio fromRatio:CGFloat, toRatio:CGFloat)  -> SKSpriteNode
+    public func onSpriteAlignY                 (fromRatio:CGFloat, toRatio:CGFloat)        -> SKSpriteNode
     {
         if let parent = self.parent as? SKSpriteNode {
-            let from        = self  .vFromRatio(fromRatio - anchorPoint.y)
-            let to          = parent.vFromRatio(toRatio - parent.anchorPoint.y)
+            let from        = self  .vFrom(ratio:fromRatio - anchorPoint.y)
+            let to          = parent.vFrom(ratio:toRatio - parent.anchorPoint.y)
             self.position.y = to - from
         }
         else if let parent = self.parent as? SKScene {
-            let from        = self  .vFromRatio(fromRatio - anchorPoint.y)
-            let to          = parent.vFromRatio(toRatio - parent.anchorPoint.y)
+            let from        = self  .vFrom(ratio:fromRatio - anchorPoint.y)
+            let to          = parent.vFrom(ratio:toRatio - parent.anchorPoint.y)
             self.position.y = to - from
         }
         return self
     }
     
-    func withSpriteAlignY                 (from from:CGFloat, toRatio:CGFloat)            -> SKSpriteNode
+    public func onSpriteAlignY                 (from:CGFloat, toRatio:CGFloat)             -> SKSpriteNode
     {
         if let parent = self.parent as? SKSpriteNode {
-            let to          = parent.vFromRatio(toRatio - parent.anchorPoint.y)
+            let to          = parent.vFrom(ratio:toRatio - parent.anchorPoint.y)
             self.position.x = to - from
         }
         else if let parent = self.parent as? SKScene {
-            let to          = parent.vFromRatio(toRatio - parent.anchorPoint.y)
+            let to          = parent.vFrom(ratio:toRatio - parent.anchorPoint.y)
             self.position.x = to - from
         }
         return self
     }
-
     
     
     
     
-
-    func withSpriteAlign                  (from from:CGPoint, to:CGPoint)                 -> SKSpriteNode
+    
+    
+    public func onSpriteAlign                  (from:CGPoint, to:CGPoint)                  -> SKSpriteNode
     {
-        withSpriteAlignX(from:from.x,to:to.x)
-        withSpriteAlignY(from:from.y,to:to.y)
-        return self
-    }
-
-    func withSpriteAlign                  (fromRatio fromRatio:CGPoint, to:CGPoint)       -> SKSpriteNode
-    {
-        withSpriteAlignX(fromRatio:fromRatio.x,to:to.x)
-        withSpriteAlignY(fromRatio:fromRatio.y,to:to.y)
+        let _ = onSpriteAlignX(from:from.x,to:to.x)
+        let _ = onSpriteAlignY(from:from.y,to:to.y)
         return self
     }
     
-    func withSpriteAlign                  (fromRatio fromRatio:CGxy, toRatio:CGxy)  -> SKSpriteNode
+    public func onSpriteAlign                  (fromRatio:CGPoint, to:CGPoint)             -> SKSpriteNode
     {
-        withSpriteAlignX(fromRatio:fromRatio.x,toRatio:toRatio.x)
-        withSpriteAlignY(fromRatio:fromRatio.y,toRatio:toRatio.y)
+        let _ = onSpriteAlignX(fromRatio:fromRatio.x,to:to.x)
+        let _ = onSpriteAlignY(fromRatio:fromRatio.y,to:to.y)
         return self
     }
     
-    func withSpriteAlign                  (fromRatio fromRatio:CGPoint, toRatio:CGPoint)  -> SKSpriteNode
+    public func onSpriteAlign                  (fromRatio:CGXY, toRatio:CGXY)              -> SKSpriteNode
     {
-        withSpriteAlignX(fromRatio:fromRatio.x,toRatio:toRatio.x)
-        withSpriteAlignY(fromRatio:fromRatio.y,toRatio:toRatio.y)
+        let _ = onSpriteAlignX(fromRatio:fromRatio.x,toRatio:toRatio.x)
+        let _ = onSpriteAlignY(fromRatio:fromRatio.y,toRatio:toRatio.y)
         return self
     }
     
-    func withSpriteAlign                  (from from:CGPoint, toRatio:CGPoint)            -> SKSpriteNode
+    public func onSpriteAlign                  (fromRatio:CGPoint, toRatio:CGPoint)        -> SKSpriteNode
     {
-        withSpriteAlignX(from:from.x,toRatio:toRatio.x)
-        withSpriteAlignY(from:from.y,toRatio:toRatio.y)
+        let _ = onSpriteAlignX(fromRatio:fromRatio.x,toRatio:toRatio.x)
+        let _ = onSpriteAlignY(fromRatio:fromRatio.y,toRatio:toRatio.y)
         return self
     }
     
-    func withSpriteAlign                  (fromRatio:CGPoint)                             -> SKSpriteNode
+    public func onSpriteAlign                  (from:CGPoint, toRatio:CGPoint)             -> SKSpriteNode
     {
-        return withSpriteAlign(fromRatio:fromRatio,
-                               toRatio  :CGPointMake(0.5,0.5))
+        let _ = onSpriteAlignX(from:from.x,toRatio:toRatio.x)
+        let _ = onSpriteAlignY(from:from.y,toRatio:toRatio.y)
+        return self
     }
     
-    func withSpriteAlign                  (toRatio toRatio:CGPoint)                       -> SKSpriteNode
+    public func onSpriteAlign                  (fromRatio:CGPoint)                         -> SKSpriteNode
     {
-        return withSpriteAlign(fromRatio:CGPointMake(0.5,0.5),
-                               toRatio  :toRatio)
+        return onSpriteAlign(fromRatio:fromRatio,
+                             toRatio  :CGPoint(x: 0.5,y: 0.5))
     }
     
-    func withSpriteAlignCenters           ()                                              -> SKSpriteNode
+    public func onSpriteAlign                  (toRatio:CGPoint)                           -> SKSpriteNode
     {
-        return withSpriteAlign(fromRatio:CGPointMake(0.5,0.5),
-                               toRatio  :CGPointMake(0.5,0.5))
+        return onSpriteAlign(fromRatio:CGPoint(x: 0.5,y: 0.5),
+                             toRatio  :toRatio)
     }
     
-    // withSpriteAlign(r:(0.5,0.3),p=(320,120))
+    public func onSpriteAlignCenters           ()                                          -> SKSpriteNode
+    {
+        return onSpriteAlign(fromRatio:CGPoint(x: 0.5,y: 0.5),
+                             toRatio  :CGPoint(x: 0.5,y: 0.5))
+    }
+    
+    // onSpriteAlign(r:(0.5,0.3),p=(320,120))
     
 }
 
@@ -908,14 +699,14 @@ extension SKSpriteNode
 
 extension SKNode
 {
-    func debugAddX(lineWidth lineWidth:CGFloat = 1,color:UIColor = UIColor.redColor()) -> SKNode
+    public func debugAddX(lineWidth:CGFloat = 1,color:UIColor = UIColor.red()) -> SKNode
     {
         if true
         {
-            let path = CGPathCreateMutable()
+            let path = CGMutablePath()
             
-            CGPathMoveToPoint       (path,nil,0.0,0.0)
-            CGPathAddLineToPoint    (path,nil,self.frame.size.width,self.frame.size.height)
+            path.moveTo       (nil,x: 0.0,y: 0.0)
+            path.addLineTo    (nil,x: self.frame.size.width,y: self.frame.size.height)
             
             let n = SKShapeNode(path:path)
             //            let n = SKShapeNode(rectOfSize:size,cornerRadius:32)
@@ -929,10 +720,10 @@ extension SKNode
         }
         if true
         {
-            let path = CGPathCreateMutable()
+            let path = CGMutablePath()
             
-            CGPathMoveToPoint       (path,nil,0.0,self.frame.size.height)
-            CGPathAddLineToPoint    (path,nil,self.frame.size.width,0)
+            path.moveTo       (nil,x: 0.0,y: self.frame.size.height)
+            path.addLineTo    (nil,x: self.frame.size.width,y: 0)
             
             let n = SKShapeNode(path:path)
             //            let n = SKShapeNode(rectOfSize:size,cornerRadius:32)
@@ -948,14 +739,14 @@ extension SKNode
         return self
     }
     
-    func debugAddCross(lineWidth lineWidth:CGFloat = 1,color:UIColor = UIColor.redColor()) -> SKNode
+    public func debugAddCross(lineWidth:CGFloat = 1,color:UIColor = UIColor.red()) -> SKNode
     {
         if true
         {
-            let path = CGPathCreateMutable()
+            let path = CGMutablePath()
             
-            CGPathMoveToPoint       (path,nil,self.frame.size.width/2,0.0)
-            CGPathAddLineToPoint    (path,nil,self.frame.size.width/2,self.frame.size.height)
+            path.moveTo       (nil,x: self.frame.size.width/2,y: 0.0)
+            path.addLineTo    (nil,x: self.frame.size.width/2,y: self.frame.size.height)
             
             let n = SKShapeNode(path:path)
             //            let n = SKShapeNode(rectOfSize:size,cornerRadius:32)
@@ -969,10 +760,10 @@ extension SKNode
         }
         if true
         {
-            let path = CGPathCreateMutable()
+            let path = CGMutablePath()
             
-            CGPathMoveToPoint       (path,nil,0.0,self.frame.size.height/2)
-            CGPathAddLineToPoint    (path,nil,self.frame.size.width,self.frame.size.height/2)
+            path.moveTo       (nil,x: 0.0,y: self.frame.size.height/2)
+            path.addLineTo    (nil,x: self.frame.size.width,y: self.frame.size.height/2)
             
             let n = SKShapeNode(path:path)
             //            let n = SKShapeNode(rectOfSize:size,cornerRadius:32)
@@ -988,11 +779,11 @@ extension SKNode
         return self
     }
     
-    func debugAddBorder(lineWidth lineWidth:CGFloat = 1,corner:CGFloat = 16,color:UIColor = UIColor.greenColor()) -> SKNode
+    public func debugAddBorder(lineWidth:CGFloat = 1,corner:CGFloat = 16,color:UIColor = UIColor.green()) -> SKNode
     {
         if true
         {
-            let n = SKShapeNode(rectOfSize:self.frame.size,cornerRadius:corner)
+            let n = SKShapeNode(rectOf:self.frame.size,cornerRadius:corner)
             
             n.strokeColor       = color
             n.lineWidth         = lineWidth
@@ -1010,50 +801,54 @@ extension SKNode
 
 
 
-extension SKAction
-{
-    public func runOn(node:SKNode,delay sec:NSTimeInterval = 0) -> SKAction {
-        aRun(self,node:node,delay:sec)
+extension SKAction {
+    
+    public func runOn(node:SKNode,delay sec:TimeInterval = 0) -> SKAction {
+        let _ = aRun(on:node,action:self,delay:sec)
         return self
     }
 }
 
 
-public func aRun            (on node:SKNode,action:SKAction,delay sec:NSTimeInterval = 0)   -> SKNode { node.runAction(aDelayed(sec,action:action)); return node }
-public func aRun            (action:SKAction,node:SKNode,delay sec:NSTimeInterval = 0)      -> SKNode { node.runAction(aDelayed(sec,action:action)); return node }
-public func aRun            (action:SKAction,on:SKNode,delay sec:NSTimeInterval = 0)        -> SKNode { on.runAction(aDelayed(sec,action:action)); return on }
+public func aRun            (on node:SKNode,action:SKAction,delay sec:TimeInterval = 0) -> SKNode       { node.run(aDelayed(sec:sec,action:action)); return node }
+public func aRun            (action:SKAction,node:SKNode,delay sec:TimeInterval = 0)    -> SKNode       { node.run(aDelayed(sec:sec,action:action)); return node }
+public func aRun            (action:SKAction,on:SKNode,delay sec:TimeInterval = 0)      -> SKNode       { on.run(aDelayed(sec:sec,action:action)); return on }
 
-public func aRunOnChild     (named named:String,action:SKAction,delay sec:NSTimeInterval = 0)-> SKAction { return SKAction.runAction(aDelayed(sec,action:action), onChildWithName:named); }
+public func aRunOnChild     (named:String,action:SKAction,delay sec:TimeInterval = 0)   -> SKAction     { return SKAction.run(aDelayed(sec:sec,action:action), onChildWithName:named); }
 
-public func aForever        (action:SKAction)                                               -> SKAction     { return SKAction.repeatActionForever(action) }
-public func aRepeat         (action:SKAction,count:UInt)                                    -> SKAction     { return SKAction.repeatAction(action,count:Int(count)) }
+public func aForever        (action:SKAction)                                           -> SKAction     { return SKAction.repeatForever(action) }
+public func aRepeat         (action:SKAction,count:UInt)                                -> SKAction     { return SKAction.repeat(action,count:Int(count)) }
 
-public func aSequence       (actions:[SKAction])                                            -> SKAction     { return SKAction.sequence(actions) }
-public func aGroup          (actions:[SKAction])                                            -> SKAction     { return SKAction.group(actions) }
+public func aSequence       (_ actions:[SKAction])                                      -> SKAction     { return SKAction.sequence(actions) }
+public func aGroup          (_ actions:[SKAction])                                      -> SKAction     { return SKAction.group(actions) }
 
-public func aWait           (sec:NSTimeInterval)                                            -> SKAction     { return SKAction.waitForDuration(sec) }
-public func aWait           (sec:NSTimeInterval,range:NSTimeInterval)                       -> SKAction     { return SKAction.waitForDuration(sec,withRange:range) }
+public func aWait           (sec:TimeInterval)                                          -> SKAction     { return SKAction.wait(forDuration: sec) }
+public func aWait           (sec:TimeInterval,range:TimeInterval)                       -> SKAction     { return SKAction.wait(forDuration: sec,withRange:range) }
 
-public func aDelayed        (action:SKAction,delay sec:NSTimeInterval)                      -> SKAction     { return 0.0 < sec ? aSequence([aWait(sec), action]) : action }
-public func aDelayed        (sec:NSTimeInterval,action:SKAction)                            -> SKAction     { return aDelayed(action,delay:sec) }
+//extension SKAction {
+//    public func delayed     (by sec:TimeInterval)                                   -> SKAction         { return 0.0 < sec ? aSequence([aWait(sec), self]) : self }
+//    public func aDelayed    (by sec:TimeInterval)                                   -> SKAction         { return delayed(by:sec) }
+//}
 
-public func aPerform        (selector selector:Selector,on:AnyObject)                       -> SKAction     { return SKAction.performSelector(selector,onTarget:on) }
+public func aDelayed        (action:SKAction,delay sec:TimeInterval)                    -> SKAction     { return 0.0 < sec ? aSequence([aWait(sec:sec), action]) : action }
+public func aDelayed        (sec:TimeInterval,action:SKAction)                          -> SKAction     { return aDelayed(action:action,delay:sec) }
 
-public func aBlock          (block: dispatch_block_t, delay:NSTimeInterval)                 -> SKAction     { return aDelayed(SKAction.runBlock(block),delay:delay) }
-public func aBlock          (delay delay:NSTimeInterval,block: dispatch_block_t)            -> SKAction     { return aDelayed(SKAction.runBlock(block),delay:delay) }
-public func aBlock          (block: dispatch_block_t)                                       -> SKAction     { return SKAction.runBlock(block) }
-public func aBlock          (block: dispatch_block_t, queue:dispatch_queue_t)               -> SKAction     { return SKAction.runBlock(block,queue:queue) }
+public func aPerform        (selector:Selector,on:AnyObject)                            -> SKAction     { return SKAction.perform(selector,onTarget:on) }
+
+public func aBlock          (block: ()->(), delay:TimeInterval)                         -> SKAction     { return aDelayed(action:SKAction.run(block),delay:delay) }
+public func aBlock          (delay:TimeInterval,block: ()->())                          -> SKAction     { return aDelayed(action:SKAction.run(block),delay:delay) }
+public func aBlock          (block: ()->())                                             -> SKAction     { return SKAction.run(block) }
+public func aBlock          (block: ()->(), queue:DispatchQueue)                        -> SKAction     { return SKAction.run(block,queue:queue) }
 public func aBlock          (block: (SKNode,CGFloat) -> Void,
-                             duration sec:NSTimeInterval,
-                                      delay:NSTimeInterval = 0)                             -> SKAction     { return aDelayed(delay,action:SKAction.customActionWithDuration(sec,actionBlock:block)) }
-public func aBlock          (duration sec:NSTimeInterval,
-                                      delay:NSTimeInterval = 0,
-                                      block: (SKNode,CGFloat) -> Void)                      -> SKAction     { return aDelayed(delay,action:SKAction.customActionWithDuration(sec,actionBlock:block)) }
-public func aBlockTimed01   (duration sec:NSTimeInterval,
-                                      delay:NSTimeInterval = 0,
-                                      block: (SKNode,CGFloat) -> Void)                      -> SKAction
-{
-    return aDelayed(delay,action:SKAction.customActionWithDuration(sec,actionBlock:{ node,time in
+                             duration sec:TimeInterval,
+                             delay:TimeInterval = 0)                                    -> SKAction     { return aDelayed(sec:delay,action:SKAction.customAction(withDuration: sec,actionBlock:block)) }
+public func aBlock          (duration sec:TimeInterval,
+                             delay:TimeInterval = 0,
+                             block: (SKNode,CGFloat) -> Void)                  -> SKAction     { return aDelayed(sec:delay,action:SKAction.customAction(withDuration: sec,actionBlock:block)) }
+public func aBlockTimed01   (duration sec:TimeInterval,
+                             delay:TimeInterval = 0,
+                             block: (SKNode,CGFloat) -> Void)                  -> SKAction     {
+    return aDelayed(sec:delay,action:SKAction.customAction(withDuration: sec,actionBlock:{ node,time in
         block(node,time/CGFloat(sec))
     }))
 }
@@ -1062,126 +857,126 @@ public func aBlockTimed01   (duration sec:NSTimeInterval,
 
 
 
-public func aWithTiming         (function f:SKActionTimingFunction,on:SKAction) -> SKAction { on.timingFunction=f; return on }
-public func aWithTiming         (on on:SKAction,_ f:SKActionTimingFunction) -> SKAction { on.timingFunction=f; return on }
+public func aWithTiming         (function f:SKActionTimingFunction,on:SKAction)         -> SKAction { on.timingFunction=f; return on }
+public func aWithTiming         (on:SKAction,_ f:SKActionTimingFunction)                -> SKAction { on.timingFunction=f; return on }
 
-public func aWithTimingMode     (mode:SKActionTimingMode,on:SKAction) -> SKAction { on.timingMode=mode; return on }
+public func aWithTimingMode     (mode:SKActionTimingMode,on:SKAction)                   -> SKAction { on.timingMode=mode; return on }
 
-public func aWithSpeed          (speed:CGFloat,on:SKAction) -> SKAction { on.speed=speed; return on }
+public func aWithSpeed          (speed:CGFloat,on:SKAction)                             -> SKAction { on.speed=speed; return on }
 
-public func aReversed           (on:SKAction) -> SKAction { return on.reversedAction() }
+public func aReversed           (on:SKAction)                                           -> SKAction { return on.reversed() }
 
-public func aRemoveFromParent   () -> SKAction { return SKAction.removeFromParent() }
-public func aRemove             () -> SKAction { return SKAction.removeFromParent() }
-
-
+public func aRemoveFromParent   ()                                                      -> SKAction { return SKAction.removeFromParent() }
+public func aRemove             ()                                                      -> SKAction { return SKAction.removeFromParent() }
 
 
 
 
-public func aMoveBy             (x x:CGFloat,y:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.moveByX(x,y:y,duration:sec) }
-public func aMoveBy             (x x:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.moveByX(x,y:0,duration:sec) }
-public func aMoveBy             (y y:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.moveByX(0,y:y,duration:sec) }
-public func aMoveBy             (move:CGVector,duration sec:NSTimeInterval) -> SKAction { return SKAction.moveBy(move,duration:sec) }
-
-public func aMoveTo             (move:CGPoint,duration sec:NSTimeInterval) -> SKAction { return SKAction.moveTo(move,duration:sec) }
-public func aMoveTo             (x x:CGFloat,y:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.moveTo(CGPointMake(x,y),duration:sec) }
-public func aMoveTo             (x x:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.moveToX(x,duration:sec) }
-public func aMoveTo             (y y:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.moveToY(y,duration:sec) }
-
-public func aFollow             (path path:CGPath,duration sec:NSTimeInterval) -> SKAction { return SKAction.followPath(path,duration:sec) }
-public func aFollow             (path path:CGPath,speed:CGFloat) -> SKAction { return SKAction.followPath(path,speed:speed) }
-public func aFollow             (path path:CGPath,asOffset:Bool,orientToPath:Bool,duration sec:NSTimeInterval) -> SKAction { return SKAction.followPath(path,asOffset:asOffset,orientToPath:orientToPath,duration:sec) }
-public func aFollow             (path path:CGPath,asOffset:Bool,orientToPath:Bool,speed:CGFloat) -> SKAction { return SKAction.followPath(path,asOffset:asOffset,orientToPath:orientToPath,speed:speed) }
-
-public func aRotateBy           (degrees angle:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.rotateByAngle(CGDegrees2Radians(angle),duration:sec) }
-public func aRotateBy           (radians angle:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.rotateByAngle(angle,duration:sec) }
-
-public func aRotateTo           (degrees angle:CGFloat,duration sec:NSTimeInterval,alongShortestArc:Bool = false) -> SKAction   { return SKAction.rotateToAngle(CGDegrees2Radians(angle),duration:sec,shortestUnitArc:alongShortestArc) }
-public func aRotateTo           (radians angle:CGFloat,duration sec:NSTimeInterval,alongShortestArc:Bool = false) -> SKAction   { return SKAction.rotateToAngle(angle,duration:sec,shortestUnitArc:alongShortestArc) }
-
-public func aSpeedBy            (speed:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.speedBy(speed,duration:sec) }
-public func aSpeedTo            (speed:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.speedTo(speed,duration:sec) }
-
-public func aScaleBy            (scale:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.scaleBy(scale,duration:sec) }
-public func aScaleTo            (scale:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.scaleTo(scale,duration:sec) }
-
-public func aScaleBy            (x x:CGFloat,y:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.scaleXBy(x,y:y,duration:sec) }
-public func aScaleTo            (x x:CGFloat,y:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.scaleXTo(x,y:y,duration:sec) }
-
-public func aScaleTo            (x x:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.scaleXTo(x,duration:sec) }
-public func aScaleTo            (y y:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.scaleYTo(y,duration:sec) }
-
-public func aHide               () -> SKAction { return SKAction.hide() }
-public func aShow               () -> SKAction { return SKAction.unhide() }
-public func aShow               (flag:Bool) -> SKAction { return flag ? SKAction.unhide() : SKAction.hide() }
-
-public func aFadeIn             (duration sec:NSTimeInterval) -> SKAction { return SKAction.fadeInWithDuration(sec) }
-public func aFadeOut            (duration sec:NSTimeInterval) -> SKAction { return SKAction.fadeOutWithDuration(sec) }
-
-public func aFadeBy             (alpha:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.fadeAlphaBy(alpha,duration:sec) }
-public func aFadeTo             (alpha:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.fadeAlphaTo(alpha,duration:sec) }
 
 
+public func aMoveBy             (x:CGFloat,y:CGFloat,duration sec:TimeInterval)         -> SKAction { return SKAction.moveBy(x: x,y:y,duration:sec) }
+public func aMoveBy             (x:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.moveBy(x: x,y:0,duration:sec) }
+public func aMoveBy             (y:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.moveBy(x: 0,y:y,duration:sec) }
+public func aMoveBy             (move:CGVector,duration sec:TimeInterval)               -> SKAction { return SKAction.move(by: move,duration:sec) }
+
+public func aMoveTo             (move:CGPoint,duration sec:TimeInterval)                -> SKAction { return SKAction.move(to: move,duration:sec) }
+public func aMoveTo             (x:CGFloat,y:CGFloat,duration sec:TimeInterval)         -> SKAction { return SKAction.move(to: CGPoint(x: x,y: y),duration:sec) }
+public func aMoveTo             (x:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.moveTo(x: x,duration:sec) }
+public func aMoveTo             (y:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.moveTo(y: y,duration:sec) }
+
+public func aFollow             (path:CGPath,duration sec:TimeInterval)                 -> SKAction { return SKAction.follow(path,duration:sec) }
+public func aFollow             (path:CGPath,speed:CGFloat)                             -> SKAction { return SKAction.follow(path,speed:speed) }
+public func aFollow             (path:CGPath,asOffset:Bool,orientToPath:Bool,duration sec:TimeInterval) -> SKAction { return SKAction.follow(path,asOffset:asOffset,orientToPath:orientToPath,duration:sec) }
+public func aFollow             (path:CGPath,asOffset:Bool,orientToPath:Bool,speed:CGFloat) -> SKAction { return SKAction.follow(path,asOffset:asOffset,orientToPath:orientToPath,speed:speed) }
+
+public func aRotateBy           (degrees angle:CGFloat,duration sec:TimeInterval)       -> SKAction { return SKAction.rotate(byAngle: CGAsRadians(degrees:angle),duration:sec) }
+public func aRotateBy           (radians angle:CGFloat,duration sec:TimeInterval)       -> SKAction { return SKAction.rotate(byAngle: angle,duration:sec) }
+
+public func aRotateTo           (degrees angle:CGFloat,duration sec:TimeInterval,alongShortestArc:Bool = false) -> SKAction   { return SKAction.rotate(toAngle: CGAsRadians(degrees:angle),duration:sec,shortestUnitArc:alongShortestArc) }
+public func aRotateTo           (radians angle:CGFloat,duration sec:TimeInterval,alongShortestArc:Bool = false) -> SKAction   { return SKAction.rotate(toAngle: angle,duration:sec,shortestUnitArc:alongShortestArc) }
+
+public func aSpeedBy            (speed:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.speed(by: speed,duration:sec) }
+public func aSpeedTo            (speed:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.speed(to: speed,duration:sec) }
+
+public func aScaleBy            (scale:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.scale(by: scale,duration:sec) }
+public func aScaleTo            (scale:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.scale(to: scale,duration:sec) }
+
+public func aScaleBy            (x:CGFloat,y:CGFloat,duration sec:TimeInterval)         -> SKAction { return SKAction.scaleX(by: x,y:y,duration:sec) }
+public func aScaleTo            (x:CGFloat,y:CGFloat,duration sec:TimeInterval)         -> SKAction { return SKAction.scaleX(to: x,y:y,duration:sec) }
+
+public func aScaleTo            (x:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.scaleX(to: x,duration:sec) }
+public func aScaleTo            (y:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.scaleY(to: y,duration:sec) }
+
+public func aHide               ()                                                      -> SKAction { return SKAction.hide() }
+public func aShow               ()                                                      -> SKAction { return SKAction.unhide() }
+public func aShow               (flag:Bool)                                             -> SKAction { return flag ? SKAction.unhide() : SKAction.hide() }
+
+public func aFadeIn             (duration sec:TimeInterval)                             -> SKAction { return SKAction.fadeIn(withDuration: sec) }
+public func aFadeOut            (duration sec:TimeInterval)                             -> SKAction { return SKAction.fadeOut(withDuration: sec) }
+
+public func aFadeBy             (alpha:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.fadeAlpha(by: alpha,duration:sec) }
+public func aFadeTo             (alpha:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.fadeAlpha(to: alpha,duration:sec) }
 
 
-public func aSpriteColorTo            (color:UIColor,duration sec:NSTimeInterval) -> SKAction { return SKAction.colorizeWithColor(color,colorBlendFactor:color.alpha,duration:sec) }
-public func aSpriteColorTo            (color:UIColor,blendFactor:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.colorizeWithColor(color,colorBlendFactor:color.alpha,duration:sec) }
-public func aSpriteColor              (blendFactorTo blendFactor:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.colorizeWithColorBlendFactor(blendFactor,duration:sec) }
+
+
+public func aSpriteColorTo      (color:UIColor,duration sec:TimeInterval)               -> SKAction { return SKAction.colorize(with: color,colorBlendFactor:color.alpha,duration:sec) }
+public func aSpriteColorTo      (color:UIColor,blendFactor:CGFloat,duration sec:TimeInterval) -> SKAction { return SKAction.colorize(with: color,colorBlendFactor:color.alpha,duration:sec) }
+public func aSpriteColor        (blendFactorTo blendFactor:CGFloat,duration sec:TimeInterval) -> SKAction { return SKAction.colorize(withColorBlendFactor: blendFactor,duration:sec) }
 
 //public func aAnimate            (textures:[SKTexture],timePerFrame:NSTimeInterval) -> SKAction { return SKAction.animateWithNormalTextures(textures,timePerFrame:timePerFrame) }
-public func aSpriteAnimate            (textures textures:[SKTexture],timePerFrame:NSTimeInterval,resize:Bool=false,restore:Bool=true) -> SKAction { return SKAction.animateWithTextures(textures,timePerFrame:timePerFrame,resize:resize,restore:restore) }
-public func aSpriteAnimate            (normalTextures textures:[SKTexture],timePerFrame:NSTimeInterval,resize:Bool=false,restore:Bool=true) -> SKAction { return SKAction.animateWithNormalTextures(textures,timePerFrame:timePerFrame,resize:resize,restore:restore) }
-public func aSpriteTexture            (texture texture:SKTexture,resize:Bool=false) -> SKAction { return SKAction.setTexture(texture,resize:resize) }
-public func aSpriteTexture            (normal texture:SKTexture,resize:Bool=false) -> SKAction { return SKAction.setNormalTexture(texture,resize:resize) }
+public func aSpriteAnimate      (textures:[SKTexture],timePerFrame:TimeInterval,resize:Bool=false,restore:Bool=true) -> SKAction { return SKAction.animate(with: textures,timePerFrame:timePerFrame,resize:resize,restore:restore) }
+public func aSpriteAnimate      (normalTextures textures:[SKTexture],timePerFrame:TimeInterval,resize:Bool=false,restore:Bool=true) -> SKAction { return SKAction.animate(withNormalTextures: textures,timePerFrame:timePerFrame,resize:resize,restore:restore) }
+public func aSpriteTexture      (texture:SKTexture,resize:Bool=false)                   -> SKAction { return SKAction.setTexture(texture,resize:resize) }
+public func aSpriteTexture      (normal texture:SKTexture,resize:Bool=false)            -> SKAction { return SKAction.setNormalTexture(texture,resize:resize) }
 
-public func aSpriteResizeBy           (width width:CGFloat=0,height:CGFloat=0,duration sec:NSTimeInterval) -> SKAction { return SKAction.resizeByWidth(width,height:height,duration:sec) }
-public func aSpriteResizeTo           (width width:CGFloat,height:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.resizeToWidth(width,height:height,duration:sec) }
-public func aSpriteResizeTo           (width width:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.resizeToWidth(width,duration:sec) }
-public func aSpriteResizeTo           (height height:CGFloat,duration sec:NSTimeInterval) -> SKAction { return SKAction.resizeToHeight(height,duration:sec) }
-
-
-
-
-public func aAudioPlay              (file file:String,waitForCompletion wait:Bool) -> SKAction { return SKAction.playSoundFileNamed(file,waitForCompletion:wait) }
-public func aAudioPlay              () -> SKAction { return SKAction.play() }
-public func aAudioPause             () -> SKAction { return SKAction.pause() }
-public func aAudioStop              () -> SKAction { return SKAction.stop() }
-public func aAudioRate              (to to:Float,duration:NSTimeInterval) -> SKAction { return SKAction.changePlaybackRateTo(to,duration:duration) }
-public func aAudioRate              (by by:Float,duration:NSTimeInterval) -> SKAction { return SKAction.changePlaybackRateBy(by,duration:duration) }
-public func aAudioVolume            (to to:Float,duration:NSTimeInterval) -> SKAction { return SKAction.changeVolumeTo(to,duration:duration) }
-public func aAudioVolume            (by by:Float,duration:NSTimeInterval) -> SKAction { return SKAction.changeVolumeBy(by,duration:duration) }
-public func aAudioObstruction       (to to:Float,duration:NSTimeInterval) -> SKAction { return SKAction.changeObstructionTo(to,duration:duration) }
-public func aAudioObstruction       (by by:Float,duration:NSTimeInterval) -> SKAction { return SKAction.changeObstructionBy(by,duration:duration) }
-public func aAudioOcclusion         (to to:Float,duration:NSTimeInterval) -> SKAction { return SKAction.changeOcclusionTo(to,duration:duration) }
-public func aAudioOcclusion         (by by:Float,duration:NSTimeInterval) -> SKAction { return SKAction.changeOcclusionBy(by,duration:duration) }
-public func aAudioReverb            (to to:Float,duration:NSTimeInterval) -> SKAction { return SKAction.changeReverbTo(to,duration:duration) }
-public func aAudioReverb            (by by:Float,duration:NSTimeInterval) -> SKAction { return SKAction.changeReverbBy(by,duration:duration) }
-public func aAudioPan               (to to:Float,duration:NSTimeInterval) -> SKAction { return SKAction.stereoPanTo(to,duration:duration) }
-public func aAudioPan               (by by:Float,duration:NSTimeInterval) -> SKAction { return SKAction.stereoPanBy(by,duration:duration) }
+public func aSpriteResizeBy     (width:CGFloat=0,height:CGFloat=0,duration sec:TimeInterval) -> SKAction { return SKAction.resize(byWidth: width,height:height,duration:sec) }
+public func aSpriteResizeTo     (width:CGFloat,height:CGFloat,duration sec:TimeInterval) -> SKAction { return SKAction.resize(toWidth: width,height:height,duration:sec) }
+public func aSpriteResizeTo     (width:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.resize(toWidth: width,duration:sec) }
+public func aSpriteResizeTo     (height:CGFloat,duration sec:TimeInterval)              -> SKAction { return SKAction.resize(toHeight: height,duration:sec) }
 
 
 
 
+public func aAudioPlay          (file:String,waitForCompletion wait:Bool)               -> SKAction { return SKAction.playSoundFileNamed(file,waitForCompletion:wait) }
+public func aAudioPlay          ()                                                      -> SKAction { return SKAction.play() }
+public func aAudioPause         ()                                                      -> SKAction { return SKAction.pause() }
+public func aAudioStop          ()                                                      -> SKAction { return SKAction.stop() }
+public func aAudioRate          (to:Float,duration:TimeInterval)                        -> SKAction { return SKAction.changePlaybackRate(to: to,duration:duration) }
+public func aAudioRate          (by:Float,duration:TimeInterval)                        -> SKAction { return SKAction.changePlaybackRate(by: by,duration:duration) }
+public func aAudioVolume        (to:Float,duration:TimeInterval)                        -> SKAction { return SKAction.changeVolume(to: to,duration:duration) }
+public func aAudioVolume        (by:Float,duration:TimeInterval)                        -> SKAction { return SKAction.changeVolume(by: by,duration:duration) }
+public func aAudioObstruction   (to:Float,duration:TimeInterval)                        -> SKAction { return SKAction.changeObstruction(to: to,duration:duration) }
+public func aAudioObstruction   (by:Float,duration:TimeInterval)                        -> SKAction { return SKAction.changeObstruction(by: by,duration:duration) }
+public func aAudioOcclusion     (to:Float,duration:TimeInterval)                        -> SKAction { return SKAction.changeOcclusion(to: to,duration:duration) }
+public func aAudioOcclusion     (by:Float,duration:TimeInterval)                        -> SKAction { return SKAction.changeOcclusion(by: by,duration:duration) }
+public func aAudioReverb        (to:Float,duration:TimeInterval)                        -> SKAction { return SKAction.changeReverb(to: to,duration:duration) }
+public func aAudioReverb        (by:Float,duration:TimeInterval)                        -> SKAction { return SKAction.changeReverb(by: by,duration:duration) }
+public func aAudioPan           (to:Float,duration:TimeInterval)                        -> SKAction { return SKAction.stereoPan(to: to,duration:duration) }
+public func aAudioPan           (by:Float,duration:TimeInterval)                        -> SKAction { return SKAction.stereoPan(by: by,duration:duration) }
 
-public func aPhysicsApply       (force v:CGVector,duration:NSTimeInterval) -> SKAction { return SKAction.applyForce(v,duration:duration) }
-public func aPhysicsApply       (force v:CGVector,point:CGPoint,duration:NSTimeInterval) -> SKAction { return SKAction.applyForce(v,atPoint:point,duration:duration) }
-public func aPhysicsApply       (torque v:CGFloat,duration:NSTimeInterval) -> SKAction { return SKAction.applyTorque(v,duration:duration) }
-public func aPhysicsApply       (impulse v:CGVector,duration:NSTimeInterval) -> SKAction { return SKAction.applyImpulse(v,duration:duration) }
-public func aPhysicsApply       (angular impulse:CGFloat,duration:NSTimeInterval) -> SKAction { return SKAction.applyAngularImpulse(impulse,duration:duration) }
-public func aPhysicsApply       (impulse v:CGVector,point:CGPoint,duration:NSTimeInterval) -> SKAction { return SKAction.applyImpulse(v,atPoint:point,duration:duration) }
 
-public func aPhysicsCharge      (to v:Float,point:CGPoint,duration:NSTimeInterval) -> SKAction { return SKAction.changeChargeTo(v,duration:duration) }
-public func aPhysicsCharge      (by v:Float,point:CGPoint,duration:NSTimeInterval) -> SKAction { return SKAction.changeChargeBy(v,duration:duration) }
 
-public func aPhysicsMass        (to v:Float,point:CGPoint,duration:NSTimeInterval) -> SKAction { return SKAction.changeMassTo(v,duration:duration) }
-public func aPhysicsMass        (by v:Float,point:CGPoint,duration:NSTimeInterval) -> SKAction { return SKAction.changeMassBy(v,duration:duration) }
 
-public func aPhysicsStrength    (to v:Float,point:CGPoint,duration:NSTimeInterval) -> SKAction { return SKAction.strengthTo(v,duration:duration) }
-public func aPhysicsStrength    (by v:Float,point:CGPoint,duration:NSTimeInterval) -> SKAction { return SKAction.strengthBy(v,duration:duration) }
 
-public func aPhysicsFalloff     (to v:Float,point:CGPoint,duration:NSTimeInterval) -> SKAction { return SKAction.falloffTo(v,duration:duration) }
-public func aPhysicsFalloff     (by v:Float,point:CGPoint,duration:NSTimeInterval) -> SKAction { return SKAction.falloffBy(v,duration:duration) }
+public func aPhysicsApply       (force v:CGVector,duration:TimeInterval)                -> SKAction { return SKAction.applyForce(v,duration:duration) }
+public func aPhysicsApply       (force v:CGVector,point:CGPoint,duration:TimeInterval)  -> SKAction { return SKAction.applyForce(v,at:point,duration:duration) }
+public func aPhysicsApply       (torque v:CGFloat,duration:TimeInterval)                -> SKAction { return SKAction.applyTorque(v,duration:duration) }
+public func aPhysicsApply       (impulse v:CGVector,duration:TimeInterval)              -> SKAction { return SKAction.applyImpulse(v,duration:duration) }
+public func aPhysicsApply       (angular impulse:CGFloat,duration:TimeInterval)         -> SKAction { return SKAction.applyAngularImpulse(impulse,duration:duration) }
+public func aPhysicsApply       (impulse v:CGVector,point:CGPoint,duration:TimeInterval)-> SKAction { return SKAction.applyImpulse(v,at:point,duration:duration) }
+
+public func aPhysicsCharge      (to v:Float,point:CGPoint,duration:TimeInterval)        -> SKAction { return SKAction.changeCharge(to: v,duration:duration) }
+public func aPhysicsCharge      (by v:Float,point:CGPoint,duration:TimeInterval)        -> SKAction { return SKAction.changeCharge(by: v,duration:duration) }
+
+public func aPhysicsMass        (to v:Float,point:CGPoint,duration:TimeInterval)        -> SKAction { return SKAction.changeMass(to: v,duration:duration) }
+public func aPhysicsMass        (by v:Float,point:CGPoint,duration:TimeInterval)        -> SKAction { return SKAction.changeMass(by: v,duration:duration) }
+
+public func aPhysicsStrength    (to v:Float,point:CGPoint,duration:TimeInterval)        -> SKAction { return SKAction.strength(to: v,duration:duration) }
+public func aPhysicsStrength    (by v:Float,point:CGPoint,duration:TimeInterval)        -> SKAction { return SKAction.strength(by: v,duration:duration) }
+
+public func aPhysicsFalloff     (to v:Float,point:CGPoint,duration:TimeInterval)        -> SKAction { return SKAction.falloff(to: v,duration:duration) }
+public func aPhysicsFalloff     (by v:Float,point:CGPoint,duration:TimeInterval)        -> SKAction { return SKAction.falloff(by: v,duration:duration) }
 
 
 

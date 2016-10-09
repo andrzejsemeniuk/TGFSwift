@@ -21,6 +21,17 @@
 		5779AF161CFB4BF6006F8E4D /* testTGFUtilityVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF101CFB4B76006F8E4D /* testTGFUtilityVariable.swift */; };
 		5779AF181CFB4C3C006F8E4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */; };
 		5779AF191CFB4C3C006F8E4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */; };
+		5779AF2D1CFCAF51006F8E4D /* testTGFMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF2C1CFCAF51006F8E4D /* testTGFMath.swift */; };
+		57EF46D11DAA86D200D514A1 /* TGFExtension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D01DAA86D200D514A1 /* TGFExtension+Int.swift */; };
+		57EF46D31DAA86FC00D514A1 /* TGFExtension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D21DAA86FC00D514A1 /* TGFExtension+String.swift */; };
+		57EF46D51DAA870C00D514A1 /* TGFExtension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D41DAA870C00D514A1 /* TGFExtension+UIColor.swift */; };
+		57EF46D71DAA873F00D514A1 /* TGFExtension+CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D61DAA873F00D514A1 /* TGFExtension+CGFloat.swift */; };
+		57EF46D91DAA875A00D514A1 /* TGFExtension+Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D81DAA875A00D514A1 /* TGFExtension+Float.swift */; };
+		57EF46DB1DAA877C00D514A1 /* TGFExtension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46DA1DAA877C00D514A1 /* TGFExtension+UIView.swift */; };
+		57EF46DD1DAA87BF00D514A1 /* TGFExtension+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46DC1DAA87BF00D514A1 /* TGFExtension+Array.swift */; };
+		57EF46DF1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46DE1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift */; };
+		57EF46E11DAA882600D514A1 /* TGFExtension+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46E01DAA882600D514A1 /* TGFExtension+Collection.swift */; };
+		57EF46E31DAA884B00D514A1 /* TGFExtension+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46E21DAA884B00D514A1 /* TGFExtension+Operators.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +57,17 @@
 		5779AF0B1CFB4B67006F8E4D /* TGFUtilityVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGFUtilityVariable.swift; sourceTree = "<group>"; };
 		5779AF101CFB4B76006F8E4D /* testTGFUtilityVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = testTGFUtilityVariable.swift; path = ../TGF/testTGFUtilityVariable.swift; sourceTree = "<group>"; };
 		5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5779AF2C1CFCAF51006F8E4D /* testTGFMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testTGFMath.swift; sourceTree = "<group>"; };
+		57EF46D01DAA86D200D514A1 /* TGFExtension+Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Int.swift"; sourceTree = "<group>"; };
+		57EF46D21DAA86FC00D514A1 /* TGFExtension+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+String.swift"; sourceTree = "<group>"; };
+		57EF46D41DAA870C00D514A1 /* TGFExtension+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+UIColor.swift"; sourceTree = "<group>"; };
+		57EF46D61DAA873F00D514A1 /* TGFExtension+CGFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+CGFloat.swift"; sourceTree = "<group>"; };
+		57EF46D81DAA875A00D514A1 /* TGFExtension+Float.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Float.swift"; sourceTree = "<group>"; };
+		57EF46DA1DAA877C00D514A1 /* TGFExtension+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+UIView.swift"; sourceTree = "<group>"; };
+		57EF46DC1DAA87BF00D514A1 /* TGFExtension+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Array.swift"; sourceTree = "<group>"; };
+		57EF46DE1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+UserDefaults.swift"; sourceTree = "<group>"; };
+		57EF46E01DAA882600D514A1 /* TGFExtension+Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Collection.swift"; sourceTree = "<group>"; };
+		57EF46E21DAA884B00D514A1 /* TGFExtension+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Operators.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +117,16 @@
 				5779AEF11CFB4B41006F8E4D /* TGF.h */,
 				5779AEF31CFB4B41006F8E4D /* Info.plist */,
 				5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */,
+				57EF46D01DAA86D200D514A1 /* TGFExtension+Int.swift */,
+				57EF46D21DAA86FC00D514A1 /* TGFExtension+String.swift */,
+				57EF46D41DAA870C00D514A1 /* TGFExtension+UIColor.swift */,
+				57EF46D61DAA873F00D514A1 /* TGFExtension+CGFloat.swift */,
+				57EF46D81DAA875A00D514A1 /* TGFExtension+Float.swift */,
+				57EF46DA1DAA877C00D514A1 /* TGFExtension+UIView.swift */,
+				57EF46DC1DAA87BF00D514A1 /* TGFExtension+Array.swift */,
+				57EF46DE1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift */,
+				57EF46E01DAA882600D514A1 /* TGFExtension+Collection.swift */,
+				57EF46E21DAA884B00D514A1 /* TGFExtension+Operators.swift */,
 			);
 			path = TGF;
 			sourceTree = "<group>";
@@ -103,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				5779AF101CFB4B76006F8E4D /* testTGFUtilityVariable.swift */,
+				5779AF2C1CFCAF51006F8E4D /* testTGFMath.swift */,
 				5779AEFD1CFB4B41006F8E4D /* TGFTests.swift */,
 				5779AEFF1CFB4B41006F8E4D /* Info.plist */,
 			);
@@ -171,9 +204,11 @@
 				TargetAttributes = {
 					5779AEED1CFB4B40006F8E4D = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					5779AEF71CFB4B41006F8E4D = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -218,10 +253,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				5779AF0C1CFB4B67006F8E4D /* TGFMath.swift in Sources */,
+				57EF46DB1DAA877C00D514A1 /* TGFExtension+UIView.swift in Sources */,
 				5779AF0D1CFB4B67006F8E4D /* TGFSpriteKit.swift in Sources */,
+				57EF46E11DAA882600D514A1 /* TGFExtension+Collection.swift in Sources */,
+				57EF46DD1DAA87BF00D514A1 /* TGFExtension+Array.swift in Sources */,
+				57EF46D91DAA875A00D514A1 /* TGFExtension+Float.swift in Sources */,
+				57EF46D71DAA873F00D514A1 /* TGFExtension+CGFloat.swift in Sources */,
 				5779AF0F1CFB4B67006F8E4D /* TGFUtilityVariable.swift in Sources */,
+				57EF46DF1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift in Sources */,
+				57EF46E31DAA884B00D514A1 /* TGFExtension+Operators.swift in Sources */,
+				57EF46D51DAA870C00D514A1 /* TGFExtension+UIColor.swift in Sources */,
 				5779AF181CFB4C3C006F8E4D /* AppDelegate.swift in Sources */,
 				5779AF0E1CFB4B67006F8E4D /* TGFUtility.swift in Sources */,
+				57EF46D31DAA86FC00D514A1 /* TGFExtension+String.swift in Sources */,
+				57EF46D11DAA86D200D514A1 /* TGFExtension+Int.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +281,7 @@
 				5779AF191CFB4C3C006F8E4D /* AppDelegate.swift in Sources */,
 				5779AF121CFB4BE3006F8E4D /* TGFMath.swift in Sources */,
 				5779AF131CFB4BE5006F8E4D /* TGFSpriteKit.swift in Sources */,
+				5779AF2D1CFCAF51006F8E4D /* testTGFMath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +402,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -373,6 +420,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinygamefactory.TGF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -383,6 +431,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinygamefactory.TGFTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -393,6 +442,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinygamefactory.TGFTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -415,6 +465,7 @@
 				5779AF041CFB4B41006F8E4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5779AF051CFB4B41006F8E4D /* Build configuration list for PBXNativeTarget "TGFTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +474,7 @@
 				5779AF071CFB4B41006F8E4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

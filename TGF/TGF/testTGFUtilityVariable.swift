@@ -122,6 +122,13 @@ class TestTGFUtilityVariable: XCTestCase {
             XCTAssertEqual("[0.0,0.0=0.0]",TGF.Utility.Variable0n(n:-1,value:0.5).description)
         }
         
+        // TODO other methods on Variable, lerp01, set01, etc
+        
+        if true
+        {
+            XCTAssertEqual("[0.0,1.0=0.0]",TGF.Utility.Variable(1,0,0).description)
+        }
+        
     }
 
     func testVariableWithModifiableRange() {
@@ -208,7 +215,7 @@ class TestTGFUtilityVariable: XCTestCase {
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

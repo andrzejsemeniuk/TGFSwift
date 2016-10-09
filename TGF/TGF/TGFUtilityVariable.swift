@@ -56,8 +56,8 @@ extension TGF.Utility
             set(self.value)
         }
         
-        public func set                 (value:Double)                                                  { self._value = min(upperbound,max(lowerbound,value)) }
-        public func set01               (value:Double)                                                  { set(lowerbound+value*range) }
+        public func set                 (_ value:Double)                                                  { self._value = min(upperbound,max(lowerbound,value)) }
+        public func set01               (_ value:Double)                                                  { set(lowerbound+value*range) }
         
         public func set0                ()                                                              { set(lowerbound) }
         public func set1                ()                                                              { set(upperbound) }
@@ -65,8 +65,8 @@ extension TGF.Utility
         public func setValueToLowerbound()                                                              { set0() }
         public func setValueToUpperbound()                                                              { set1() }
         
-        public func lerp                (v:Double) -> Double                                            { return range != 0 ? (v-lowerbound)/range : 0 }
-        public func lerp01              (v:Double) -> Double                                            { return min(1,max(0,lerp(v))) }
+        public func lerp                (_ v:Double) -> Double                                            { return range != 0 ? lowerbound + (v-lowerbound)/range : 0 }
+        public func lerp01              (_ v:Double) -> Double                                            { return lerp(min(1,max(0,v))) }
         
         
     }
@@ -130,7 +130,13 @@ extension TGF.Utility
         public convenience  init(value:Double = 0)      { self.init(value) }
     }
 
-    public class Variable55 : Variable
+    public class Variable22 : Variable
+    {
+        public              init(_ v:Double = 0)        { super.init(lowerbound:-2,upperbound:2,value:v) }
+        public convenience  init(value:Double = 0)      { self.init(value) }
+    }
+    
+    public class VariableHH : Variable
     {
         public              init(_ v:Double = 0)        { super.init(lowerbound:-0.5,upperbound:0.5,value:v) }
         public convenience  init(value:Double = 0)      { self.init(value) }
@@ -144,7 +150,7 @@ extension TGF.Utility
     
     public class VariableWithModifiableRange : Variable
     {
-        public func set                 (l:Double,_ u:Double)
+        public func set                 (_ l:Double,_ u:Double)
         {
             self._lowerbound=l
             self._upperbound=u
@@ -156,7 +162,7 @@ extension TGF.Utility
             if let u=u { self._upperbound=u }
             normalize()
         }
-        public func set                 (l:Double,_ u:Double,_ v:Double)
+        public func set                 (_ l:Double,_ u:Double,_ v:Double)
         {
             self._lowerbound    = l
             self._upperbound    = u

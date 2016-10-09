@@ -16,24 +16,39 @@ public struct Math
 {
     static public let PI           :CGFloat            = CGFloat(M_PI)
     static public let TwoPI        :CGFloat            = CGFloat(M_PI * 2.0)
+    
+    static public func clamp        (_ l:Double,_ u:Double,_ v:Double) -> Double                                  { return v < l ? l : (u < v ? u : v) }
+    static public func clamp        (_ lowerbound:Double,upperbound:Double,value:Double) -> Double     { return clamp(lowerbound,upperbound,value) }
+    static public func clamp01      (_ value:Double) -> Double                                                    { return clamp(0,1,value) }
+    static public func clamp11      (_ value:Double) -> Double                                                    { return clamp(-1,1,value) }
+
+    static public func lerp         (_ l:Double,_ u:Double,_ v:Double) -> Double                                  { return (1.0-v)*l + v*u }
+    static public func lerp         (_ lowerbound:Double,upperbound:Double,value:Double) -> Double     { return lerp(lowerbound,upperbound,value) }
+    static public func lerp01       (_ l:Double,_ u:Double,_ v:Double) -> Double                                  { return lerp(l,u,clamp01(v)) }
+    static public func lerp01       (_ lowerbound:Double,upperbound:Double,value:Double) -> Double     { return lerp(lowerbound,upperbound,clamp01(value)) }
+
+    static public func lprogress    (_ f:Double,_ t:Double,_ v:Double) -> Double                                  { return f < t ? (v-f)/(t-f) : (f-v)/(f-t) }
+    static public func lprogress    (_ from:Double,to:Double,now:Double) -> Double                           { return lprogress(from,to,now) }
+    static public func lprogress01  (_ f:Double,_ t:Double,_ v:Double) -> Double                                  { return clamp01(lprogress(f,t,v)) }
+    static public func lprogress01  (_ from:Double,to:Double,now:Double) -> Double                           { return lprogress01(from,to,now) }
 }
 
 
 
 private var __randomSourceObject    :GKRandomSource?
-private var __randomSource          :RandomSource       = .Arc4Random
+private var __randomSource          :RandomSource       = .arc4Random
 
 public enum RandomSource {
-    case Arc4Random, LinearCongruential, MersenneTwister
+    case arc4Random, linearCongruential, mersenneTwister
 }
 
-public func randomUseSource(source:RandomSource) -> GKRandomSource {
+public func randomUseSource(_ source:RandomSource) -> GKRandomSource {
     __randomSource = source
     switch source
     {
-        case .Arc4Random:           __randomSourceObject = GKARC4RandomSource()
-        case .LinearCongruential:   __randomSourceObject = GKLinearCongruentialRandomSource()
-        case .MersenneTwister:      __randomSourceObject = GKMersenneTwisterRandomSource()
+        case .arc4Random:           __randomSourceObject = GKARC4RandomSource()
+        case .linearCongruential:   __randomSourceObject = GKLinearCongruentialRandomSource()
+        case .mersenneTwister:      __randomSourceObject = GKMersenneTwisterRandomSource()
     }
     return __randomSourceObject!
 }
@@ -49,20 +64,20 @@ private var __randomDistributionObject  :GKRandomDistribution?
 private let __randomDistributionLowestValue                             = 0
 private let __randomDistributionHighestValue                            = Int.max
 private let __randomDistributionDelta   :Double                         = Double(__randomDistributionHighestValue - __randomDistributionLowestValue)
-private var __randomDistribution        :RandomDistribution             = .Uniform
+private var __randomDistribution        :RandomDistribution             = .uniform
 
 public enum RandomDistribution {
-    case Gaussian,Uniform
+    case gaussian,uniform
 }
 
-public func randomUseDistribution(distribution:RandomDistribution) -> GKRandomDistribution {
+public func randomUseDistribution(_ distribution:RandomDistribution) -> GKRandomDistribution {
     __randomDistribution = distribution
     switch distribution
     {
-        case .Gaussian:     __randomDistributionObject = GKGaussianDistribution(randomSource:randomGetSource(),
+        case .gaussian:     __randomDistributionObject = GKGaussianDistribution(randomSource:randomGetSource(),
                                                                                 lowestValue:__randomDistributionLowestValue,
                                                                                 highestValue:__randomDistributionHighestValue)
-        case .Uniform:      __randomDistributionObject = GKRandomDistribution(randomSource:randomGetSource(),
+        case .uniform:      __randomDistributionObject = GKRandomDistribution(randomSource:randomGetSource(),
                                                                               lowestValue:__randomDistributionLowestValue,
                                                                               highestValue:__randomDistributionHighestValue)
     }
@@ -71,15 +86,15 @@ public func randomUseDistribution(distribution:RandomDistribution) -> GKRandomDi
 
 public func randomGetDistribution() -> GKRandomDistribution
 {
-    return __randomDistributionObject ?? randomUseDistribution(.Uniform)
+    return __randomDistributionObject ?? randomUseDistribution(.uniform)
 }
 
 
-public func random      (from from:CGFloat,to:CGFloat)  -> CGFloat  {
+public func random      (_ from:CGFloat,to:CGFloat)  -> CGFloat  {
     let v = Double(randomGetDistribution().nextInt())
     return from + CGFloat(v/__randomDistributionDelta) * (to-from)
 }
 
-public func random01    ()  -> CGFloat  { return random(from:0,to:1) }
-public func random11    ()  -> CGFloat  { return random(from:-1,to:+1) }
+public func random01    ()  -> CGFloat  { return random(0,to:1) }
+public func random11    ()  -> CGFloat  { return random(-1,to:+1) }
 
