@@ -17,20 +17,20 @@ public struct Math
     static public let PI           :CGFloat            = CGFloat(M_PI)
     static public let TwoPI        :CGFloat            = CGFloat(M_PI * 2.0)
     
-    static public func clamp        (_ l:Double,_ u:Double,_ v:Double) -> Double                                  { return v < l ? l : (u < v ? u : v) }
-    static public func clamp        (_ lowerbound:Double,upperbound:Double,value:Double) -> Double     { return clamp(lowerbound,upperbound,value) }
-    static public func clamp01      (_ value:Double) -> Double                                                    { return clamp(0,1,value) }
-    static public func clamp11      (_ value:Double) -> Double                                                    { return clamp(-1,1,value) }
+    static public func clamp        (_ l:Double,_ u:Double,_ v:Double) -> Double                        { return v < l ? l : (u < v ? u : v) }
+    static public func clamp        (_ lowerbound:Double,upperbound:Double,value:Double) -> Double      { return clamp(lowerbound,upperbound,value) }
+    static public func clamp01      (_ value:Double) -> Double                                          { return clamp(0,1,value) }
+    static public func clamp11      (_ value:Double) -> Double                                          { return clamp(-1,1,value) }
 
-    static public func lerp         (_ l:Double,_ u:Double,_ v:Double) -> Double                                  { return (1.0-v)*l + v*u }
-    static public func lerp         (_ lowerbound:Double,upperbound:Double,value:Double) -> Double     { return lerp(lowerbound,upperbound,value) }
-    static public func lerp01       (_ l:Double,_ u:Double,_ v:Double) -> Double                                  { return lerp(l,u,clamp01(v)) }
-    static public func lerp01       (_ lowerbound:Double,upperbound:Double,value:Double) -> Double     { return lerp(lowerbound,upperbound,clamp01(value)) }
+    static public func lerp         (_ l:Double,_ u:Double,_ v:Double) -> Double                        { return (1.0-v)*l + v*u }
+    static public func lerp         (_ lowerbound:Double,upperbound:Double,value:Double) -> Double      { return lerp(lowerbound,upperbound,value) }
+    static public func lerp01       (_ l:Double,_ u:Double,_ v:Double) -> Double                        { return lerp(l,u,clamp01(v)) }
+    static public func lerp01       (_ lowerbound:Double,upperbound:Double,value:Double) -> Double      { return lerp(lowerbound,upperbound,clamp01(value)) }
 
-    static public func lprogress    (_ f:Double,_ t:Double,_ v:Double) -> Double                                  { return f < t ? (v-f)/(t-f) : (f-v)/(f-t) }
-    static public func lprogress    (_ from:Double,to:Double,now:Double) -> Double                           { return lprogress(from,to,now) }
-    static public func lprogress01  (_ f:Double,_ t:Double,_ v:Double) -> Double                                  { return clamp01(lprogress(f,t,v)) }
-    static public func lprogress01  (_ from:Double,to:Double,now:Double) -> Double                           { return lprogress01(from,to,now) }
+    static public func lprogress    (_ f:Double,_ t:Double,_ v:Double) -> Double                        { return f < t ? (v-f)/(t-f) : (f-v)/(f-t) }
+    static public func lprogress    (_ from:Double,to:Double,now:Double) -> Double                      { return lprogress(from,to,now) }
+    static public func lprogress01  (_ f:Double,_ t:Double,_ v:Double) -> Double                        { return clamp01(lprogress(f,t,v)) }
+    static public func lprogress01  (_ from:Double,to:Double,now:Double) -> Double                      { return lprogress01(from,to,now) }
 }
 
 

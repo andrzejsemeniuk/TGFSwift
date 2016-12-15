@@ -10,30 +10,38 @@
 		5779AEF21CFB4B41006F8E4D /* TGF.h in Headers */ = {isa = PBXBuildFile; fileRef = 5779AEF11CFB4B41006F8E4D /* TGF.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5779AEF91CFB4B41006F8E4D /* TGF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5779AEEE1CFB4B40006F8E4D /* TGF.framework */; };
 		5779AEFE1CFB4B41006F8E4D /* TGFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AEFD1CFB4B41006F8E4D /* TGFTests.swift */; };
-		5779AF0C1CFB4B67006F8E4D /* TGFMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF081CFB4B67006F8E4D /* TGFMath.swift */; };
-		5779AF0D1CFB4B67006F8E4D /* TGFSpriteKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF091CFB4B67006F8E4D /* TGFSpriteKit.swift */; };
-		5779AF0E1CFB4B67006F8E4D /* TGFUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF0A1CFB4B67006F8E4D /* TGFUtility.swift */; };
-		5779AF0F1CFB4B67006F8E4D /* TGFUtilityVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF0B1CFB4B67006F8E4D /* TGFUtilityVariable.swift */; };
-		5779AF121CFB4BE3006F8E4D /* TGFMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF081CFB4B67006F8E4D /* TGFMath.swift */; };
-		5779AF131CFB4BE5006F8E4D /* TGFSpriteKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF091CFB4B67006F8E4D /* TGFSpriteKit.swift */; };
-		5779AF141CFB4BE9006F8E4D /* TGFUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF0A1CFB4B67006F8E4D /* TGFUtility.swift */; };
-		5779AF151CFB4BEC006F8E4D /* TGFUtilityVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF0B1CFB4B67006F8E4D /* TGFUtilityVariable.swift */; };
+		5779AF0C1CFB4B67006F8E4D /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF081CFB4B67006F8E4D /* Math.swift */; };
+		5779AF0D1CFB4B67006F8E4D /* ExtensionForSpriteKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF091CFB4B67006F8E4D /* ExtensionForSpriteKit.swift */; };
+		5779AF0E1CFB4B67006F8E4D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF0A1CFB4B67006F8E4D /* Utility.swift */; };
+		5779AF0F1CFB4B67006F8E4D /* UtilityVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF0B1CFB4B67006F8E4D /* UtilityVariable.swift */; };
+		5779AF121CFB4BE3006F8E4D /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF081CFB4B67006F8E4D /* Math.swift */; };
+		5779AF131CFB4BE5006F8E4D /* ExtensionForSpriteKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF091CFB4B67006F8E4D /* ExtensionForSpriteKit.swift */; };
+		5779AF141CFB4BE9006F8E4D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF0A1CFB4B67006F8E4D /* Utility.swift */; };
+		5779AF151CFB4BEC006F8E4D /* UtilityVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF0B1CFB4B67006F8E4D /* UtilityVariable.swift */; };
 		5779AF161CFB4BF6006F8E4D /* testTGFUtilityVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF101CFB4B76006F8E4D /* testTGFUtilityVariable.swift */; };
 		5779AF181CFB4C3C006F8E4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */; };
 		5779AF191CFB4C3C006F8E4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */; };
 		5779AF2D1CFCAF51006F8E4D /* testTGFMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF2C1CFCAF51006F8E4D /* testTGFMath.swift */; };
-		57EF46D11DAA86D200D514A1 /* TGFExtension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D01DAA86D200D514A1 /* TGFExtension+Int.swift */; };
-		57EF46D31DAA86FC00D514A1 /* TGFExtension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D21DAA86FC00D514A1 /* TGFExtension+String.swift */; };
-		57EF46D51DAA870C00D514A1 /* TGFExtension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D41DAA870C00D514A1 /* TGFExtension+UIColor.swift */; };
-		57EF46D71DAA873F00D514A1 /* TGFExtension+CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D61DAA873F00D514A1 /* TGFExtension+CGFloat.swift */; };
-		57EF46D91DAA875A00D514A1 /* TGFExtension+Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D81DAA875A00D514A1 /* TGFExtension+Float.swift */; };
-		57EF46DB1DAA877C00D514A1 /* TGFExtension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46DA1DAA877C00D514A1 /* TGFExtension+UIView.swift */; };
-		57EF46DD1DAA87BF00D514A1 /* TGFExtension+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46DC1DAA87BF00D514A1 /* TGFExtension+Array.swift */; };
-		57EF46DF1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46DE1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift */; };
-		57EF46E11DAA882600D514A1 /* TGFExtension+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46E01DAA882600D514A1 /* TGFExtension+Collection.swift */; };
-		57EF46E31DAA884B00D514A1 /* TGFExtension+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46E21DAA884B00D514A1 /* TGFExtension+Operators.swift */; };
+		57B9CFFA1E02D51A005AE57A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B9CFF91E02D51A005AE57A /* Foundation.framework */; };
+		57B9CFFC1E02D521005AE57A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B9CFFB1E02D521005AE57A /* UIKit.framework */; };
+		57B9CFFE1E02D526005AE57A /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B9CFFD1E02D526005AE57A /* SpriteKit.framework */; };
+		57B9D0001E02D65A005AE57A /* ExtensionForCoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9CFFF1E02D65A005AE57A /* ExtensionForCoreGraphics.swift */; };
+		57B9D0021E02E4DD005AE57A /* ExtensionForSwiftDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9D0011E02E4DD005AE57A /* ExtensionForSwiftDouble.swift */; };
+		57B9D0041E02E570005AE57A /* ExtensionForFoundationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9D0031E02E570005AE57A /* ExtensionForFoundationDate.swift */; };
+		57B9D0061E02E598005AE57A /* ExtensionForUIKitNSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9D0051E02E598005AE57A /* ExtensionForUIKitNSAttributedString.swift */; };
+		57B9D0081E02EC3A005AE57A /* CGFloat01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9D0071E02EC3A005AE57A /* CGFloat01.swift */; };
+		57EF46D11DAA86D200D514A1 /* ExtensionForSwiftInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D01DAA86D200D514A1 /* ExtensionForSwiftInt.swift */; };
+		57EF46D31DAA86FC00D514A1 /* ExtensionForSwiftString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D21DAA86FC00D514A1 /* ExtensionForSwiftString.swift */; };
+		57EF46D51DAA870C00D514A1 /* ExtensionForUIKitUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D41DAA870C00D514A1 /* ExtensionForUIKitUIColor.swift */; };
+		57EF46D71DAA873F00D514A1 /* ExtensionForSwiftCGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D61DAA873F00D514A1 /* ExtensionForSwiftCGFloat.swift */; };
+		57EF46D91DAA875A00D514A1 /* ExtensionForSwiftFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D81DAA875A00D514A1 /* ExtensionForSwiftFloat.swift */; };
+		57EF46DB1DAA877C00D514A1 /* ExtensionForUIKitUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46DA1DAA877C00D514A1 /* ExtensionForUIKitUIView.swift */; };
+		57EF46DD1DAA87BF00D514A1 /* ExtensionForSwiftArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46DC1DAA87BF00D514A1 /* ExtensionForSwiftArray.swift */; };
+		57EF46DF1DAA87F300D514A1 /* ExtensionForFoundationUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46DE1DAA87F300D514A1 /* ExtensionForFoundationUserDefaults.swift */; };
+		57EF46E11DAA882600D514A1 /* ExtensionForSwiftCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46E01DAA882600D514A1 /* ExtensionForSwiftCollection.swift */; };
+		57EF46E31DAA884B00D514A1 /* ExtensionForOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46E21DAA884B00D514A1 /* ExtensionForOperators.swift */; };
 		57EF46E81DAA8FF300D514A1 /* Euler in Resources */ = {isa = PBXBuildFile; fileRef = 57EF46E71DAA8FF300D514A1 /* Euler */; };
-		57EF46EA1DAA93C800D514A1 /* TGFExtension+Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46E91DAA93C800D514A1 /* TGFExtension+Numeric.swift */; };
+		57EF46EA1DAA93C800D514A1 /* ExtensionForSwiftNumeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46E91DAA93C800D514A1 /* ExtensionForSwiftNumeric.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,25 +61,33 @@
 		5779AEF81CFB4B41006F8E4D /* TGFTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TGFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5779AEFD1CFB4B41006F8E4D /* TGFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGFTests.swift; sourceTree = "<group>"; };
 		5779AEFF1CFB4B41006F8E4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5779AF081CFB4B67006F8E4D /* TGFMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGFMath.swift; sourceTree = "<group>"; };
-		5779AF091CFB4B67006F8E4D /* TGFSpriteKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGFSpriteKit.swift; sourceTree = "<group>"; };
-		5779AF0A1CFB4B67006F8E4D /* TGFUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGFUtility.swift; sourceTree = "<group>"; };
-		5779AF0B1CFB4B67006F8E4D /* TGFUtilityVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGFUtilityVariable.swift; sourceTree = "<group>"; };
+		5779AF081CFB4B67006F8E4D /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		5779AF091CFB4B67006F8E4D /* ExtensionForSpriteKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSpriteKit.swift; sourceTree = "<group>"; };
+		5779AF0A1CFB4B67006F8E4D /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		5779AF0B1CFB4B67006F8E4D /* UtilityVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityVariable.swift; sourceTree = "<group>"; };
 		5779AF101CFB4B76006F8E4D /* testTGFUtilityVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = testTGFUtilityVariable.swift; path = ../TGF/testTGFUtilityVariable.swift; sourceTree = "<group>"; };
 		5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5779AF2C1CFCAF51006F8E4D /* testTGFMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testTGFMath.swift; sourceTree = "<group>"; };
-		57EF46D01DAA86D200D514A1 /* TGFExtension+Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Int.swift"; sourceTree = "<group>"; };
-		57EF46D21DAA86FC00D514A1 /* TGFExtension+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+String.swift"; sourceTree = "<group>"; };
-		57EF46D41DAA870C00D514A1 /* TGFExtension+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+UIColor.swift"; sourceTree = "<group>"; };
-		57EF46D61DAA873F00D514A1 /* TGFExtension+CGFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+CGFloat.swift"; sourceTree = "<group>"; };
-		57EF46D81DAA875A00D514A1 /* TGFExtension+Float.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Float.swift"; sourceTree = "<group>"; };
-		57EF46DA1DAA877C00D514A1 /* TGFExtension+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+UIView.swift"; sourceTree = "<group>"; };
-		57EF46DC1DAA87BF00D514A1 /* TGFExtension+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Array.swift"; sourceTree = "<group>"; };
-		57EF46DE1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+UserDefaults.swift"; sourceTree = "<group>"; };
-		57EF46E01DAA882600D514A1 /* TGFExtension+Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Collection.swift"; sourceTree = "<group>"; };
-		57EF46E21DAA884B00D514A1 /* TGFExtension+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Operators.swift"; sourceTree = "<group>"; };
+		57B9CFF91E02D51A005AE57A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		57B9CFFB1E02D521005AE57A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		57B9CFFD1E02D526005AE57A /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		57B9CFFF1E02D65A005AE57A /* ExtensionForCoreGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForCoreGraphics.swift; sourceTree = "<group>"; };
+		57B9D0011E02E4DD005AE57A /* ExtensionForSwiftDouble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftDouble.swift; sourceTree = "<group>"; };
+		57B9D0031E02E570005AE57A /* ExtensionForFoundationDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForFoundationDate.swift; sourceTree = "<group>"; };
+		57B9D0051E02E598005AE57A /* ExtensionForUIKitNSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForUIKitNSAttributedString.swift; sourceTree = "<group>"; };
+		57B9D0071E02EC3A005AE57A /* CGFloat01.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloat01.swift; sourceTree = "<group>"; };
+		57EF46D01DAA86D200D514A1 /* ExtensionForSwiftInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftInt.swift; sourceTree = "<group>"; };
+		57EF46D21DAA86FC00D514A1 /* ExtensionForSwiftString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftString.swift; sourceTree = "<group>"; };
+		57EF46D41DAA870C00D514A1 /* ExtensionForUIKitUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForUIKitUIColor.swift; sourceTree = "<group>"; };
+		57EF46D61DAA873F00D514A1 /* ExtensionForSwiftCGFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftCGFloat.swift; sourceTree = "<group>"; };
+		57EF46D81DAA875A00D514A1 /* ExtensionForSwiftFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftFloat.swift; sourceTree = "<group>"; };
+		57EF46DA1DAA877C00D514A1 /* ExtensionForUIKitUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForUIKitUIView.swift; sourceTree = "<group>"; };
+		57EF46DC1DAA87BF00D514A1 /* ExtensionForSwiftArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftArray.swift; sourceTree = "<group>"; };
+		57EF46DE1DAA87F300D514A1 /* ExtensionForFoundationUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForFoundationUserDefaults.swift; sourceTree = "<group>"; };
+		57EF46E01DAA882600D514A1 /* ExtensionForSwiftCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftCollection.swift; sourceTree = "<group>"; };
+		57EF46E21DAA884B00D514A1 /* ExtensionForOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForOperators.swift; sourceTree = "<group>"; };
 		57EF46E71DAA8FF300D514A1 /* Euler */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Euler; sourceTree = "<group>"; };
-		57EF46E91DAA93C800D514A1 /* TGFExtension+Numeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TGFExtension+Numeric.swift"; sourceTree = "<group>"; };
+		57EF46E91DAA93C800D514A1 /* ExtensionForSwiftNumeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftNumeric.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +95,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57B9CFFE1E02D526005AE57A /* SpriteKit.framework in Frameworks */,
+				57B9CFFC1E02D521005AE57A /* UIKit.framework in Frameworks */,
+				57B9CFFA1E02D51A005AE57A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +119,7 @@
 				5779AEF01CFB4B40006F8E4D /* TGF */,
 				5779AEFC1CFB4B41006F8E4D /* TGFTests */,
 				5779AEEF1CFB4B40006F8E4D /* Products */,
+				57B9CFF81E02D51A005AE57A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,24 +135,29 @@
 		5779AEF01CFB4B40006F8E4D /* TGF */ = {
 			isa = PBXGroup;
 			children = (
-				5779AF081CFB4B67006F8E4D /* TGFMath.swift */,
-				5779AF091CFB4B67006F8E4D /* TGFSpriteKit.swift */,
-				5779AF0A1CFB4B67006F8E4D /* TGFUtility.swift */,
-				5779AF0B1CFB4B67006F8E4D /* TGFUtilityVariable.swift */,
-				5779AEF11CFB4B41006F8E4D /* TGF.h */,
-				5779AEF31CFB4B41006F8E4D /* Info.plist */,
 				5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */,
-				57EF46D01DAA86D200D514A1 /* TGFExtension+Int.swift */,
-				57EF46D21DAA86FC00D514A1 /* TGFExtension+String.swift */,
-				57EF46D41DAA870C00D514A1 /* TGFExtension+UIColor.swift */,
-				57EF46D61DAA873F00D514A1 /* TGFExtension+CGFloat.swift */,
-				57EF46D81DAA875A00D514A1 /* TGFExtension+Float.swift */,
-				57EF46DA1DAA877C00D514A1 /* TGFExtension+UIView.swift */,
-				57EF46DC1DAA87BF00D514A1 /* TGFExtension+Array.swift */,
-				57EF46DE1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift */,
-				57EF46E01DAA882600D514A1 /* TGFExtension+Collection.swift */,
-				57EF46E21DAA884B00D514A1 /* TGFExtension+Operators.swift */,
-				57EF46E91DAA93C800D514A1 /* TGFExtension+Numeric.swift */,
+				57B9CFFF1E02D65A005AE57A /* ExtensionForCoreGraphics.swift */,
+				57B9D0031E02E570005AE57A /* ExtensionForFoundationDate.swift */,
+				57EF46DE1DAA87F300D514A1 /* ExtensionForFoundationUserDefaults.swift */,
+				57EF46E21DAA884B00D514A1 /* ExtensionForOperators.swift */,
+				5779AF091CFB4B67006F8E4D /* ExtensionForSpriteKit.swift */,
+				57EF46DC1DAA87BF00D514A1 /* ExtensionForSwiftArray.swift */,
+				57EF46D61DAA873F00D514A1 /* ExtensionForSwiftCGFloat.swift */,
+				57EF46E01DAA882600D514A1 /* ExtensionForSwiftCollection.swift */,
+				57B9D0011E02E4DD005AE57A /* ExtensionForSwiftDouble.swift */,
+				57EF46D81DAA875A00D514A1 /* ExtensionForSwiftFloat.swift */,
+				57EF46D01DAA86D200D514A1 /* ExtensionForSwiftInt.swift */,
+				57EF46E91DAA93C800D514A1 /* ExtensionForSwiftNumeric.swift */,
+				57EF46D21DAA86FC00D514A1 /* ExtensionForSwiftString.swift */,
+				57B9D0051E02E598005AE57A /* ExtensionForUIKitNSAttributedString.swift */,
+				57EF46D41DAA870C00D514A1 /* ExtensionForUIKitUIColor.swift */,
+				57EF46DA1DAA877C00D514A1 /* ExtensionForUIKitUIView.swift */,
+				5779AEF31CFB4B41006F8E4D /* Info.plist */,
+				5779AF081CFB4B67006F8E4D /* Math.swift */,
+				5779AEF11CFB4B41006F8E4D /* TGF.h */,
+				5779AF0A1CFB4B67006F8E4D /* Utility.swift */,
+				5779AF0B1CFB4B67006F8E4D /* UtilityVariable.swift */,
+				57B9D0071E02EC3A005AE57A /* CGFloat01.swift */,
 			);
 			path = TGF;
 			sourceTree = "<group>";
@@ -146,6 +171,16 @@
 				5779AEFF1CFB4B41006F8E4D /* Info.plist */,
 			);
 			path = TGFTests;
+			sourceTree = "<group>";
+		};
+		57B9CFF81E02D51A005AE57A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57B9CFFD1E02D526005AE57A /* SpriteKit.framework */,
+				57B9CFFB1E02D521005AE57A /* UIKit.framework */,
+				57B9CFF91E02D51A005AE57A /* Foundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,7 +240,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Tiny Game Factory LLC";
 				TargetAttributes = {
 					5779AEED1CFB4B40006F8E4D = {
@@ -259,22 +294,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5779AF0C1CFB4B67006F8E4D /* TGFMath.swift in Sources */,
-				57EF46EA1DAA93C800D514A1 /* TGFExtension+Numeric.swift in Sources */,
-				57EF46DB1DAA877C00D514A1 /* TGFExtension+UIView.swift in Sources */,
-				5779AF0D1CFB4B67006F8E4D /* TGFSpriteKit.swift in Sources */,
-				57EF46E11DAA882600D514A1 /* TGFExtension+Collection.swift in Sources */,
-				57EF46DD1DAA87BF00D514A1 /* TGFExtension+Array.swift in Sources */,
-				57EF46D91DAA875A00D514A1 /* TGFExtension+Float.swift in Sources */,
-				57EF46D71DAA873F00D514A1 /* TGFExtension+CGFloat.swift in Sources */,
-				5779AF0F1CFB4B67006F8E4D /* TGFUtilityVariable.swift in Sources */,
-				57EF46DF1DAA87F300D514A1 /* TGFExtension+UserDefaults.swift in Sources */,
-				57EF46E31DAA884B00D514A1 /* TGFExtension+Operators.swift in Sources */,
-				57EF46D51DAA870C00D514A1 /* TGFExtension+UIColor.swift in Sources */,
+				5779AF0C1CFB4B67006F8E4D /* Math.swift in Sources */,
+				57B9D0001E02D65A005AE57A /* ExtensionForCoreGraphics.swift in Sources */,
+				57EF46EA1DAA93C800D514A1 /* ExtensionForSwiftNumeric.swift in Sources */,
+				57EF46DB1DAA877C00D514A1 /* ExtensionForUIKitUIView.swift in Sources */,
+				57B9D0021E02E4DD005AE57A /* ExtensionForSwiftDouble.swift in Sources */,
+				5779AF0D1CFB4B67006F8E4D /* ExtensionForSpriteKit.swift in Sources */,
+				57B9D0041E02E570005AE57A /* ExtensionForFoundationDate.swift in Sources */,
+				57EF46E11DAA882600D514A1 /* ExtensionForSwiftCollection.swift in Sources */,
+				57EF46DD1DAA87BF00D514A1 /* ExtensionForSwiftArray.swift in Sources */,
+				57EF46D91DAA875A00D514A1 /* ExtensionForSwiftFloat.swift in Sources */,
+				57EF46D71DAA873F00D514A1 /* ExtensionForSwiftCGFloat.swift in Sources */,
+				5779AF0F1CFB4B67006F8E4D /* UtilityVariable.swift in Sources */,
+				57EF46DF1DAA87F300D514A1 /* ExtensionForFoundationUserDefaults.swift in Sources */,
+				57EF46E31DAA884B00D514A1 /* ExtensionForOperators.swift in Sources */,
+				57B9D0081E02EC3A005AE57A /* CGFloat01.swift in Sources */,
+				57B9D0061E02E598005AE57A /* ExtensionForUIKitNSAttributedString.swift in Sources */,
+				57EF46D51DAA870C00D514A1 /* ExtensionForUIKitUIColor.swift in Sources */,
 				5779AF181CFB4C3C006F8E4D /* AppDelegate.swift in Sources */,
-				5779AF0E1CFB4B67006F8E4D /* TGFUtility.swift in Sources */,
-				57EF46D31DAA86FC00D514A1 /* TGFExtension+String.swift in Sources */,
-				57EF46D11DAA86D200D514A1 /* TGFExtension+Int.swift in Sources */,
+				5779AF0E1CFB4B67006F8E4D /* Utility.swift in Sources */,
+				57EF46D31DAA86FC00D514A1 /* ExtensionForSwiftString.swift in Sources */,
+				57EF46D11DAA86D200D514A1 /* ExtensionForSwiftInt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,13 +322,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5779AF141CFB4BE9006F8E4D /* TGFUtility.swift in Sources */,
+				5779AF141CFB4BE9006F8E4D /* Utility.swift in Sources */,
 				5779AEFE1CFB4B41006F8E4D /* TGFTests.swift in Sources */,
 				5779AF161CFB4BF6006F8E4D /* testTGFUtilityVariable.swift in Sources */,
-				5779AF151CFB4BEC006F8E4D /* TGFUtilityVariable.swift in Sources */,
+				5779AF151CFB4BEC006F8E4D /* UtilityVariable.swift in Sources */,
 				5779AF191CFB4C3C006F8E4D /* AppDelegate.swift in Sources */,
-				5779AF121CFB4BE3006F8E4D /* TGFMath.swift in Sources */,
-				5779AF131CFB4BE5006F8E4D /* TGFSpriteKit.swift in Sources */,
+				5779AF121CFB4BE3006F8E4D /* Math.swift in Sources */,
+				5779AF131CFB4BE5006F8E4D /* ExtensionForSpriteKit.swift in Sources */,
 				5779AF2D1CFCAF51006F8E4D /* testTGFMath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,8 +358,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -367,8 +409,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -388,6 +432,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -399,6 +444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -418,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

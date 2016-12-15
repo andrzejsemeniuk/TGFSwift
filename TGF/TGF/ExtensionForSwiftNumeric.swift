@@ -8,9 +8,14 @@
 
 import Foundation
 
-public protocol Numeric : Integer,FloatingPoint {}
+extension Integer {
+    public mutating func increment(increment:Self) -> Self {
+        self = self + increment
+        return self
+    }
+}
 
-extension Numeric {
+extension FloatingPoint {
     public mutating func increment(increment:Self) -> Self {
         self = self + increment
         return self

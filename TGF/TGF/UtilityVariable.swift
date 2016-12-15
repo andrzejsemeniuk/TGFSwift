@@ -16,7 +16,7 @@ extension TGF.Utility
     
     public class Variable
     {
-        private var _lowerbound,_upperbound,_value,_range :Double
+        fileprivate var _lowerbound,_upperbound,_value,_range :Double
         
         public var lowerbound   :Double { return _lowerbound }
         public var upperbound   :Double { return _upperbound }
@@ -39,12 +39,12 @@ extension TGF.Utility
             self._value         = v
             self.normalize()
         }
-
+        
         public convenience      init (_ lowerbound:Double,_ upperbound:Double,_ value:Double)
         {
             self.init(lowerbound:lowerbound,upperbound:upperbound,value:value)
         }
-
+        
         public func normalize           ()
         {
             let l = self._lowerbound
@@ -70,7 +70,7 @@ extension TGF.Utility
         
         
     }
-
+    
     
     
     
@@ -79,7 +79,7 @@ extension TGF.Utility
         public              init(_ v:Double = 0)        { super.init(lowerbound:0,upperbound:1,value:v) }
         public convenience  init(value:Double = 0)      { self.init(value) }
     }
-
+    
     public class Variable02 : Variable
     {
         public              init(_ v:Double = 0)        { super.init(lowerbound:0,upperbound:2,value:v) }
@@ -123,13 +123,13 @@ extension TGF.Utility
     typealias VariableZeroToUpperbound  = Variable0n
     typealias VariableZeroToN           = Variable0n
     
-
+    
     public class Variable11 : Variable
     {
         public              init(_ v:Double = 0)        { super.init(lowerbound:-1,upperbound:1,value:v) }
         public convenience  init(value:Double = 0)      { self.init(value) }
     }
-
+    
     public class Variable22 : Variable
     {
         public              init(_ v:Double = 0)        { super.init(lowerbound:-2,upperbound:2,value:v) }
@@ -173,5 +173,5 @@ extension TGF.Utility
         
     }
     
-
+    
 }

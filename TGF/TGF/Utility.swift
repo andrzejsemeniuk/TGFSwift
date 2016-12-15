@@ -14,13 +14,13 @@ public struct TGF
 {
     public struct Environment
     {
-        public static let IDIOM             = UIDevice.current().userInterfaceIdiom
-        public static let SCREEN            = UIScreen.main().bounds.size
+        public static let IDIOM             = UIDevice.current.userInterfaceIdiom
+        public static let SCREEN            = UIScreen.main.bounds.size
         
         public struct Screen
         {
-            static let WIDTH                = Int(UIScreen.main().bounds.size.width)
-            static let HEIGHT               = Int(UIScreen.main().bounds.size.height)
+            static let WIDTH                = Int(UIScreen.main.bounds.size.width)
+            static let HEIGHT               = Int(UIScreen.main.bounds.size.height)
             static let LENGTH1              = max(WIDTH, HEIGHT)
             static let LENGTH0              = min(WIDTH, HEIGHT)
             static let DIAGONAL             = Int(sqrt(Double(WIDTH*WIDTH+HEIGHT*HEIGHT)))
@@ -33,12 +33,12 @@ public struct TGF
         
         public struct DeviceType
         {
-            static let IPHONE4              = UIDevice.current().userInterfaceIdiom == .phone && Screen.LENGTH1 < 568
-            static let IPHONE5              = UIDevice.current().userInterfaceIdiom == .phone && Screen.LENGTH1 == 568
-            static let IPHONE6              = UIDevice.current().userInterfaceIdiom == .phone && Screen.LENGTH1 == 667
-            static let IPHONE6p             = UIDevice.current().userInterfaceIdiom == .phone && Screen.LENGTH1 == 736
-            static let IPAD                 = UIDevice.current().userInterfaceIdiom == .pad   && Screen.LENGTH1 == 1024
-            static let IPADPRO              = UIDevice.current().userInterfaceIdiom == .pad   && Screen.LENGTH1 == 1366
+            static let IPHONE4              = UIDevice.current.userInterfaceIdiom == .phone && Screen.LENGTH1 < 568
+            static let IPHONE5              = UIDevice.current.userInterfaceIdiom == .phone && Screen.LENGTH1 == 568
+            static let IPHONE6              = UIDevice.current.userInterfaceIdiom == .phone && Screen.LENGTH1 == 667
+            static let IPHONE6p             = UIDevice.current.userInterfaceIdiom == .phone && Screen.LENGTH1 == 736
+            static let IPAD                 = UIDevice.current.userInterfaceIdiom == .pad   && Screen.LENGTH1 == 1024
+            static let IPADPRO              = UIDevice.current.userInterfaceIdiom == .pad   && Screen.LENGTH1 == 1366
         }
         
     }
@@ -60,7 +60,7 @@ struct UITableViewTap
 extension AppDelegate
 {
     static var rootViewController : UIViewController {
-        return UIApplication.shared().keyWindow!.rootViewController!
+        return UIApplication.shared.keyWindow!.rootViewController!
     }
     
 }

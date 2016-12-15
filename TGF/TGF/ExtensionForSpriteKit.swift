@@ -8,7 +8,7 @@
 
 import Foundation
 import SpriteKit
-
+import UIKit
 
 
 public typealias CGXY              = (x:CGFloat,y:CGFloat)
@@ -130,23 +130,23 @@ extension CGSize
 
 public func UIScreenGetCenter() -> CGPoint {
     
-    return CGPoint(x:UIScreen.main().bounds.width/2.0,
-                   y:UIScreen.main().bounds.height/2.0)
+    return CGPoint(x:UIScreen.main.bounds.width/2.0,
+                   y:UIScreen.main.bounds.height/2.0)
 }
 
 
 public struct CGScreen
 {
-    public static var bounds:CGRect = CGRect(x:UIScreen.main().bounds.origin.x,
-                                      y:UIScreen.main().bounds.origin.y,
-                                      width:UIScreen.main().bounds.width * UIScreen.main().scale,
-                                      height:UIScreen.main().bounds.height * UIScreen.main().scale)
+    public static var bounds:CGRect = CGRect(x:UIScreen.main.bounds.origin.x,
+                                      y:UIScreen.main.bounds.origin.y,
+                                      width:UIScreen.main.bounds.width * UIScreen.main.scale,
+                                      height:UIScreen.main.bounds.height * UIScreen.main.scale)
     
     public static var origin                                                   :CGPoint    { return bounds.origin }
     public static var size                                                     :CGSize     { return bounds.size }
     public static var width                                                    :CGFloat    { return size.width }
     public static var height                                                   :CGFloat    { return size.height }
-    public static var scale                                                    :CGFloat    { return UIScreen.main().scale }
+    public static var scale                                                    :CGFloat    { return UIScreen.main.scale }
     
     
     public static func diagonal                (fraction:CGFloat = 1.0)        -> CGFloat  { return TGF.Environment.Screen.diagonal(fraction) }
@@ -493,7 +493,7 @@ extension SKScene
     override var  height  :CGFloat                                                                    { return self.size.height }
     
     // NOTE: NEED TO OVERRIDE position TO FIX BUG IN SpriteKit
-    override public var  position:CGPoint {
+    override open var  position:CGPoint {
         get {
             return self.frame.origin
         }
@@ -699,14 +699,14 @@ extension SKSpriteNode
 
 extension SKNode
 {
-    public func debugAddX(lineWidth:CGFloat = 1,color:UIColor = UIColor.red()) -> SKNode
+    public func debugAddX(lineWidth:CGFloat = 1, color:UIColor = UIColor(rgb: [1,0,0])) -> SKNode
     {
         if true
         {
             let path = CGMutablePath()
             
-            path.moveTo       (nil,x: 0.0,y: 0.0)
-            path.addLineTo    (nil,x: self.frame.size.width,y: self.frame.size.height)
+            path.move           (to: CGPoint.zero)
+            path.addLine        (to: frame.size.asCGPoint)
             
             let n = SKShapeNode(path:path)
             //            let n = SKShapeNode(rectOfSize:size,cornerRadius:32)
@@ -721,9 +721,9 @@ extension SKNode
         if true
         {
             let path = CGMutablePath()
-            
-            path.moveTo       (nil,x: 0.0,y: self.frame.size.height)
-            path.addLineTo    (nil,x: self.frame.size.width,y: 0)
+
+            path.move           (to: CGPoint(x:0,y:self.frame.size.height))
+            path.addLine        (to: CGPoint(x:self.frame.size.width,y:0))
             
             let n = SKShapeNode(path:path)
             //            let n = SKShapeNode(rectOfSize:size,cornerRadius:32)
@@ -739,14 +739,14 @@ extension SKNode
         return self
     }
     
-    public func debugAddCross(lineWidth:CGFloat = 1,color:UIColor = UIColor.red()) -> SKNode
+    public func debugAddCross(lineWidth:CGFloat = 1, color:UIColor = UIColor(rgb: [1,0,0])) -> SKNode
     {
         if true
         {
             let path = CGMutablePath()
-            
-            path.moveTo       (nil,x: self.frame.size.width/2,y: 0.0)
-            path.addLineTo    (nil,x: self.frame.size.width/2,y: self.frame.size.height)
+
+            path.move           (to: CGPoint(x:self.frame.size.width/2,y:0))
+            path.addLine        (to: CGPoint(x:self.frame.size.width/2,y:self.frame.size.height))
             
             let n = SKShapeNode(path:path)
             //            let n = SKShapeNode(rectOfSize:size,cornerRadius:32)
@@ -762,8 +762,8 @@ extension SKNode
         {
             let path = CGMutablePath()
             
-            path.moveTo       (nil,x: 0.0,y: self.frame.size.height/2)
-            path.addLineTo    (nil,x: self.frame.size.width,y: self.frame.size.height/2)
+            path.move           (to:CGPoint(x: 0.0,y: self.frame.size.height/2))
+            path.addLine        (to:CGPoint(x: self.frame.size.width,y: self.frame.size.height/2))
             
             let n = SKShapeNode(path:path)
             //            let n = SKShapeNode(rectOfSize:size,cornerRadius:32)
@@ -779,7 +779,7 @@ extension SKNode
         return self
     }
     
-    public func debugAddBorder(lineWidth:CGFloat = 1,corner:CGFloat = 16,color:UIColor = UIColor.green()) -> SKNode
+    public func debugAddBorder(lineWidth:CGFloat = 1, corner:CGFloat = 16, color:UIColor = UIColor(rgb: [0,1,0])) -> SKNode
     {
         if true
         {
@@ -835,19 +835,19 @@ public func aDelayed        (sec:TimeInterval,action:SKAction)                  
 
 public func aPerform        (selector:Selector,on:AnyObject)                            -> SKAction     { return SKAction.perform(selector,onTarget:on) }
 
-public func aBlock          (block: ()->(), delay:TimeInterval)                         -> SKAction     { return aDelayed(action:SKAction.run(block),delay:delay) }
-public func aBlock          (delay:TimeInterval,block: ()->())                          -> SKAction     { return aDelayed(action:SKAction.run(block),delay:delay) }
-public func aBlock          (block: ()->())                                             -> SKAction     { return SKAction.run(block) }
-public func aBlock          (block: ()->(), queue:DispatchQueue)                        -> SKAction     { return SKAction.run(block,queue:queue) }
-public func aBlock          (block: (SKNode,CGFloat) -> Void,
+public func aBlock          (block: @escaping ()->(), delay:TimeInterval)               -> SKAction     { return aDelayed(action:SKAction.run(block),delay:delay) }
+public func aBlock          (delay:TimeInterval,block: @escaping ()->())                -> SKAction     { return aDelayed(action:SKAction.run(block),delay:delay) }
+public func aBlock          (block: @escaping ()->())                                   -> SKAction     { return SKAction.run(block) }
+public func aBlock          (block: @escaping ()->(), queue:DispatchQueue)              -> SKAction     { return SKAction.run(block,queue:queue) }
+public func aBlock          (block: @escaping (SKNode,CGFloat) -> Void,
                              duration sec:TimeInterval,
                              delay:TimeInterval = 0)                                    -> SKAction     { return aDelayed(sec:delay,action:SKAction.customAction(withDuration: sec,actionBlock:block)) }
 public func aBlock          (duration sec:TimeInterval,
                              delay:TimeInterval = 0,
-                             block: (SKNode,CGFloat) -> Void)                  -> SKAction     { return aDelayed(sec:delay,action:SKAction.customAction(withDuration: sec,actionBlock:block)) }
+                             block: @escaping (SKNode,CGFloat) -> Void)                 -> SKAction     { return aDelayed(sec:delay,action:SKAction.customAction(withDuration: sec,actionBlock:block)) }
 public func aBlockTimed01   (duration sec:TimeInterval,
                              delay:TimeInterval = 0,
-                             block: (SKNode,CGFloat) -> Void)                  -> SKAction     {
+                             block: @escaping (SKNode,CGFloat) -> Void)                 -> SKAction     {
     return aDelayed(sec:delay,action:SKAction.customAction(withDuration: sec,actionBlock:{ node,time in
         block(node,time/CGFloat(sec))
     }))
@@ -857,8 +857,8 @@ public func aBlockTimed01   (duration sec:TimeInterval,
 
 
 
-public func aWithTiming         (function f:SKActionTimingFunction,on:SKAction)         -> SKAction { on.timingFunction=f; return on }
-public func aWithTiming         (on:SKAction,_ f:SKActionTimingFunction)                -> SKAction { on.timingFunction=f; return on }
+public func aWithTiming         (function f:@escaping SKActionTimingFunction,on:SKAction)-> SKAction { on.timingFunction=f; return on }
+public func aWithTiming         (on:SKAction,_ f:@escaping SKActionTimingFunction)      -> SKAction { on.timingFunction=f; return on }
 
 public func aWithTimingMode     (mode:SKActionTimingMode,on:SKAction)                   -> SKAction { on.timingMode=mode; return on }
 

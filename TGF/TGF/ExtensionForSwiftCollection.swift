@@ -11,7 +11,7 @@ import Foundation
 
 extension Collection {
     
-    var empty: Bool {
+    public var empty: Bool {
         return startIndex == endIndex
     }
 }

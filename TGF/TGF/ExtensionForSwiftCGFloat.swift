@@ -33,3 +33,20 @@ extension CGFloat
         return with.lerp01(from,to)
     }
 }
+
+extension CGFloat {
+    
+    public static var randomSign:CGFloat {
+        return (arc4random_uniform(2) == 0) ? 1.0 : -1.0
+    }
+    public static var random:CGFloat {
+        get {
+            return CGFloat(Float.random)
+        }
+    }
+    public static func random(min: CGFloat, max: CGFloat) -> CGFloat {
+        return CGFloat.random * (max - min) + min
+    }
+    
+}
+

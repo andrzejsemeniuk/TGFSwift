@@ -11,7 +11,7 @@ import UIKit
 
 extension UIView
 {
-    class func createWithBackgroundColor(_ color:UIColor) -> UIView
+    public class func createWithBackgroundColor(_ color:UIColor) -> UIView
     {
         let result = UIView()
         result.backgroundColor = color

@@ -34,3 +34,15 @@ extension Float
     }
 }
 
+extension Float {
+    
+    public static var random:Float {
+        get {
+            return Float(arc4random()) / 0xFFFFFFFF
+        }
+    }
+    public static func random(min: Float, max: Float) -> Float {
+        return Float.random * (max - min) + min
+    }
+    
+}
