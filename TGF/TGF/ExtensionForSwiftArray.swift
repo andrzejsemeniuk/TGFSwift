@@ -16,4 +16,8 @@ extension Array
         }
         return self
     }
+    
+    public subscript (safe i:Int) -> Array.Element? {
+        return 0 <= i && i < self.count ? self[i] : nil
+    }
 }

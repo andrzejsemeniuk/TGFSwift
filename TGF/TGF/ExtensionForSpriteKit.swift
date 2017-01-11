@@ -514,7 +514,14 @@ extension SKLightNode
 
 extension SKShapeNode
 {
-    
+    public convenience init(lines:[CGPoint]) {
+        let path = CGMutablePath()
+        path.move(to:lines[0])
+        for i in stride(from:1,to:lines.count,by:1) {
+            path.addLine(to:lines[i])
+        }
+        self.init(path:path)
+    }
 }
 
 

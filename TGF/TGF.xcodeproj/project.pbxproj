@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		573142961E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573142951E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift */; };
+		5734512B1E156901007D1D54 /* ExtensionForDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5734512A1E156901007D1D54 /* ExtensionForDispatchQueue.swift */; };
 		5779AEF21CFB4B41006F8E4D /* TGF.h in Headers */ = {isa = PBXBuildFile; fileRef = 5779AEF11CFB4B41006F8E4D /* TGF.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5779AEF91CFB4B41006F8E4D /* TGF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5779AEEE1CFB4B40006F8E4D /* TGF.framework */; };
 		5779AEFE1CFB4B41006F8E4D /* TGFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AEFD1CFB4B41006F8E4D /* TGFTests.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		573142951E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForFoundationNSRange.swift; sourceTree = "<group>"; };
+		5734512A1E156901007D1D54 /* ExtensionForDispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForDispatchQueue.swift; sourceTree = "<group>"; };
 		5779AEEE1CFB4B40006F8E4D /* TGF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TGF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5779AEF11CFB4B41006F8E4D /* TGF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGF.h; sourceTree = "<group>"; };
 		5779AEF31CFB4B41006F8E4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,10 +120,10 @@
 			isa = PBXGroup;
 			children = (
 				57EF46E71DAA8FF300D514A1 /* Euler */,
+				57B9CFF81E02D51A005AE57A /* Frameworks */,
+				5779AEEF1CFB4B40006F8E4D /* Products */,
 				5779AEF01CFB4B40006F8E4D /* TGF */,
 				5779AEFC1CFB4B41006F8E4D /* TGFTests */,
-				5779AEEF1CFB4B40006F8E4D /* Products */,
-				57B9CFF81E02D51A005AE57A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,8 +140,11 @@
 			isa = PBXGroup;
 			children = (
 				5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */,
+				57B9D0071E02EC3A005AE57A /* CGFloat01.swift */,
 				57B9CFFF1E02D65A005AE57A /* ExtensionForCoreGraphics.swift */,
+				5734512A1E156901007D1D54 /* ExtensionForDispatchQueue.swift */,
 				57B9D0031E02E570005AE57A /* ExtensionForFoundationDate.swift */,
+				573142951E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift */,
 				57EF46DE1DAA87F300D514A1 /* ExtensionForFoundationUserDefaults.swift */,
 				57EF46E21DAA884B00D514A1 /* ExtensionForOperators.swift */,
 				5779AF091CFB4B67006F8E4D /* ExtensionForSpriteKit.swift */,
@@ -157,7 +164,6 @@
 				5779AEF11CFB4B41006F8E4D /* TGF.h */,
 				5779AF0A1CFB4B67006F8E4D /* Utility.swift */,
 				5779AF0B1CFB4B67006F8E4D /* UtilityVariable.swift */,
-				57B9D0071E02EC3A005AE57A /* CGFloat01.swift */,
 			);
 			path = TGF;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 				57EF46EA1DAA93C800D514A1 /* ExtensionForSwiftNumeric.swift in Sources */,
 				57EF46DB1DAA877C00D514A1 /* ExtensionForUIKitUIView.swift in Sources */,
 				57B9D0021E02E4DD005AE57A /* ExtensionForSwiftDouble.swift in Sources */,
+				573142961E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift in Sources */,
 				5779AF0D1CFB4B67006F8E4D /* ExtensionForSpriteKit.swift in Sources */,
 				57B9D0041E02E570005AE57A /* ExtensionForFoundationDate.swift in Sources */,
 				57EF46E11DAA882600D514A1 /* ExtensionForSwiftCollection.swift in Sources */,
@@ -315,6 +322,7 @@
 				5779AF0E1CFB4B67006F8E4D /* Utility.swift in Sources */,
 				57EF46D31DAA86FC00D514A1 /* ExtensionForSwiftString.swift in Sources */,
 				57EF46D11DAA86D200D514A1 /* ExtensionForSwiftInt.swift in Sources */,
+				5734512B1E156901007D1D54 /* ExtensionForDispatchQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,10 +392,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
+				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -429,9 +440,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
+				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

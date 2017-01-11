@@ -119,3 +119,11 @@ extension UIColor
     }
     
 }
+
+extension UIColor {
+    
+    public convenience init(r:CGFloat,g:CGFloat,b:CGFloat,a:CGFloat = 1) {
+        self.init(red:r,green:g,blue:b,alpha:a)
+    }
+    
+}

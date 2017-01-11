@@ -32,3 +32,8 @@ extension Int
     }    
 }
 
+extension Int {
+    public mutating func advance(by n:Int) {
+        self = self + n
+    }
+}

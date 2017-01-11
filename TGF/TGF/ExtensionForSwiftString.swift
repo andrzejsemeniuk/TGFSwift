@@ -6,7 +6,7 @@
 //  Copyright © 2016 Tiny Game Factory LLC. All rights reserved.
 //
 
-import Foundation
+//import Foundation
 
 extension String
 {
@@ -14,6 +14,13 @@ extension String
         return characters.count
     }
     
+    public var empty: Bool {
+        return length < 1
+    }
+}
+
+extension String
+{
     public var urlEncoded: String {
         return addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)!
     }
@@ -26,25 +33,45 @@ extension String
         
         return result
     }
-    
-    public var empty: Bool {
-        return length < 1
+}
+
+extension String
+{
+    public subscript (i: Int) -> String {
+        return self[Range(i ..< i + 1)]
     }
     
-    subscript (i: Int) -> Character {
-        return self[self.characters.index(self.startIndex, offsetBy: i)]
-    }
-    
-    subscript (i: Int) -> String {
-        return String(self[i] as Character)
-    }
-    
-    subscript (r: Range<Int>) -> String {
+    public subscript (r: Range<Int>) -> String {
         let start = characters.index(startIndex, offsetBy: r.lowerBound)
         let end = characters.index(start, offsetBy: r.upperBound - r.lowerBound)
         return self[Range(start ..< end)]
     }
+
+    public func at(_ i: Int) -> String {
+        let c = self[self.characters.index(self.startIndex, offsetBy: i)]
+        return String(c as Character)
+    }
+
+    public func substring(from: Int) -> String {
+        return self[Range(min(from, length) ..< length)]
+    }
     
+    public func substring(to: Int) -> String {
+        return self[Range(0 ..< max(0, to))]
+    }
+    
+    public func substring(from: Int, to: Int) -> String {
+        return self[Range(min(from, length) ..< max(0, to))]
+    }
+
+    public func substring(from:Int = 0, length:Int) -> String {
+        return self.substring(with: Range<String.Index>(self.characters.index(self.startIndex, offsetBy: from)..<self.characters.index(self.startIndex, offsetBy: from+length)))
+    }
+    
+}
+
+extension String
+{
     public func trimmed() -> String {
         return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
@@ -58,7 +85,7 @@ extension String
             if digits.contains(c) {
                 count = count-1
                 if count <= 0 {
-                    return substring(0,length:i)
+                    return substring(from:0,length:i)
                 }
             }
         }
@@ -75,21 +102,33 @@ extension String
     
     public func trimmedFromEndIfLongerThan(_ count:Int) -> String {
         if count < length {
-            return substring(0,length:count)
+            return substring(from:0,length:count)
         }
         return self
     }
     
-    public func substring(_ from:Int = 0, to:Int = -1) -> String {
-        var to = to
-        if to < 0 {
-            to = self.length + to
+}
+
+extension String {
+    
+    static public func pad<T:CustomStringConvertible>(_ value:T,eat:String) -> String {
+        let r = String(describing: value)
+        if r.length < eat.length {
+            return eat.substring(to: eat.length - r.length) + r
         }
-        return self.substring(with: Range<String.Index>(self.characters.index(self.startIndex, offsetBy: from)..<self.characters.index(self.startIndex, offsetBy: to+1)))
+        return r
     }
     
-    public func substring(_ from:Int = 0, length:Int) -> String {
-        return self.substring(with: Range<String.Index>(self.characters.index(self.startIndex, offsetBy: from)..<self.characters.index(self.startIndex, offsetBy: from+length)))
+    static public func pad<T:CustomStringConvertible>(_ value:T,_ spaces:Int) -> String {
+        return pad(value,eat:String(repeating:" ",count:spaces))
+    }
+    
+}
+
+extension String {
+    
+    public func split(_ delimiter:String) -> [String] {
+        return self.components(separatedBy: delimiter)
     }
     
 }
