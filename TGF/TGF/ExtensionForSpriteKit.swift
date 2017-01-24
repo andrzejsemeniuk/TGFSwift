@@ -514,13 +514,156 @@ extension SKLightNode
 
 extension SKShapeNode
 {
-    public convenience init(lines:[CGPoint]) {
+    public convenience init(lines:[CGPoint], strokeColor:UIColor? = nil, lineWidth:CGFloat? = nil, lineCap:CGLineCap? = nil, lineJoin:CGLineJoin? = nil) {
         let path = CGMutablePath()
         path.move(to:lines[0])
         for i in stride(from:1,to:lines.count,by:1) {
             path.addLine(to:lines[i])
         }
         self.init(path:path)
+        if let strokeColor = strokeColor {
+            self.strokeColor = strokeColor
+        }
+        else {
+            self.strokeColor = .clear
+        }
+        if let lineWidth = lineWidth {
+            self.lineWidth = lineWidth
+        }
+        if let lineCap = lineCap {
+            self.lineCap = lineCap
+        }
+        if let lineJoin = lineJoin {
+            self.lineJoin = lineJoin
+        }
+    }
+
+    public convenience init(rectangle:CGRect, fillColor:UIColor? = nil, strokeColor:UIColor? = nil, lineWidth:CGFloat? = nil, lineCap:CGLineCap? = nil, lineJoin:CGLineJoin? = nil) {
+        self.init(rect:rectangle)
+        if let fillColor = fillColor {
+            self.fillColor = fillColor
+        }
+        if let strokeColor = strokeColor {
+            self.strokeColor = strokeColor
+        }
+        else {
+            self.strokeColor = .clear
+        }
+        if let lineWidth = lineWidth {
+            self.lineWidth = lineWidth
+        }
+        if let lineCap = lineCap {
+            self.lineCap = lineCap
+        }
+        if let lineJoin = lineJoin {
+            self.lineJoin = lineJoin
+        }
+    }
+
+    public convenience init(circleOfRadius:CGFloat, position:CGPoint, fillColor:UIColor? = nil, strokeColor:UIColor? = nil, lineWidth:CGFloat? = nil) {
+        self.init(circleOfRadius:circleOfRadius)
+        self.position = position
+        if let fillColor = fillColor {
+            self.fillColor = fillColor
+        }
+        if let strokeColor = strokeColor {
+            self.strokeColor = strokeColor
+        }
+        else {
+            self.strokeColor = .clear
+        }
+        if let lineWidth = lineWidth {
+            self.lineWidth = lineWidth
+        }
+    }
+
+    public convenience init(circleOfRadius:CGFloat, fillColor:UIColor, strokeColor:UIColor? = nil, lineWidth:CGFloat? = nil) {
+        self.init(circleOfRadius:circleOfRadius)
+        self.fillColor = fillColor
+        if let strokeColor = strokeColor {
+            self.strokeColor = strokeColor
+        }
+        else {
+            self.strokeColor = .clear
+        }
+        if let lineWidth = lineWidth {
+            self.lineWidth = lineWidth
+        }
+    }
+    
+    public convenience init(circleOfRadius:CGFloat, strokeColor:UIColor, fillColor:UIColor? = nil, lineWidth:CGFloat? = nil) {
+        self.init(circleOfRadius:circleOfRadius)
+        self.strokeColor = strokeColor
+        if let fillColor = fillColor {
+            self.fillColor = fillColor
+        }
+        if let lineWidth = lineWidth {
+            self.lineWidth = lineWidth
+        }
+    }
+    
+    static public func circle(withRadius:CGFloat, position:CGPoint? = nil, fillColor:UIColor? = nil, strokeColor:UIColor? = nil, lineWidth:CGFloat? = nil) -> SKShapeNode {
+        let r = SKShapeNode(circleOfRadius: withRadius)
+        if let position = position {
+            r.position = position
+        }
+        if let fillColor = fillColor {
+            r.fillColor = fillColor
+        }
+        if let strokeColor = strokeColor {
+            r.strokeColor = strokeColor
+        }
+        else {
+            r.strokeColor = .clear
+        }
+        if let lineWidth = lineWidth {
+            r.lineWidth = lineWidth
+        }
+        return r
+    }
+    
+    static public func line(from:CGPoint, to:CGPoint, strokeColor:UIColor? = nil, lineWidth:CGFloat? = nil, lineCap:CGLineCap? = nil, lineJoin:CGLineJoin? = nil) -> SKShapeNode {
+        let r = SKShapeNode(lines:[from,to])
+        if let strokeColor = strokeColor {
+            r.strokeColor = strokeColor
+        }
+        else {
+            r.strokeColor = .clear
+        }
+        if let lineWidth = lineWidth {
+            r.lineWidth = lineWidth
+        }
+        if let lineCap = lineCap {
+            r.lineCap = lineCap
+        }
+        if let lineJoin = lineJoin {
+            r.lineJoin = lineJoin
+        }
+        return r
+    }
+
+    public func configure(position:CGPoint? = nil, fillColor:UIColor? = nil, strokeColor:UIColor? = nil, lineWidth:CGFloat? = nil, lineCap:CGLineCap? = nil, lineJoin:CGLineJoin? = nil) {
+        if let position = position {
+            self.position = position
+        }
+        if let fillColor = fillColor {
+            self.fillColor = fillColor
+        }
+        if let strokeColor = strokeColor {
+            self.strokeColor = strokeColor
+        }
+        else {
+            self.strokeColor = .clear
+        }
+        if let lineWidth = lineWidth {
+            self.lineWidth = lineWidth
+        }
+        if let lineCap = lineCap {
+            self.lineCap = lineCap
+        }
+        if let lineJoin = lineJoin {
+            self.lineJoin = lineJoin
+        }
     }
 }
 
@@ -706,7 +849,46 @@ extension SKSpriteNode
 
 extension SKNode
 {
-    public func debugAddX(lineWidth:CGFloat = 1, color:UIColor = UIColor(rgb: [1,0,0])) -> SKNode
+    open func run(_ action: SKAction, delay:TimeInterval) {
+        self.run(aDelayed(delay:delay, action: action))
+    }
+    
+    open func run(_ action: SKAction, delay:TimeInterval, completion block: @escaping () -> Swift.Void) {
+        self.run(aDelayed(delay:delay, action: action), completion: block)
+    }
+    
+    open func run(_ action: SKAction, withKey key: String, delay:TimeInterval) {
+        self.run(aDelayed(delay:delay, action: action), withKey: key)
+    }
+    
+
+    open func run(sequence: [SKAction], delay:TimeInterval = 0) {
+        self.run(aDelayed(delay:delay, action: aSequence(sequence)))
+    }
+    
+    open func run(sequence: [SKAction], delay:TimeInterval = 0, completion block: @escaping () -> Swift.Void) {
+        self.run(aDelayed(delay:delay, action: aSequence(sequence)), completion: block)
+    }
+    
+    open func run(sequence: [SKAction], withKey key: String, delay:TimeInterval = 0) {
+        self.run(aDelayed(delay:delay, action: aSequence(sequence)), withKey: key)
+    }
+    
+
+    open func run(group: [SKAction], delay:TimeInterval = 0) {
+        self.run(aDelayed(delay:delay, action: aGroup(group)))
+    }
+    
+    open func run(group: [SKAction], delay:TimeInterval = 0, completion block: @escaping () -> Swift.Void) {
+        self.run(aDelayed(delay:delay, action: aGroup(group)), completion: block)
+    }
+    
+    open func run(group: [SKAction], withKey key: String, delay:TimeInterval = 0) {
+        self.run(aDelayed(delay:delay, action: aGroup(group)), withKey: key)
+    }
+    
+
+    open func debugAddX(lineWidth:CGFloat = 1, color:UIColor = UIColor(rgb: [1,0,0])) -> SKNode
     {
         if true
         {
@@ -746,7 +928,7 @@ extension SKNode
         return self
     }
     
-    public func debugAddCross(lineWidth:CGFloat = 1, color:UIColor = UIColor(rgb: [1,0,0])) -> SKNode
+    open func debugAddCross(lineWidth:CGFloat = 1, color:UIColor = UIColor(rgb: [1,0,0])) -> SKNode
     {
         if true
         {
@@ -786,7 +968,7 @@ extension SKNode
         return self
     }
     
-    public func debugAddBorder(lineWidth:CGFloat = 1, corner:CGFloat = 16, color:UIColor = UIColor(rgb: [0,1,0])) -> SKNode
+    open func debugAddBorder(lineWidth:CGFloat = 1, corner:CGFloat = 16, color:UIColor = UIColor(rgb: [0,1,0])) -> SKNode
     {
         if true
         {
@@ -817,11 +999,11 @@ extension SKAction {
 }
 
 
-public func aRun            (on node:SKNode,action:SKAction,delay sec:TimeInterval = 0) -> SKNode       { node.run(aDelayed(sec:sec,action:action)); return node }
-public func aRun            (action:SKAction,node:SKNode,delay sec:TimeInterval = 0)    -> SKNode       { node.run(aDelayed(sec:sec,action:action)); return node }
-public func aRun            (action:SKAction,on:SKNode,delay sec:TimeInterval = 0)      -> SKNode       { on.run(aDelayed(sec:sec,action:action)); return on }
+public func aRun            (on node:SKNode,action:SKAction,delay sec:TimeInterval = 0) -> SKNode       { node.run(aDelayed(delay:sec,action:action)); return node }
+public func aRun            (action:SKAction,node:SKNode,delay sec:TimeInterval = 0)    -> SKNode       { node.run(aDelayed(delay:sec,action:action)); return node }
+public func aRun            (action:SKAction,on:SKNode,delay sec:TimeInterval = 0)      -> SKNode       { on.run(aDelayed(delay:sec,action:action)); return on }
 
-public func aRunOnChild     (named:String,action:SKAction,delay sec:TimeInterval = 0)   -> SKAction     { return SKAction.run(aDelayed(sec:sec,action:action), onChildWithName:named); }
+public func aRunOnChild     (named:String,action:SKAction,delay sec:TimeInterval = 0)   -> SKAction     { return SKAction.run(aDelayed(delay:sec,action:action), onChildWithName:named); }
 
 public func aForever        (action:SKAction)                                           -> SKAction     { return SKAction.repeatForever(action) }
 public func aRepeat         (action:SKAction,count:UInt)                                -> SKAction     { return SKAction.repeat(action,count:Int(count)) }
@@ -837,28 +1019,26 @@ public func aWait           (sec:TimeInterval,range:TimeInterval)               
 //    public func aDelayed    (by sec:TimeInterval)                                   -> SKAction         { return delayed(by:sec) }
 //}
 
-public func aDelayed        (action:SKAction,delay sec:TimeInterval)                    -> SKAction     { return 0.0 < sec ? aSequence([aWait(sec:sec), action]) : action }
-public func aDelayed        (sec:TimeInterval,action:SKAction)                          -> SKAction     { return aDelayed(action:action,delay:sec) }
+public func aDelayed        (action:SKAction,delay sec:TimeInterval = 0)                -> SKAction     { return 0.0 < sec ? aSequence([aWait(sec:sec), action]) : action }
+public func aDelayed        (delay sec:TimeInterval = 0,action:SKAction)                -> SKAction     { return aDelayed(action:action,delay:sec) }
 
 public func aPerform        (selector:Selector,on:AnyObject)                            -> SKAction     { return SKAction.perform(selector,onTarget:on) }
 
-public func aBlock          (block: @escaping ()->(), delay:TimeInterval)               -> SKAction     { return aDelayed(action:SKAction.run(block),delay:delay) }
 public func aBlock          (delay:TimeInterval,block: @escaping ()->())                -> SKAction     { return aDelayed(action:SKAction.run(block),delay:delay) }
 public func aBlock          (block: @escaping ()->())                                   -> SKAction     { return SKAction.run(block) }
-public func aBlock          (block: @escaping ()->(), queue:DispatchQueue)              -> SKAction     { return SKAction.run(block,queue:queue) }
-public func aBlock          (block: @escaping (SKNode,CGFloat) -> Void,
-                             duration sec:TimeInterval,
-                             delay:TimeInterval = 0)                                    -> SKAction     { return aDelayed(sec:delay,action:SKAction.customAction(withDuration: sec,actionBlock:block)) }
+public func aBlock          (queue:DispatchQueue, block: @escaping ()->())              -> SKAction     { return SKAction.run(block,queue:queue) }
 public func aBlock          (duration sec:TimeInterval,
                              delay:TimeInterval = 0,
-                             block: @escaping (SKNode,CGFloat) -> Void)                 -> SKAction     { return aDelayed(sec:delay,action:SKAction.customAction(withDuration: sec,actionBlock:block)) }
-public func aBlockTimed01   (duration sec:TimeInterval,
-                             delay:TimeInterval = 0,
+                             lerped:Bool = true,
                              block: @escaping (SKNode,CGFloat) -> Void)                 -> SKAction     {
-    return aDelayed(sec:delay,action:SKAction.customAction(withDuration: sec,actionBlock:{ node,time in
-        block(node,time/CGFloat(sec))
-    }))
+    if lerped {
+        return aDelayed(delay:delay,action:SKAction.customAction(withDuration: sec,actionBlock:{ node,time in
+            block(node,time/CGFloat(sec))
+        }))
+    }
+    return aDelayed(delay:delay,action:SKAction.customAction(withDuration: sec,actionBlock:block))
 }
+
 
 
 
@@ -881,48 +1061,48 @@ public func aRemove             ()                                              
 
 
 
-public func aMoveBy             (x:CGFloat,y:CGFloat,duration sec:TimeInterval)         -> SKAction { return SKAction.moveBy(x: x,y:y,duration:sec) }
-public func aMoveBy             (x:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.moveBy(x: x,y:0,duration:sec) }
-public func aMoveBy             (y:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.moveBy(x: 0,y:y,duration:sec) }
-public func aMoveBy             (move:CGVector,duration sec:TimeInterval)               -> SKAction { return SKAction.move(by: move,duration:sec) }
+public func aMoveBy             (x:CGFloat,y:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)         -> SKAction { return aDelayed(delay:delay,action:SKAction.moveBy(x: x,y:y,duration:sec)) }
+public func aMoveBy             (x:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)                   -> SKAction { return aDelayed(delay:delay,action:SKAction.moveBy(x: x,y:0,duration:sec)) }
+public func aMoveBy             (y:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)                   -> SKAction { return aDelayed(delay:delay,action:SKAction.moveBy(x: 0,y:y,duration:sec)) }
+public func aMoveBy             (move:CGVector,duration sec:TimeInterval,delay:TimeInterval = 0)               -> SKAction { return aDelayed(delay:delay,action:SKAction.move(by: move,duration:sec)) }
 
-public func aMoveTo             (move:CGPoint,duration sec:TimeInterval)                -> SKAction { return SKAction.move(to: move,duration:sec) }
-public func aMoveTo             (x:CGFloat,y:CGFloat,duration sec:TimeInterval)         -> SKAction { return SKAction.move(to: CGPoint(x: x,y: y),duration:sec) }
-public func aMoveTo             (x:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.moveTo(x: x,duration:sec) }
-public func aMoveTo             (y:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.moveTo(y: y,duration:sec) }
+public func aMoveTo             (move:CGPoint,duration sec:TimeInterval,delay:TimeInterval = 0)                -> SKAction { return aDelayed(delay:delay,action:SKAction.move(to: move,duration:sec)) }
+public func aMoveTo             (x:CGFloat,y:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)         -> SKAction { return aDelayed(delay:delay,action:SKAction.move(to: CGPoint(x: x,y: y),duration:sec)) }
+public func aMoveTo             (x:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)                   -> SKAction { return aDelayed(delay:delay,action:SKAction.moveTo(x: x,duration:sec)) }
+public func aMoveTo             (y:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)                   -> SKAction { return aDelayed(delay:delay,action:SKAction.moveTo(y: y,duration:sec)) }
 
 public func aFollow             (path:CGPath,duration sec:TimeInterval)                 -> SKAction { return SKAction.follow(path,duration:sec) }
 public func aFollow             (path:CGPath,speed:CGFloat)                             -> SKAction { return SKAction.follow(path,speed:speed) }
 public func aFollow             (path:CGPath,asOffset:Bool,orientToPath:Bool,duration sec:TimeInterval) -> SKAction { return SKAction.follow(path,asOffset:asOffset,orientToPath:orientToPath,duration:sec) }
 public func aFollow             (path:CGPath,asOffset:Bool,orientToPath:Bool,speed:CGFloat) -> SKAction { return SKAction.follow(path,asOffset:asOffset,orientToPath:orientToPath,speed:speed) }
 
-public func aRotateBy           (degrees angle:CGFloat,duration sec:TimeInterval)       -> SKAction { return SKAction.rotate(byAngle: CGAsRadians(degrees:angle),duration:sec) }
-public func aRotateBy           (radians angle:CGFloat,duration sec:TimeInterval)       -> SKAction { return SKAction.rotate(byAngle: angle,duration:sec) }
+public func aRotateBy           (degrees angle:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)       -> SKAction { return aDelayed(delay:delay,action:SKAction.rotate(byAngle: CGAsRadians(degrees:angle),duration:sec)) }
+public func aRotateBy           (radians angle:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)       -> SKAction { return aDelayed(delay:delay,action:SKAction.rotate(byAngle: angle,duration:sec)) }
 
-public func aRotateTo           (degrees angle:CGFloat,duration sec:TimeInterval,alongShortestArc:Bool = false) -> SKAction   { return SKAction.rotate(toAngle: CGAsRadians(degrees:angle),duration:sec,shortestUnitArc:alongShortestArc) }
-public func aRotateTo           (radians angle:CGFloat,duration sec:TimeInterval,alongShortestArc:Bool = false) -> SKAction   { return SKAction.rotate(toAngle: angle,duration:sec,shortestUnitArc:alongShortestArc) }
+public func aRotateTo           (degrees angle:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0,alongShortestArc:Bool = false) -> SKAction   { return aDelayed(delay:delay,action:SKAction.rotate(toAngle: CGAsRadians(degrees:angle),duration:sec,shortestUnitArc:alongShortestArc)) }
+public func aRotateTo           (radians angle:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0,alongShortestArc:Bool = false) -> SKAction   { return aDelayed(delay:delay,action:SKAction.rotate(toAngle: angle,duration:sec,shortestUnitArc:alongShortestArc)) }
 
-public func aSpeedBy            (speed:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.speed(by: speed,duration:sec) }
-public func aSpeedTo            (speed:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.speed(to: speed,duration:sec) }
+public func aSpeedBy            (speed:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)               -> SKAction { return aDelayed(delay:delay,action:SKAction.speed(by: speed,duration:sec)) }
+public func aSpeedTo            (speed:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)               -> SKAction { return aDelayed(delay:delay,action:SKAction.speed(to: speed,duration:sec)) }
 
-public func aScaleBy            (scale:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.scale(by: scale,duration:sec) }
-public func aScaleTo            (scale:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.scale(to: scale,duration:sec) }
+public func aScaleBy            (scale:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)               -> SKAction { return aDelayed(delay:delay,action:SKAction.scale(by: scale,duration:sec)) }
+public func aScaleTo            (scale:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)               -> SKAction { return aDelayed(delay:delay,action:SKAction.scale(to: scale,duration:sec)) }
 
-public func aScaleBy            (x:CGFloat,y:CGFloat,duration sec:TimeInterval)         -> SKAction { return SKAction.scaleX(by: x,y:y,duration:sec) }
-public func aScaleTo            (x:CGFloat,y:CGFloat,duration sec:TimeInterval)         -> SKAction { return SKAction.scaleX(to: x,y:y,duration:sec) }
+public func aScaleBy            (x:CGFloat,y:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)         -> SKAction { return aDelayed(delay:delay,action:SKAction.scaleX(by: x,y:y,duration:sec)) }
+public func aScaleTo            (x:CGFloat,y:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)         -> SKAction { return aDelayed(delay:delay,action:SKAction.scaleX(to: x,y:y,duration:sec)) }
 
-public func aScaleTo            (x:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.scaleX(to: x,duration:sec) }
-public func aScaleTo            (y:CGFloat,duration sec:TimeInterval)                   -> SKAction { return SKAction.scaleY(to: y,duration:sec) }
+public func aScaleTo            (x:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)                   -> SKAction { return aDelayed(delay:delay,action:SKAction.scaleX(to: x,duration:sec)) }
+public func aScaleTo            (y:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)                   -> SKAction { return aDelayed(delay:delay,action:SKAction.scaleY(to: y,duration:sec)) }
 
 public func aHide               ()                                                      -> SKAction { return SKAction.hide() }
 public func aShow               ()                                                      -> SKAction { return SKAction.unhide() }
 public func aShow               (flag:Bool)                                             -> SKAction { return flag ? SKAction.unhide() : SKAction.hide() }
 
-public func aFadeIn             (duration sec:TimeInterval)                             -> SKAction { return SKAction.fadeIn(withDuration: sec) }
-public func aFadeOut            (duration sec:TimeInterval)                             -> SKAction { return SKAction.fadeOut(withDuration: sec) }
+public func aFadeIn             (duration sec:TimeInterval,delay:TimeInterval = 0)                             -> SKAction { return SKAction.fadeIn(withDuration: sec) }
+public func aFadeOut            (duration sec:TimeInterval,delay:TimeInterval = 0)                             -> SKAction { return SKAction.fadeOut(withDuration: sec) }
 
-public func aFadeBy             (alpha:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.fadeAlpha(by: alpha,duration:sec) }
-public func aFadeTo             (alpha:CGFloat,duration sec:TimeInterval)               -> SKAction { return SKAction.fadeAlpha(to: alpha,duration:sec) }
+public func aFadeBy             (alpha:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)               -> SKAction { return SKAction.fadeAlpha(by: alpha,duration:sec) }
+public func aFadeTo             (alpha:CGFloat,duration sec:TimeInterval,delay:TimeInterval = 0)               -> SKAction { return SKAction.fadeAlpha(to: alpha,duration:sec) }
 
 
 

@@ -130,5 +130,29 @@ extension String {
     public func split(_ delimiter:String) -> [String] {
         return self.components(separatedBy: delimiter)
     }
-    
+ 
+    public func countOf(substring:String) -> Int {
+        var r = 0
+        var i = 0
+        let limit = self.length - substring.length + 1
+        while i < limit {
+            var j = i
+            var match = true
+            while j < substring.length {
+                if self[i+j] != substring[j] {
+                    match = false
+                    break
+                }
+                j += 1
+            }
+            if match {
+                r += 1
+                i = j + 1
+            }
+            else {
+                i += 1
+            }
+        }
+        return r
+    }
 }

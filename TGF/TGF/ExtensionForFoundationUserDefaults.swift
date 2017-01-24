@@ -22,3 +22,16 @@ extension UserDefaults
     }
 }
 
+extension UserDefaults {
+    public func set(string:String, forKey:String) {
+        set(string, forKey: forKey)
+    }
+    public func set(date:Date, forKey:String) {
+        set(date, forKey: forKey)
+    }
+    public func date(forKey string:String) -> Date? {
+        return value(forKey: string) as? Date
+    }
+}
+
+

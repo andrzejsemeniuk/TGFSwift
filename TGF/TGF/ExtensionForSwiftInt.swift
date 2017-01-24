@@ -37,3 +37,8 @@ extension Int {
         self = self + n
     }
 }
+
+extension Int {
+    public var degreesToRadians: Double { return Double(self) * .pi / 180 }
+    public var radiansToDegrees: Double { return Double(self) * 180 / .pi }
+}
