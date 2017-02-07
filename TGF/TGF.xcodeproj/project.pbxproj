@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		571F863C1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F863B1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift */; };
 		573142961E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573142951E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift */; };
 		5734512B1E156901007D1D54 /* ExtensionForDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5734512A1E156901007D1D54 /* ExtensionForDispatchQueue.swift */; };
 		5779AEF21CFB4B41006F8E4D /* TGF.h in Headers */ = {isa = PBXBuildFile; fileRef = 5779AEF11CFB4B41006F8E4D /* TGF.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -24,6 +25,8 @@
 		5779AF181CFB4C3C006F8E4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */; };
 		5779AF191CFB4C3C006F8E4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */; };
 		5779AF2D1CFCAF51006F8E4D /* testTGFMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779AF2C1CFCAF51006F8E4D /* testTGFMath.swift */; };
+		5787F86B1E4684D500052EB7 /* UIInsetsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787F86A1E4684D500052EB7 /* UIInsetsLabel.swift */; };
+		579DD0FF1E42363700A4C428 /* ExtensionForUIKitUIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DD0FE1E42363700A4C428 /* ExtensionForUIKitUIEdgeInsets.swift */; };
 		57B9CFFA1E02D51A005AE57A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B9CFF91E02D51A005AE57A /* Foundation.framework */; };
 		57B9CFFC1E02D521005AE57A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B9CFFB1E02D521005AE57A /* UIKit.framework */; };
 		57B9CFFE1E02D526005AE57A /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B9CFFD1E02D526005AE57A /* SpriteKit.framework */; };
@@ -57,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		571F863B1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintsBuilder.swift; sourceTree = "<group>"; };
 		573142951E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForFoundationNSRange.swift; sourceTree = "<group>"; };
 		5734512A1E156901007D1D54 /* ExtensionForDispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForDispatchQueue.swift; sourceTree = "<group>"; };
 		5779AEEE1CFB4B40006F8E4D /* TGF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TGF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +76,8 @@
 		5779AF101CFB4B76006F8E4D /* testTGFUtilityVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = testTGFUtilityVariable.swift; path = ../TGF/testTGFUtilityVariable.swift; sourceTree = "<group>"; };
 		5779AF171CFB4C3C006F8E4D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5779AF2C1CFCAF51006F8E4D /* testTGFMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testTGFMath.swift; sourceTree = "<group>"; };
+		5787F86A1E4684D500052EB7 /* UIInsetsLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIInsetsLabel.swift; sourceTree = "<group>"; };
+		579DD0FE1E42363700A4C428 /* ExtensionForUIKitUIEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForUIKitUIEdgeInsets.swift; sourceTree = "<group>"; };
 		57B9CFF91E02D51A005AE57A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		57B9CFFB1E02D521005AE57A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		57B9CFFD1E02D526005AE57A /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -158,12 +164,15 @@
 				57EF46D21DAA86FC00D514A1 /* ExtensionForSwiftString.swift */,
 				57B9D0051E02E598005AE57A /* ExtensionForUIKitNSAttributedString.swift */,
 				57EF46D41DAA870C00D514A1 /* ExtensionForUIKitUIColor.swift */,
+				579DD0FE1E42363700A4C428 /* ExtensionForUIKitUIEdgeInsets.swift */,
 				57EF46DA1DAA877C00D514A1 /* ExtensionForUIKitUIView.swift */,
 				5779AEF31CFB4B41006F8E4D /* Info.plist */,
 				5779AF081CFB4B67006F8E4D /* Math.swift */,
 				5779AEF11CFB4B41006F8E4D /* TGF.h */,
+				5787F86A1E4684D500052EB7 /* UIInsetsLabel.swift */,
 				5779AF0A1CFB4B67006F8E4D /* Utility.swift */,
 				5779AF0B1CFB4B67006F8E4D /* UtilityVariable.swift */,
+				571F863B1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift */,
 			);
 			path = TGF;
 			sourceTree = "<group>";
@@ -317,7 +326,10 @@
 				57EF46E31DAA884B00D514A1 /* ExtensionForOperators.swift in Sources */,
 				57B9D0081E02EC3A005AE57A /* CGFloat01.swift in Sources */,
 				57B9D0061E02E598005AE57A /* ExtensionForUIKitNSAttributedString.swift in Sources */,
+				5787F86B1E4684D500052EB7 /* UIInsetsLabel.swift in Sources */,
+				579DD0FF1E42363700A4C428 /* ExtensionForUIKitUIEdgeInsets.swift in Sources */,
 				57EF46D51DAA870C00D514A1 /* ExtensionForUIKitUIColor.swift in Sources */,
+				571F863C1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift in Sources */,
 				5779AF181CFB4C3C006F8E4D /* AppDelegate.swift in Sources */,
 				5779AF0E1CFB4B67006F8E4D /* Utility.swift in Sources */,
 				57EF46D31DAA86FC00D514A1 /* ExtensionForSwiftString.swift in Sources */,

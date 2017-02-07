@@ -20,3 +20,14 @@ extension CGSize {
         return CGPoint(x:width,y:height)
     }
 }
+
+extension CGAffineTransform {
+    
+    public var sx:CGFloat {
+        return sqrt(a * a + c * c)
+    }
+    
+    public var sy:CGFloat {
+        return sqrt(b * b + d * d)
+    }
+}
