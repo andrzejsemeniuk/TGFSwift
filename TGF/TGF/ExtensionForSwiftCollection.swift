@@ -15,3 +15,4 @@ extension Collection {
         return startIndex == endIndex
     }
 }
+

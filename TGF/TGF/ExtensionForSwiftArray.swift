@@ -21,3 +21,36 @@ extension Array
         return 0 <= i && i < self.count ? self[i] : nil
     }
 }
+
+extension Array {
+    static public func convertToInt(array:[Double]) -> [Int] {
+        var result:[Int] = []
+        array.forEach({ result.append(Int($0)) })
+        return result
+    }
+    static public func convertToDouble(array:[Int]) -> [Double] {
+        var result:[Double] = []
+        array.forEach({ result.append(Double($0)) })
+        return result
+    }
+    static public func convertToFloat(array:[Double]) -> [Float] {
+        var result:[Float] = []
+        array.forEach({ result.append(Float($0)) })
+        return result
+    }
+    static public func convertToDouble(array:[Float]) -> [Double] {
+        var result:[Double] = []
+        array.forEach({ result.append(Double($0)) })
+        return result
+    }
+    static public func convertToCGFloat(array:[Double]) -> [CGFloat] {
+        var result:[CGFloat] = []
+        array.forEach({ result.append(CGFloat($0)) })
+        return result
+    }
+    static public func convertToDouble(array:[CGFloat]) -> [Double] {
+        var result:[Double] = []
+        array.forEach({ result.append(Double($0)) })
+        return result
+    }
+}

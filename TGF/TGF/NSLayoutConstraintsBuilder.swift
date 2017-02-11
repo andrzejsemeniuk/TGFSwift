@@ -16,7 +16,7 @@ public class NSLayoutConstraintsBuilder {
     
     fileprivate(set) var constraints : [NSLayoutConstraint] = []
     
-    public init(views           : [String:Any] = [],
+    public init(views           : [String:Any] = [:],
                 options         : NSLayoutFormatOptions = [],
                 metrics         : [String:Any]?         = nil) {
         self.views      = views
@@ -44,10 +44,10 @@ public class NSLayoutConstraintsBuilder {
                     options         : NSLayoutFormatOptions?    = nil,
                     metrics         : [String:Any]?             = nil) {
         
-        self.constraints.append(self.create(constraint,
-                                            views       : views,
-                                            options     : options,
-                                            metrics     : metrics))
+        self.constraints.append(contentsOf:self.create(constraint,
+                                                       views       : views,
+                                                       options     : options,
+                                                       metrics     : metrics))
     }
     
     public func     create(_ constraint    : String,
