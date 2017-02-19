@@ -17,7 +17,16 @@ public func loop(_ count:Int, block:()->()) {
     }
 }
 
-public func loopUpTo(_ count:Int, block:()->(Bool)) {
+public func loopWithIndex(_ count:Int, block:(Int)->()) {
+    var i:Int = 0
+    let count = 0 < count ? count : 0
+    while i < count {
+        block(i)
+        i = i+1
+    }
+}
+
+public func loop(upTo count:Int, block:()->(Bool)) {
     var i:Int = 0
     let count = 0 < count ? count : 0
     while i < count {
@@ -30,16 +39,7 @@ public func loopUpTo(_ count:Int, block:()->(Bool)) {
     }
 }
 
-public func loopWithIndex(_ count:Int, block:(Int)->()) {
-    var i:Int = 0
-    let count = 0 < count ? count : 0
-    while i < count {
-        block(i)
-        i = i+1
-    }
-}
-
-public func loopWithIndexUpTo(_ count:Int, block:(Int)->(Bool)) {
+public func loopWithIndex(upTo count:Int, block:(Int)->(Bool)) {
     var i:Int = 0
     let count = 0 < count ? count : 0
     while i < count {

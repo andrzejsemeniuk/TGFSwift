@@ -11,26 +11,45 @@ import UIKit
 
 public class UIButtonWithCenteredCircle : UIButton {
     
-    public private(set) var circle:CAShapeLayer = CAShapeLayer()
-    public var radius:CGFloat = 0 {
-        didSet {
-        }
+    open class Circle : CAShapeLayer {
+        open var radius                 : CGFloat           = 0
     }
-
-    public override func draw(_ rect: CGRect) {
-        if circle.superlayer == nil {
-            self.layer.addSublayer(circle)
+    
+    private var circles:[String:Circle] = [:]
+    
+    
+    public func circle(for state:UIControlState) -> Circle {
+        let key = UIButton.name(state: state)
+        if let r = self.circles[key] {
+            return r
         }
-        circle.path = UIBezierPath(arcCenter    : CGPoint(x:frame.size.width/2, y:frame.size.height/2),
-                                   radius       : radius,
-                                   startAngle   : 0,
-                                   endAngle     : 2 * CGFloat(M_PI),
-                                   clockwise    : false).cgPath
+        let r = Circle()
+        self.circles[key] = r
+        self.layer.insertSublayer(r, at: 0)
+        return r
+    }
+    
+    public override func draw(_ rect: CGRect) {
+        let stateName = UIButton.name(state: state)
+        for (key,circle) in circles {
+            if key==stateName {
+                circle.path = UIBezierPath(arcCenter    : CGPoint(x:frame.size.width/2, y:frame.size.height/2),
+                                           radius       : circle.radius,
+                                           startAngle   : 0,
+                                           endAngle     : 2 * CGFloat(M_PI),
+                                           clockwise    : false).cgPath
+            }
+            else {
+                circle.path = nil
+            }
+        }
         super.draw(rect)
     }
     
-    public override func titleRect(forContentRect: CGRect) -> CGRect {
+    public func titleRect2(forContentRect: CGRect) -> CGRect {
+        var rect = super.titleRect(forContentRect: forContentRect)
         if let text = self.attributedTitle(for: self.state) {
+            print("titleRect: text(\(text.string), rect(\(rect)), content(\(forContentRect)))")
             var bbox = UIGlyph.calculateBBox(of: text)
 //            bbox.height += 3
 //            bbox.width += 1
@@ -56,10 +75,14 @@ public class UIButtonWithCenteredCircle : UIButton {
                               width     : bbox.width,
                               height    : bbox.height)
             case (.center,.center):
-                return CGRect(x         : forContentRect.center.x - bbox.origin.x/2 - bbox.width/2,
-                              y         : forContentRect.center.y - bbox.origin.y/2 - bbox.height/2,
+//                return CGRect(x         : forContentRect.center.x - bbox.origin.x/2 - bbox.width/2,
+//                              y         : forContentRect.center.y - bbox.origin.y/2 - bbox.height/2,
+//                              width     : bbox.width,
+//                              height    : bbox.height)
+                return CGRect(x         : rect.origin.x, //forContentRect.center.x - bbox.origin.x/2 - bbox.width/2,
+                    y         : rect.origin.y, //forContentRect.center.y - bbox.origin.y/2 - bbox.height/2,
                               width     : bbox.width,
-                              height    : bbox.height)
+                              height    : rect.height) //bbox.height)
             case (.center,.bottom):
                 return CGRect(x         : forContentRect.center.x - bbox.width/2,
                               y         : forContentRect.center.y - bbox.height/2,
@@ -84,7 +107,7 @@ public class UIButtonWithCenteredCircle : UIButton {
                 break
             }
         }
-        return super.titleRect(forContentRect: forContentRect)
+        return rect
     }
 
 }

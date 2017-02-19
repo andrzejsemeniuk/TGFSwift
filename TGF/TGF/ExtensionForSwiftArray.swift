@@ -53,4 +53,9 @@ extension Array {
         array.forEach({ result.append(Double($0)) })
         return result
     }
+    static public func convertToUInt32(array:[Character]) -> [UInt32] {
+        var result:[UInt32] = []
+        array.forEach({ result.append($0.unicodeScalarCodePoint) })
+        return result
+    }
 }

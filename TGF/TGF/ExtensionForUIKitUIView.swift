@@ -23,6 +23,7 @@ extension UIView
 {
     public func addSublayerCircle(withRadius            : CGFloat,
                                   center                : CGPoint?      = nil,
+                                  index                 : UInt32        = 0,
                                   fillColor             : UIColor?      = nil,
                                   strokeColor           : UIColor?      = nil,
                                   lineWidth             : CGFloat?      = nil) -> CAShapeLayer {
@@ -52,7 +53,7 @@ extension UIView
             shape.fillColor = fillColor.cgColor
         }
         
-        self.layer.addSublayer(shape)
+        self.layer.insertSublayer(shape, at: index)
         
         return shape
     }

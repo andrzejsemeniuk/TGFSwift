@@ -10,6 +10,7 @@
 		571F863C1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F863B1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift */; };
 		573142961E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573142951E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift */; };
 		5734512B1E156901007D1D54 /* ExtensionForDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5734512A1E156901007D1D54 /* ExtensionForDispatchQueue.swift */; };
+		574A6E041E5600D400A5D432 /* ExtensionForSwiftBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A6E031E5600D400A5D432 /* ExtensionForSwiftBool.swift */; };
 		5758CDB01E4CB488007A0F90 /* UICircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758CDAF1E4CB488007A0F90 /* UICircle.swift */; };
 		5758CDB21E4CB65C007A0F90 /* UIGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758CDB11E4CB65C007A0F90 /* UIGlyph.swift */; };
 		5779AEF21CFB4B41006F8E4D /* TGF.h in Headers */ = {isa = PBXBuildFile; fileRef = 5779AEF11CFB4B41006F8E4D /* TGF.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,6 +32,7 @@
 		579DD0FF1E42363700A4C428 /* ExtensionForUIKitUIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DD0FE1E42363700A4C428 /* ExtensionForUIKitUIEdgeInsets.swift */; };
 		57B27FA61E50C89E00665451 /* ExtensionForUIKitUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B27FA51E50C89E00665451 /* ExtensionForUIKitUIFont.swift */; };
 		57B27FA81E50D02D00665451 /* ExtensionforFoundationNSCharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B27FA71E50D02D00665451 /* ExtensionforFoundationNSCharacterSet.swift */; };
+		57B27FAD1E54B6F900665451 /* ExtensionForUIKitUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B27FAC1E54B6F900665451 /* ExtensionForUIKitUIButton.swift */; };
 		57B9CFFA1E02D51A005AE57A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B9CFF91E02D51A005AE57A /* Foundation.framework */; };
 		57B9CFFC1E02D521005AE57A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B9CFFB1E02D521005AE57A /* UIKit.framework */; };
 		57B9CFFE1E02D526005AE57A /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B9CFFD1E02D526005AE57A /* SpriteKit.framework */; };
@@ -42,6 +44,7 @@
 		57BE4CAD1E49FE4C00DED6AF /* ExtensionForSwiftUInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BE4CAC1E49FE4C00DED6AF /* ExtensionForSwiftUInt.swift */; };
 		57BE4CAF1E49FF7D00DED6AF /* UtilityLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BE4CAE1E49FF7D00DED6AF /* UtilityLoop.swift */; };
 		57DE22DC1E507F31009F6059 /* UIButtonWithCenteredCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DE22DB1E507F31009F6059 /* UIButtonWithCenteredCircle.swift */; };
+		57E38F8C1E5A244F00B877DD /* ExtensionForSwiftCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E38F8B1E5A244F00B877DD /* ExtensionForSwiftCharacter.swift */; };
 		57EF46D11DAA86D200D514A1 /* ExtensionForSwiftInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D01DAA86D200D514A1 /* ExtensionForSwiftInt.swift */; };
 		57EF46D31DAA86FC00D514A1 /* ExtensionForSwiftString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D21DAA86FC00D514A1 /* ExtensionForSwiftString.swift */; };
 		57EF46D51DAA870C00D514A1 /* ExtensionForUIKitUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF46D41DAA870C00D514A1 /* ExtensionForUIKitUIColor.swift */; };
@@ -70,6 +73,7 @@
 		571F863B1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintsBuilder.swift; sourceTree = "<group>"; };
 		573142951E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForFoundationNSRange.swift; sourceTree = "<group>"; };
 		5734512A1E156901007D1D54 /* ExtensionForDispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForDispatchQueue.swift; sourceTree = "<group>"; };
+		574A6E031E5600D400A5D432 /* ExtensionForSwiftBool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftBool.swift; sourceTree = "<group>"; };
 		5758CDAF1E4CB488007A0F90 /* UICircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircle.swift; sourceTree = "<group>"; };
 		5758CDB11E4CB65C007A0F90 /* UIGlyph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIGlyph.swift; sourceTree = "<group>"; };
 		5779AEEE1CFB4B40006F8E4D /* TGF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TGF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +93,7 @@
 		579DD0FE1E42363700A4C428 /* ExtensionForUIKitUIEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForUIKitUIEdgeInsets.swift; sourceTree = "<group>"; };
 		57B27FA51E50C89E00665451 /* ExtensionForUIKitUIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForUIKitUIFont.swift; sourceTree = "<group>"; };
 		57B27FA71E50D02D00665451 /* ExtensionforFoundationNSCharacterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionforFoundationNSCharacterSet.swift; sourceTree = "<group>"; };
+		57B27FAC1E54B6F900665451 /* ExtensionForUIKitUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForUIKitUIButton.swift; sourceTree = "<group>"; };
 		57B9CFF91E02D51A005AE57A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		57B9CFFB1E02D521005AE57A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		57B9CFFD1E02D526005AE57A /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -100,6 +105,7 @@
 		57BE4CAC1E49FE4C00DED6AF /* ExtensionForSwiftUInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftUInt.swift; sourceTree = "<group>"; };
 		57BE4CAE1E49FF7D00DED6AF /* UtilityLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityLoop.swift; sourceTree = "<group>"; };
 		57DE22DB1E507F31009F6059 /* UIButtonWithCenteredCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonWithCenteredCircle.swift; sourceTree = "<group>"; };
+		57E38F8B1E5A244F00B877DD /* ExtensionForSwiftCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftCharacter.swift; sourceTree = "<group>"; };
 		57EF46D01DAA86D200D514A1 /* ExtensionForSwiftInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftInt.swift; sourceTree = "<group>"; };
 		57EF46D21DAA86FC00D514A1 /* ExtensionForSwiftString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSwiftString.swift; sourceTree = "<group>"; };
 		57EF46D41DAA870C00D514A1 /* ExtensionForUIKitUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForUIKitUIColor.swift; sourceTree = "<group>"; };
@@ -164,12 +170,15 @@
 				57B9CFFF1E02D65A005AE57A /* ExtensionForCoreGraphics.swift */,
 				5734512A1E156901007D1D54 /* ExtensionForDispatchQueue.swift */,
 				57B9D0031E02E570005AE57A /* ExtensionForFoundationDate.swift */,
+				57B27FA71E50D02D00665451 /* ExtensionforFoundationNSCharacterSet.swift */,
 				573142951E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift */,
 				57EF46DE1DAA87F300D514A1 /* ExtensionForFoundationUserDefaults.swift */,
 				57EF46E21DAA884B00D514A1 /* ExtensionForOperators.swift */,
 				5779AF091CFB4B67006F8E4D /* ExtensionForSpriteKit.swift */,
 				57EF46DC1DAA87BF00D514A1 /* ExtensionForSwiftArray.swift */,
+				574A6E031E5600D400A5D432 /* ExtensionForSwiftBool.swift */,
 				57EF46D61DAA873F00D514A1 /* ExtensionForSwiftCGFloat.swift */,
+				57E38F8B1E5A244F00B877DD /* ExtensionForSwiftCharacter.swift */,
 				57EF46E01DAA882600D514A1 /* ExtensionForSwiftCollection.swift */,
 				57B9D0011E02E4DD005AE57A /* ExtensionForSwiftDouble.swift */,
 				57EF46D81DAA875A00D514A1 /* ExtensionForSwiftFloat.swift */,
@@ -178,17 +187,17 @@
 				57EF46D21DAA86FC00D514A1 /* ExtensionForSwiftString.swift */,
 				57BE4CAC1E49FE4C00DED6AF /* ExtensionForSwiftUInt.swift */,
 				57B9D0051E02E598005AE57A /* ExtensionForUIKitNSAttributedString.swift */,
+				57B27FAC1E54B6F900665451 /* ExtensionForUIKitUIButton.swift */,
 				57EF46D41DAA870C00D514A1 /* ExtensionForUIKitUIColor.swift */,
 				579DD0FE1E42363700A4C428 /* ExtensionForUIKitUIEdgeInsets.swift */,
-				57EF46DA1DAA877C00D514A1 /* ExtensionForUIKitUIView.swift */,
 				57B27FA51E50C89E00665451 /* ExtensionForUIKitUIFont.swift */,
-				57B27FA71E50D02D00665451 /* ExtensionforFoundationNSCharacterSet.swift */,
+				57EF46DA1DAA877C00D514A1 /* ExtensionForUIKitUIView.swift */,
 				5779AEF31CFB4B41006F8E4D /* Info.plist */,
 				5779AF081CFB4B67006F8E4D /* Math.swift */,
 				571F863B1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift */,
 				5779AEF11CFB4B41006F8E4D /* TGF.h */,
-				5758CDAF1E4CB488007A0F90 /* UICircle.swift */,
 				57DE22DB1E507F31009F6059 /* UIButtonWithCenteredCircle.swift */,
+				5758CDAF1E4CB488007A0F90 /* UICircle.swift */,
 				5758CDB11E4CB65C007A0F90 /* UIGlyph.swift */,
 				5787F86A1E4684D500052EB7 /* UIInsetsLabel.swift */,
 				5779AF0A1CFB4B67006F8E4D /* Utility.swift */,
@@ -332,12 +341,15 @@
 			files = (
 				5779AF0C1CFB4B67006F8E4D /* Math.swift in Sources */,
 				57DE22DC1E507F31009F6059 /* UIButtonWithCenteredCircle.swift in Sources */,
+				57B27FAD1E54B6F900665451 /* ExtensionForUIKitUIButton.swift in Sources */,
 				57B9D0001E02D65A005AE57A /* ExtensionForCoreGraphics.swift in Sources */,
 				57EF46EA1DAA93C800D514A1 /* ExtensionForSwiftNumeric.swift in Sources */,
 				57EF46DB1DAA877C00D514A1 /* ExtensionForUIKitUIView.swift in Sources */,
 				57B9D0021E02E4DD005AE57A /* ExtensionForSwiftDouble.swift in Sources */,
+				574A6E041E5600D400A5D432 /* ExtensionForSwiftBool.swift in Sources */,
 				573142961E22DE5000A75BA2 /* ExtensionForFoundationNSRange.swift in Sources */,
 				5779AF0D1CFB4B67006F8E4D /* ExtensionForSpriteKit.swift in Sources */,
+				57E38F8C1E5A244F00B877DD /* ExtensionForSwiftCharacter.swift in Sources */,
 				57B9D0041E02E570005AE57A /* ExtensionForFoundationDate.swift in Sources */,
 				57EF46E11DAA882600D514A1 /* ExtensionForSwiftCollection.swift in Sources */,
 				57EF46DD1DAA87BF00D514A1 /* ExtensionForSwiftArray.swift in Sources */,

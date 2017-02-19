@@ -64,7 +64,15 @@ public class NSLayoutConstraintsBuilder {
     
 }
 
-public func += (lhs:NSLayoutConstraintsBuilder, rhs:String) -> NSLayoutConstraintsBuilder {
+public func < (lhs:NSLayoutConstraintsBuilder, rhs:String) {
     lhs.add(rhs)
-    return lhs
 }
+
+public func < (lhs:NSLayoutConstraintsBuilder, rhs:NSLayoutConstraint) {
+    lhs.add([rhs])
+}
+
+public func < (lhs:NSLayoutConstraintsBuilder, rhs:[NSLayoutConstraint]) {
+    lhs.add(rhs)
+}
+
