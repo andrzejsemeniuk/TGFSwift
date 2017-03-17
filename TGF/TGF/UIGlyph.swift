@@ -93,7 +93,7 @@ public class UIGlyph {
     }
 
     static public func calculateBBox(of:String, withFont font:UIFont) -> CGRect {
-        return calculateBBox(of: of * font)
+        return calculateBBox(of: of | font)
     }
     
     static public func calculateSize(of:NSAttributedString,rounded:Bool=true) -> CGSize {

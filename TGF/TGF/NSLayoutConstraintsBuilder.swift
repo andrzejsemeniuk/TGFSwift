@@ -16,7 +16,7 @@ public class NSLayoutConstraintsBuilder {
     
     fileprivate(set) var constraints : [NSLayoutConstraint] = []
     
-    public init(views           : [String:Any] = [:],
+    public init(views           : [String:Any]          = [:],
                 options         : NSLayoutFormatOptions = [],
                 metrics         : [String:Any]?         = nil) {
         self.views      = views

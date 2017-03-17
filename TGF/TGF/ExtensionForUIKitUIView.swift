@@ -58,3 +58,25 @@ extension UIView
         return shape
     }
 }
+
+extension UIView {
+    
+    open func constraintBetween(left:NSLayoutAnchor<NSLayoutXAxisAnchor>, right:NSLayoutAnchor<NSLayoutXAxisAnchor>) -> UILayoutGuide {
+        let g = UILayoutGuide()
+        self.addLayoutGuide(g)
+        g.rightAnchor.constraint(equalTo: right).isActive=true
+        g.leftAnchor.constraint(equalTo: left).isActive=true
+        self.centerXAnchor.constraint(equalTo: g.centerXAnchor).isActive=true
+        return g
+    }
+    
+    open func constraintBetween(top:NSLayoutAnchor<NSLayoutYAxisAnchor>, bottom:NSLayoutAnchor<NSLayoutYAxisAnchor>) -> UILayoutGuide {
+        let g = UILayoutGuide()
+        self.addLayoutGuide(g)
+        g.topAnchor.constraint(equalTo: top).isActive=true
+        g.bottomAnchor.constraint(equalTo: bottom).isActive=true
+        self.centerYAnchor.constraint(equalTo: g.centerYAnchor).isActive=true
+        return g
+    }
+    
+}

@@ -1,5 +1,5 @@
 //
-//  UIInsetsLabel.swift
+//  UILabelWithInsets.swift
 //  TGF
 //
 //  Created by andrzej semeniuk on 2/4/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class UIInsetsLabel: UILabel {
+open class UILabelWithInsets: UILabel {
     
     open var insets : UIEdgeInsets = UIEdgeInsets() {
         didSet {

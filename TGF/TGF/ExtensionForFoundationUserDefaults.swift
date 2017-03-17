@@ -26,6 +26,9 @@ extension UserDefaults {
     public func set(string:String, forKey:String) {
         set(string, forKey: forKey)
     }
+    public func set(bool:Bool, forKey:String) {
+        set(bool, forKey: forKey)
+    }
     public func set(date:Date, forKey:String) {
         set(date, forKey: forKey)
     }

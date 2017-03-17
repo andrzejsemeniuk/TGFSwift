@@ -52,6 +52,10 @@ extension String
         return String(c as Character)
     }
 
+    public func character(at i: Int) -> Character {
+        return self[self.characters.index(self.startIndex, offsetBy: i)] as Character
+    }
+    
     public func substring(from: Int) -> String {
         return self[Range(min(from, length) ..< length)]
     }
