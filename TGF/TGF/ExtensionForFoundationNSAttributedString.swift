@@ -48,17 +48,16 @@ public func | (string:String,color:UIColor) -> NSAttributedString {
     return r
 }
 
-public func | (string:String,font:UIFont) -> NSAttributedString {
-    let r = NSMutableAttributedString(string: string)
-    r.addAttribute(NSFontAttributeName, value: font, range: NSRange(location:0,length:r.length))
+public func | (string:NSAttributedString,color:UIColor) -> NSAttributedString {
+    let r = NSMutableAttributedString(attributedString: string)
+    r.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location:0,length:r.length))
     return r
 }
 
 
-
-public func | (string:NSAttributedString,color:UIColor) -> NSAttributedString {
-    let r = NSMutableAttributedString(attributedString: string)
-    r.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location:0,length:r.length))
+public func | (string:String,font:UIFont) -> NSAttributedString {
+    let r = NSMutableAttributedString(string: string)
+    r.addAttribute(NSFontAttributeName, value: font, range: NSRange(location:0,length:r.length))
     return r
 }
 
@@ -68,15 +67,42 @@ public func | (string:NSAttributedString,font:UIFont) -> NSAttributedString {
     return r
 }
 
+
 public func | (string:NSAttributedString,attributes:[String:Any]) -> NSAttributedString {
     let r = NSMutableAttributedString(attributedString: string)
     r.addAttributes(attributes, range: NSRange(location: 0,length: r.length))
     return r
 }
 
+public func | (string:String,attributes:[String:Any]) -> NSAttributedString {
+    let r = NSMutableAttributedString(string: string)
+    r.addAttributes(attributes, range: NSRange(location: 0,length: r.length))
+    return r
+}
+
+
 public func | (string:NSAttributedString,tuple:(attributes:[String:Any],range:NSRange)) -> NSAttributedString {
     let r = NSMutableAttributedString(attributedString: string)
     r.addAttributes(tuple.attributes, range: tuple.range)
+    return r
+}
+
+public func | (string:String,tuple:(attributes:[String:Any],range:NSRange)) -> NSAttributedString {
+    let r = NSMutableAttributedString(string: string)
+    r.addAttributes(tuple.attributes, range: tuple.range)
+    return r
+}
+
+
+public func | (string:NSAttributedString,tuple:(name:String,value:Any)) -> NSAttributedString {
+    let r = NSMutableAttributedString(attributedString: string)
+    r.addAttributes([tuple.name:tuple.value], range: NSRange(location: 0,length: r.length))
+    return r
+}
+
+public func | (string:String,tuple:(name:String,value:Any)) -> NSAttributedString {
+    let r = NSMutableAttributedString(string:string)
+    r.addAttributes([tuple.name:tuple.value], range: NSRange(location: 0,length: r.length))
     return r
 }
 

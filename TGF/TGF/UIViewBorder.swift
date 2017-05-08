@@ -9,22 +9,22 @@
 import Foundation
 import UIKit
 
-public class UIBorder : UIView {
+public class UIViewBorder : UIView {
     
     public enum Style {
-        case dash(space:CGFloat,length:CGFloat)
-        case dot(space:CGFloat,radius:CGFloat)
-        case solid(thickness:CGFloat)
+        case dash   (space:CGFloat,length:CGFloat)
+        case dot    (space:CGFloat,radius:CGFloat)
+        case solid  (thickness:CGFloat)
     }
     
+    public var sides            : Set<UIViewSide>             = [.top,.left,.bottom,.right]
     public var style            : Style                 = .solid(thickness:1)
+    public var color            : UIColor               = .clear
     
-    init(_ rect:CGRect? = nil) {
-        super.init(rect)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
     
 }

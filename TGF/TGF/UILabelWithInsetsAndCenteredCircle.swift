@@ -1,5 +1,5 @@
 //
-//  UILabelWithCenteredCircle.swift
+//  UILabelWithInsetsAndCenteredCircle.swift
 //  TGF
 //
 //  Created by andrzej semeniuk on 2/12/17.

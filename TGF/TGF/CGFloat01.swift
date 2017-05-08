@@ -31,3 +31,7 @@ public func += (lhs:CGFloat01,rhs:CGFloat) {
     lhs.value += rhs
 }
 
+public func -= (lhs:CGFloat01,rhs:CGFloat) {
+    lhs.value -= rhs
+}
+
