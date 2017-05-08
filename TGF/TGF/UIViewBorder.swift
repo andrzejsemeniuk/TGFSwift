@@ -17,14 +17,12 @@ public class UIViewBorder : UIView {
         case solid  (thickness:CGFloat)
     }
     
-    public var sides            : Set<UIViewSide>             = [.top,.left,.bottom,.right]
+    public var sides            : Set<UIViewSide>       = [.top,.left,.bottom,.right]
     public var style            : Style                 = .solid(thickness:1)
     public var color            : UIColor               = .clear
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
 }
