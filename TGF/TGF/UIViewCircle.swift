@@ -1,5 +1,5 @@
 //
-//  UICircleButton.swift
+//  UIViewCircle.swift
 //  TGF
 //
 //  Created by andrzej semeniuk on 2/9/17.
@@ -21,7 +21,7 @@ import UIKit
 //}
 
 
-public class UICircle : UIView {
+public class UIViewCircle : UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         self.layer.cornerRadius = max(frame.size.width,frame.size.height)/2
