@@ -24,3 +24,18 @@ extension UIButton {
         }
     }
 }
+
+extension UIButton {
+    
+    public func decorate(margin:CGFloat) {
+        self.contentEdgeInsets    = UIEdgeInsets(all:margin)
+    }
+    
+    public func decorate(borderWidth:CGFloat) {
+        self.layer.borderWidth = borderWidth
+    }
+    
+    public func decorate(borderColor:UIColor) {
+        self.layer.borderColor = borderColor.cgColor
+    }
+}

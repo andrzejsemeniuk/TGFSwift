@@ -14,7 +14,9 @@ class UIViewShowcase : UIViewController {
     
     override func viewDidLoad() {
 
-        self.testUILabelWithRectangularBackground()
+        self.view.backgroundColor = .blue
+        
+        self.testUIViewPane1()
         
     }
     
@@ -46,17 +48,20 @@ class UIViewShowcase : UIViewController {
     
     private func testUILabelWithRectangularBackground() {
 
-        self.view.backgroundColor = .green
+        self.view.backgroundColor = UIColor(rgba: [0.5,0.8,0.6,1])
         
         let label1 = UILabel()
         
-        
+        label1.backgroundColor = .clear
         label1.attributedText = "  TITLE  "
-            | (name:NSBackgroundColorAttributeName, value:UIColor.black)
+//            | (name:NSBackgroundColorAttributeName, value:UIColor.black)
             | (name:NSForegroundColorAttributeName, value:UIColor.white)
             | UIFont.systemFont(ofSize: 48)
         
         label1.sizeToFit()
+        
+        label1.layer.borderWidth = 1
+        label1.layer.borderColor = UIColor.white.cgColor
         
         self.view.addSubview(label1)
         
@@ -68,6 +73,51 @@ class UIViewShowcase : UIViewController {
     private func testUIViewPane1() {
         // tap on view to open pane
         // tap on pane to close pane
+        
+        let pane1 = UIView()
+        
+        pane1.backgroundColor = .orange
+        
+        let bounds = UIScreen.main.bounds
+        
+        pane1.frame = CGRect(x: bounds.maxX, y: bounds.minY, width: bounds.width * 0.33, height: bounds.height)
+        
+//        pane1.layer.borderColor = UIColor.white.cgColor
+//        pane1.layer.borderWidth = 0.5
+        
+        let label1 = UILabel()
+
+        pane1.addSubview(label1)
+        
+        label1.attributedText = " LABEL 1 " | UIColor.white | UIFont.systemFont(ofSize: 32)
+        label1.layer.borderWidth = 1
+        label1.layer.borderColor = UIColor(white:1, alpha:0.7).cgColor
+        label1.translatesAutoresizingMaskIntoConstraints=false
+        label1.centerXAnchor.constraint(equalTo: pane1.centerXAnchor).isActive=true
+        label1.centerYAnchor.constraint(equalTo: pane1.centerYAnchor).isActive=true
+
+        self.view.addSubview(pane1)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.transition(with: pane1,
+                              duration: 0.5,
+                              options: [
+                                UIViewAnimationOptions.curveEaseOut,
+                ],
+                              animations: {
+                                pane1.frame.origin.x = self.view.frame.maxX - pane1.frame.width
+            },
+                              completion: { flag in
+                                print("done")
+            }
+                              )
+        }
+        
+//        panel.size(from:bounds, width:0.33, height:1.0)
+//        pane1.align(from:bounds, x:1.0, y:1.0)
+        
+
+        
     }
     
     private func testUIViewGroupValueHue() {
