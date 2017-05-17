@@ -79,4 +79,9 @@ extension UIView {
         return g
     }
     
+    open func removeAllConstraints() {
+        self.removeConstraints(self.constraints)
+    }
+    
 }
+

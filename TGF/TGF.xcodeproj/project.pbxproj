@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		570238E41EBA16BC0028B3C2 /* UILabelWithInsetsAndCenteredCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570238E31EBA16BC0028B3C2 /* UILabelWithInsetsAndCenteredCircle.swift */; };
+		5702B3251ECC7A4E000108D7 /* UtilityBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5702B3241ECC7A4E000108D7 /* UtilityBlock.swift */; };
 		571A7F561E60943200E4098C /* ExtensionForFoundationNSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571A7F551E60943200E4098C /* ExtensionForFoundationNSLayoutConstraint.swift */; };
 		571A7F581E60972000E4098C /* ExtensionForFoundationNSLayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571A7F571E60972000E4098C /* ExtensionForFoundationNSLayoutAnchor.swift */; };
 		571F863C1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F863B1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift */; };
@@ -96,6 +97,7 @@
 /* Begin PBXFileReference section */
 		570238E31EBA16BC0028B3C2 /* UILabelWithInsetsAndCenteredCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelWithInsetsAndCenteredCircle.swift; sourceTree = "<group>"; };
 		570238E51EBA17720028B3C2 /* UIViewShowcase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewShowcase.swift; path = TGFTests/UIViewShowcase.swift; sourceTree = SOURCE_ROOT; };
+		5702B3241ECC7A4E000108D7 /* UtilityBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityBlock.swift; sourceTree = "<group>"; };
 		571A7F551E60943200E4098C /* ExtensionForFoundationNSLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForFoundationNSLayoutConstraint.swift; sourceTree = "<group>"; };
 		571A7F571E60972000E4098C /* ExtensionForFoundationNSLayoutAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForFoundationNSLayoutAnchor.swift; sourceTree = "<group>"; };
 		571F863B1E49E3B00067813A /* NSLayoutConstraintsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintsBuilder.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				5779AF0A1CFB4B67006F8E4D /* Utility.swift */,
 				57BE4CAE1E49FF7D00DED6AF /* UtilityLoop.swift */,
 				5779AF0B1CFB4B67006F8E4D /* UtilityVariable.swift */,
+				5702B3241ECC7A4E000108D7 /* UtilityBlock.swift */,
 			);
 			path = TGF;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				57EF46D31DAA86FC00D514A1 /* ExtensionForSwiftString.swift in Sources */,
 				57EF46D11DAA86D200D514A1 /* ExtensionForSwiftInt.swift in Sources */,
 				5734512B1E156901007D1D54 /* ExtensionForDispatchQueue.swift in Sources */,
+				5702B3251ECC7A4E000108D7 /* UtilityBlock.swift in Sources */,
 				57B27FA81E50D02D00665451 /* ExtensionForFoundationNSCharacterSet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

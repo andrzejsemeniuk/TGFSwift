@@ -16,7 +16,7 @@ class UIViewShowcase : UIViewController {
 
         self.view.backgroundColor = .blue
         
-        self.testUIViewPane1()
+        self.testUIViewPaneSide()
         
     }
     
@@ -122,6 +122,31 @@ class UIViewShowcase : UIViewController {
     
     private func testUIViewGroupValueHue() {
         
+    }
+    
+    private func testUIViewPaneSide() {
+        
+        self.view.backgroundColor = .lightGray
+        
+        let pane = UIViewPaneSide.create(on:self.view, side:.right, length:400)
+        
+        pane.backgroundColor = .darkGray
+        
+        pane.set(title      : " TITLE " | UIColor.white | UIFont.systemFont(ofSize: 16),
+                 side       : .bottom,
+                 border     : UIViewBorderParameters(thickness:1,color:UIColor.white,insets:2))
+        
+        DispatchQueue.main.asyncAfter(deadline:.now() + 2) {
+            let _ = pane.open(duration:3) { flag in
+                print("opened, \(flag)")
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                    let _ = pane.close(duration:1) { flag in
+                        print("closed, \(flag)")
+                    }
+                }
+            }
+        }
     }
 
     

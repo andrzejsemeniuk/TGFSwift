@@ -9,6 +9,18 @@
 import Foundation
 import UIKit
 
+public struct UIViewBorderParameters {
+    public let thickness        : CGFloat
+    public let color            : UIColor
+    public let insets           : CGFloat
+    
+    public init(thickness:CGFloat, color:UIColor, insets:CGFloat) {
+        self.thickness      = thickness
+        self.color          = color
+        self.insets         = insets
+    }
+}
+
 public class UIViewBorder : UIView {
     
     public enum Style {
