@@ -14,8 +14,8 @@ import GameplayKit
 
 public struct Math
 {
-    static public let PI           :CGFloat            = CGFloat(M_PI)
-    static public let TwoPI        :CGFloat            = CGFloat(M_PI * 2.0)
+    static public let PI           :CGFloat            = CGFloat.pi
+    static public let TwoPI        :CGFloat            = CGFloat.pi * 2.0
     
     static public func clamp        (_ l:Double,_ u:Double,_ v:Double) -> Double                        { return v < l ? l : (u < v ? u : v) }
     static public func clamp        (_ lowerbound:Double,upperbound:Double,value:Double) -> Double      { return clamp(lowerbound,upperbound,value) }

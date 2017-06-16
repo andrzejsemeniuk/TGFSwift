@@ -23,14 +23,14 @@ class GenericControllerOfPickerOfFont : UITableViewController
         
         tableView.delegate          = self
         
-        tableView.separatorStyle    = .None
+        tableView.separatorStyle    = .none
 
         
         names = []
         
-        for family in UIFont.familyNames() {
+        for family in UIFont.familyNames {
 //            names.append(family)
-            for font in UIFont.fontNamesForFamilyName(family) {
+            for font in UIFont.fontNames(forFamilyName: family) {
                 print("family \(family), font \(font)")
                 names.append(font)
             }
@@ -55,31 +55,31 @@ class GenericControllerOfPickerOfFont : UITableViewController
     
     
     
-    override func numberOfSectionsInTableView   (tableView: UITableView) -> Int
+    func numberOfSectionsInTableView   (tableView: UITableView) -> Int
     {
         return 1
     }
     
-    override func tableView                     (tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView                     (_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return names.count
     }
     
-    override func tableView                     (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView                     (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let name = names[indexPath.row]
         
-        let cell = UITableViewCell(style:.Default,reuseIdentifier:nil)
+        let cell = UITableViewCell(style:.default,reuseIdentifier:nil)
         
         if let label = cell.textLabel {
             label.text          = name
             //            label.textColor = UIColor.grayColor()
-            label.font          = UIFont(name:name,size:UIFont.labelFontSize())
-            label.textAlignment = .Left
+            label.font          = UIFont(name:name,size:UIFont.labelFontSize)
+            label.textAlignment = .left
         }
         
-        cell.selectionStyle = .Default
-        cell.accessoryType  = name == selected ? .Checkmark : .None
+        cell.selectionStyle = .default
+        cell.accessoryType  = name == selected ? .checkmark : .none
         
         return cell
     }
@@ -89,20 +89,20 @@ class GenericControllerOfPickerOfFont : UITableViewController
     
     func reload()
     {
-        names = names.sort()
+        names = names.sorted()
         
         tableView.reloadData()
     }
     
     
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         reload()
         
-        if let row = names.indexOf(selected) {
-            let path = NSIndexPath(forRow:row,inSection:0)
-            tableView.scrollToRowAtIndexPath(path,atScrollPosition:.Middle,animated:true)
+        if let row = names.index(of: selected) {
+            let path = NSIndexPath(row:row,section:0)
+            tableView.scrollToRow(at: path as IndexPath,at:.middle,animated:true)
         }
         
         super.viewWillAppear(animated)
@@ -112,7 +112,7 @@ class GenericControllerOfPickerOfFont : UITableViewController
     
     var update: (() -> ()) = {}
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         selected = names[indexPath.row]
         

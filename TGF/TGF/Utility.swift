@@ -49,10 +49,15 @@ public struct TGF
     }
 }
 
-struct UITableViewTap
+public struct UITableViewTap
 {
-    let path:IndexPath
-    let point:CGPoint
+    public let path:IndexPath
+    public let point:CGPoint
+    
+    public init(path:IndexPath, point:CGPoint) {
+        self.path = path
+        self.point = point
+    }
 }
 
 

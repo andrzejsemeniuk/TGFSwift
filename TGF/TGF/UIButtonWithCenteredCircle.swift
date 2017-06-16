@@ -36,7 +36,7 @@ public class UIButtonWithCenteredCircle : UIButton {
                 circle.path = UIBezierPath(arcCenter    : CGPoint(x:frame.size.width/2, y:frame.size.height/2),
                                            radius       : circle.radius,
                                            startAngle   : 0,
-                                           endAngle     : 2 * CGFloat(M_PI),
+                                           endAngle     : 2 * CGFloat.pi,
                                            clockwise    : false).cgPath
             }
             else {
@@ -47,10 +47,10 @@ public class UIButtonWithCenteredCircle : UIButton {
     }
     
     public func titleRect2(forContentRect: CGRect) -> CGRect {
-        var rect = super.titleRect(forContentRect: forContentRect)
+        let rect = super.titleRect(forContentRect: forContentRect)
         if let text = self.attributedTitle(for: self.state) {
             print("titleRect: text(\(text.string), rect(\(rect)), content(\(forContentRect)))")
-            var bbox = UIGlyph.calculateBBox(of: text)
+            let bbox = UIGlyph.calculateBBox(of: text)
 //            bbox.height += 3
 //            bbox.width += 1
             switch (self.contentHorizontalAlignment,self.contentVerticalAlignment) {
@@ -89,11 +89,6 @@ public class UIButtonWithCenteredCircle : UIButton {
                               width     : bbox.width,
                               height    : bbox.height)
             case (.right,.top):
-                return CGRect(x         : forContentRect.center.x - bbox.width/2,
-                              y         : forContentRect.center.y - bbox.height/2,
-                              width     : bbox.width,
-                              height    : bbox.height)
-            case (.right,.bottom):
                 return CGRect(x         : forContentRect.center.x - bbox.width/2,
                               y         : forContentRect.center.y - bbox.height/2,
                               width     : bbox.width,

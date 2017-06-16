@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import TGF
 
 
 class GenericControllerOfSettings : UITableViewController
@@ -19,17 +20,17 @@ class GenericControllerOfSettings : UITableViewController
     
     
     
-    override func numberOfSectionsInTableView   (tableView: UITableView) -> Int
+    func numberOfSectionsInTableView   (tableView: UITableView) -> Int
     {
         return rows.count
     }
     
-    override func tableView                     (tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView                     (_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return section < rows.count ? rows[section].count-2 : 0
     }
     
-    override func tableView                     (tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    override func tableView                     (_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         if 0 < rows.count {
             if let text = rows[section].first as? String {
@@ -39,7 +40,7 @@ class GenericControllerOfSettings : UITableViewController
         return nil
     }
     
-    override func tableView                     (tableView: UITableView, titleForFooterInSection section: Int) -> String?
+    override func tableView                     (_ tableView: UITableView, titleForFooterInSection section: Int) -> String?
     {
         if 0 < rows.count {
             if let text = rows[section].last as? String {
@@ -49,7 +50,7 @@ class GenericControllerOfSettings : UITableViewController
         return nil
     }
     
-    override func tableView                     (tableView: UITableView, indentationLevelForRowAtIndexPath indexPath: NSIndexPath) -> Int
+    override func tableView                     (_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int
     {
         if 0 < indexPath.row {
             //            return 1
@@ -57,15 +58,15 @@ class GenericControllerOfSettings : UITableViewController
         return 0
     }
     
-    override func tableView                     (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView                     (_ tableView: UITableView, cellForRowAt indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = UITableViewCell(style:.Value1,reuseIdentifier:nil)
+        let cell = UITableViewCell(style:.value1,reuseIdentifier:nil)
         
-        cell.selectionStyle = .None
+        cell.selectionStyle = .none
         
         if let HSBA = cell.backgroundColor?.HSBA() {
             if 1 <= HSBA.alpha {
-                cell.backgroundColor = cell.backgroundColor!.colorWithAlphaComponent(0.50)
+                cell.backgroundColor = cell.backgroundColor!.withAlphaComponent(0.50)
             }
         }
         else {
@@ -74,7 +75,7 @@ class GenericControllerOfSettings : UITableViewController
         
         if 0 < rows.count {
             if let f = rows[indexPath.section][indexPath.row+1] as? FunctionOnCell {
-                f(cell:cell,indexPath:indexPath)
+                f(cell,indexPath)
             }
         }
         
@@ -89,22 +90,22 @@ class GenericControllerOfSettings : UITableViewController
     
     
     
-    override func tableView                     (tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView                     (_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         
         if let view = view as? UITableViewHeaderFooterView {
             if let color = colorForHeaderText {
-                view.textLabel?.textColor = colorForHeaderText
+                view.textLabel?.textColor = color
             }
         }
         
     }
     
 
-    override func tableView                     (tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+    override func tableView                     (_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         
         if let view = view as? UITableViewHeaderFooterView {
             if let color = colorForFooterText {
-                view.textLabel?.textColor = colorForFooterText
+                view.textLabel?.textColor = color
             }
         }
         
@@ -118,17 +119,17 @@ class GenericControllerOfSettings : UITableViewController
     
     var actions:[NSIndexPath : Action] = [:]
     
-    func addAction(indexPath:NSIndexPath, action:Action) {
+    func addAction(indexPath:NSIndexPath, action:@escaping Action) {
         actions[indexPath] = action
     }
     
-    func registerCellSelection(indexPath:NSIndexPath, action:Action) {
-        addAction(indexPath,action:action)
+    func registerCellSelection(indexPath:NSIndexPath, action:@escaping Action) {
+        addAction(indexPath: indexPath,action:action)
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        if let action = actions[indexPath]
+        if let action = actions[indexPath as NSIndexPath]
         {
             action()
         }
@@ -141,7 +142,7 @@ class GenericControllerOfSettings : UITableViewController
     
     var updates:[Update] = []
     
-    func addUpdate(update:Update) {
+    func addUpdate(update:@escaping Update) {
         updates.append(update)
     }
     
@@ -151,11 +152,11 @@ class GenericControllerOfSettings : UITableViewController
     
     var registeredSwitches:[UISwitch:FunctionUpdateOnSwitch] = [:]
     
-    func registerSwitch(on:Bool, animated:Bool = true, update:FunctionUpdateOnSwitch) -> UISwitch {
+    func registerSwitch(on:Bool, animated:Bool = true, update:@escaping FunctionUpdateOnSwitch) -> UISwitch {
         let view = UISwitch()
         view.setOn(on, animated:animated)
         registeredSwitches[view] = update
-        view.addTarget(self,action:#selector(GenericControllerOfSettings.handleSwitch(_:)),forControlEvents:.ValueChanged)
+        view.addTarget(self,action:#selector(GenericControllerOfSettings.handleSwitch(control:)),for:.valueChanged)
         return view
     }
     
@@ -174,14 +175,14 @@ class GenericControllerOfSettings : UITableViewController
     
     var registeredSliders:[UISlider:FunctionUpdateOnSlider] = [:]
     
-    func registerSlider(value:Float, minimum:Float = 0, maximum:Float = 1, continuous:Bool = false, animated:Bool = true, update:FunctionUpdateOnSlider) -> UISlider {
+    func registerSlider(value:Float, minimum:Float = 0, maximum:Float = 1, continuous:Bool = false, animated:Bool = true, update:@escaping FunctionUpdateOnSlider) -> UISlider {
         let view = UISlider()
         view.minimumValue = minimum
         view.maximumValue = maximum
-        view.continuous = continuous
+        view.isContinuous = continuous
         view.value = value
         registeredSliders[view] = update
-        view.addTarget(self,action:#selector(GenericControllerOfSettings.handleSlider(_:)),forControlEvents:.ValueChanged)
+        view.addTarget(self,action:#selector(GenericControllerOfSettings.handleSlider(control:)),for:.valueChanged)
         return view
     }
     
@@ -194,7 +195,7 @@ class GenericControllerOfSettings : UITableViewController
     
     
     
-    typealias FunctionOnCell = (cell:UITableViewCell, indexPath:NSIndexPath) -> ()
+    typealias FunctionOnCell = (_ cell:UITableViewCell, _ indexPath:NSIndexPath) -> ()
     
     func createCellForFont(font0:UIFont, name:String = "Font", title:String, key:Data.Manager.Key, action:Action! = nil) -> FunctionOnCell
     {
@@ -206,9 +207,9 @@ class GenericControllerOfSettings : UITableViewController
                     if let detail = cell.detailTextLabel {
                         detail.text = font0.fontName
                     }
-                    cell.selectionStyle = .Default
-                    cell.accessoryType  = .DisclosureIndicator
-                    self.addAction(indexPath) {
+                    cell.selectionStyle = .default
+                    cell.accessoryType  = .disclosureIndicator
+                    self.addAction(indexPath: indexPath) {
                         
                         let fonts       = GenericControllerOfPickerOfFont()
                         
@@ -241,19 +242,19 @@ class GenericControllerOfSettings : UITableViewController
                         detail.text = "  "
                         let view = UIView()
                         
-                        view.frame              = CGRectMake(-16,-2,24,24)
+                        view.frame              = CGRect(x:-16,y:-2,width:24,height:24)
                         view.backgroundColor    = color0
                         
                         detail.addSubview(view)
                     }
-                    cell.selectionStyle = .Default
-                    cell.accessoryType  = .DisclosureIndicator
+                    cell.selectionStyle = .default
+                    cell.accessoryType  = .disclosureIndicator
                     
                     if postProcess != nil {
                         postProcess(cell)
                     }
                     
-                    self.addAction(indexPath) {
+                    self.addAction(indexPath: indexPath) {
                         
                         let colors      = GenericControllerOfPickerOfColor()
                         
@@ -288,7 +289,7 @@ class GenericControllerOfSettings : UITableViewController
         return [[Any]]()
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         registeredSliders.removeAll()
         registeredSwitches.removeAll()
@@ -312,7 +313,7 @@ class GenericControllerOfSettings : UITableViewController
     }
     
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         if let title = super.title {
             GenericControllerOfSettings.lastOffsetY[title] = tableView.contentOffset

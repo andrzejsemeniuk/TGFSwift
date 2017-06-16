@@ -15,11 +15,11 @@ class GenericControllerOfList : UITableViewController
     
     var selected:String!        = nil
     
-    var handlerForCellForRowAtIndexPath:((controller:GenericControllerOfList,indexPath:NSIndexPath) -> UITableViewCell)! = nil
+    var handlerForCellForRowAtIndexPath:((_ controller:GenericControllerOfList,_ indexPath:NSIndexPath) -> UITableViewCell)! = nil
     
-    var handlerForDidSelectRowAtIndexPath:((controller:GenericControllerOfList,indexPath:NSIndexPath) -> Void)! = nil
+    var handlerForDidSelectRowAtIndexPath:((_ controller:GenericControllerOfList,_ indexPath:NSIndexPath) -> Void)! = nil
     
-    var handlerForCommitEditingStyle:((controller:GenericControllerOfList,commitEditingStyle:UITableViewCellEditingStyle,indexPath:NSIndexPath) -> Bool)! = nil
+    var handlerForCommitEditingStyle:((_ controller:GenericControllerOfList,_ commitEditingStyle:UITableViewCellEditingStyle,_ indexPath:NSIndexPath) -> Bool)! = nil
     
     
     
@@ -44,34 +44,34 @@ class GenericControllerOfList : UITableViewController
     
     
     
-    override func numberOfSectionsInTableView   (tableView: UITableView) -> Int
+    func numberOfSectionsInTableView   (tableView: UITableView) -> Int
     {
         return 1
     }
     
-    override func tableView                     (tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView                     (_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return items.count
     }
     
-    override func tableView                     (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView                     (_ tableView: UITableView, cellForRowAt indexPath: NSIndexPath) -> UITableViewCell
     {
         if handlerForCellForRowAtIndexPath != nil {
-            return handlerForCellForRowAtIndexPath(controller:self,indexPath:indexPath)
+            return handlerForCellForRowAtIndexPath(self,indexPath)
         }
         
         let name = items[indexPath.row]
         
-        let cell = UITableViewCell(style:.Default,reuseIdentifier:nil)
+        let cell = UITableViewCell(style:.default,reuseIdentifier:nil)
         
         if let label = cell.textLabel {
             label.text = name
         }
         
-        cell.selectionStyle = .Default
+        cell.selectionStyle = .default
         
         if selected != nil && selected == name {
-            cell.accessoryType = .Checkmark
+            cell.accessoryType = .checkmark
         }
         
         return cell
@@ -80,28 +80,28 @@ class GenericControllerOfList : UITableViewController
     
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: NSIndexPath)
     {
         if handlerForDidSelectRowAtIndexPath != nil {
-            handlerForDidSelectRowAtIndexPath(controller:self,indexPath:indexPath)
+            handlerForDidSelectRowAtIndexPath(self,indexPath)
         }
     }
     
     
     
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
         if handlerForCommitEditingStyle != nil {
-            if handlerForCommitEditingStyle(controller:self,commitEditingStyle:editingStyle,indexPath:indexPath) {
+            if handlerForCommitEditingStyle(self,editingStyle,indexPath) {
                 switch editingStyle
                 {
-                case .None:
+                case .none:
                     print("None")
-                case .Delete:
-                    items.removeAtIndex(indexPath.row)
-                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:.Left)
-                case .Insert:
+                case .delete:
+                    items.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath as IndexPath], with:.left)
+                case .insert:
                     print("Add")
                 }
                 
@@ -113,7 +113,7 @@ class GenericControllerOfList : UITableViewController
     
     
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         tableView.reloadData()
         

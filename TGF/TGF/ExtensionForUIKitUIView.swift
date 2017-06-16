@@ -37,7 +37,12 @@ extension UIView
         
         let center = center ?? CGPoint.zero
         
-        let path  : UIBezierPath = UIBezierPath(arcCenter: CGPoint(x:center.x+self.frame.size.width/2,y:center.y+self.frame.size.height/2), radius: withRadius, startAngle: 0, endAngle: 2 * CGFloat(M_PI), clockwise: false)
+        let path  : UIBezierPath = UIBezierPath(arcCenter: CGPoint(x:center.x+self.frame.size.width/2,
+                                                                   y:center.y+self.frame.size.height/2),
+                                                radius: withRadius,
+                                                startAngle: 0,
+                                                endAngle: 2 * CGFloat.pi,
+                                                clockwise: false)
 
         shape.path = path.cgPath
         

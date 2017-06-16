@@ -13,7 +13,7 @@ class GenericControllerOfPickerOfColor : UITableViewController
 {
     var colors:[UIColor]  = []
     
-    var selected:UIColor = UIColor.blackColor()
+    var selected:UIColor = UIColor.black
     
     
     
@@ -23,7 +23,7 @@ class GenericControllerOfPickerOfColor : UITableViewController
         
         tableView.delegate      = self
         
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         
         if true
         {
@@ -71,31 +71,31 @@ class GenericControllerOfPickerOfColor : UITableViewController
     
     
     
-    override func numberOfSectionsInTableView   (tableView: UITableView) -> Int
+    func numberOfSectionsInTableView   (tableView: UITableView) -> Int
     {
         return 1
     }
     
-    override func tableView                     (tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView                     (_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return colors.count
     }
     
-    override func tableView                     (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView                     (tableView: UITableView, cellForRowAt indexPath: NSIndexPath) -> UITableViewCell
     {
         let color = colors[indexPath.row]
         
-        let cell = UITableViewCell(style:.Default,reuseIdentifier:nil)
+        let cell = UITableViewCell(style:.default,reuseIdentifier:nil)
         
         cell.backgroundColor = color
         
-        cell.selectionStyle = .Default
+        cell.selectionStyle = .default
         
         if color.components_RGBA_UInt8_equals(selected) {
-            cell.accessoryType = .Checkmark
+            cell.accessoryType = .checkmark
         }
         else {
-            cell.accessoryType = .None
+            cell.accessoryType = .none
         }
         
         return cell
@@ -111,17 +111,17 @@ class GenericControllerOfPickerOfColor : UITableViewController
     
     
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         reload()
         
-        for (row,color) in colors.enumerate() {
+        for (row,color) in colors.enumerated() {
             
             if color.components_RGBA_UInt8_equals(selected) {
                 
-                let path = NSIndexPath(forRow:row,inSection:0)
+                let path = NSIndexPath(row:row, section:0)
                 
-                tableView.scrollToRowAtIndexPath(path,atScrollPosition:.Middle,animated:true)
+                tableView.scrollToRow(at: path as IndexPath,at:.middle,animated:true)
                 
                 break
             }
@@ -134,7 +134,7 @@ class GenericControllerOfPickerOfColor : UITableViewController
     
     var update: (() -> ()) = {}
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         selected = colors[indexPath.row]
         
