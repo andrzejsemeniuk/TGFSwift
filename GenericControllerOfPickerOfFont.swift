@@ -101,7 +101,7 @@ class GenericControllerOfPickerOfFont : UITableViewController
         reload()
         
         if let row = names.index(of: selected) {
-            let path = NSIndexPath(row:row,section:0)
+            let path = IndexPath(row:row,section:0)
             tableView.scrollToRow(at: path as IndexPath,at:.middle,animated:true)
         }
         

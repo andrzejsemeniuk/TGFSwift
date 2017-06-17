@@ -119,7 +119,7 @@ class GenericControllerOfPickerOfColor : UITableViewController
             
             if color.components_RGBA_UInt8_equals(selected) {
                 
-                let path = NSIndexPath(row:row, section:0)
+                let path = IndexPath(row:row, section:0)
                 
                 tableView.scrollToRow(at: path as IndexPath,at:.middle,animated:true)
                 
