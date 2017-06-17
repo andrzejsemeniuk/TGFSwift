@@ -20,7 +20,7 @@ class GenericControllerOfSettings : UITableViewController
     
     
     
-    func numberOfSectionsInTableView   (tableView: UITableView) -> Int
+    override func numberOfSections              (in: UITableView) -> Int
     {
         return rows.count
     }
@@ -58,7 +58,7 @@ class GenericControllerOfSettings : UITableViewController
         return 0
     }
     
-    func tableView                     (_ tableView: UITableView, cellForRowAt indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView                     (_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = UITableViewCell(style:.value1,reuseIdentifier:nil)
         
@@ -117,19 +117,19 @@ class GenericControllerOfSettings : UITableViewController
     
     typealias Action = () -> ()
     
-    var actions:[NSIndexPath : Action] = [:]
+    var actions:[IndexPath : Action] = [:]
     
-    func addAction(indexPath:NSIndexPath, action:@escaping Action) {
+    func addAction(indexPath:IndexPath, action:@escaping Action) {
         actions[indexPath] = action
     }
     
-    func registerCellSelection(indexPath:NSIndexPath, action:@escaping Action) {
+    func registerCellSelection(indexPath:IndexPath, action:@escaping Action) {
         addAction(indexPath: indexPath,action:action)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        if let action = actions[indexPath as NSIndexPath]
+        if let action = actions[indexPath]
         {
             action()
         }
@@ -195,12 +195,12 @@ class GenericControllerOfSettings : UITableViewController
     
     
     
-    typealias FunctionOnCell = (_ cell:UITableViewCell, _ indexPath:NSIndexPath) -> ()
+    typealias FunctionOnCell = (_ cell:UITableViewCell, _ indexPath:IndexPath) -> ()
     
     func createCellForFont(font0:UIFont, name:String = "Font", title:String, key:Data.Manager.Key, action:Action! = nil) -> FunctionOnCell
     {
         return
-            { (cell:UITableViewCell, indexPath:NSIndexPath) in
+            { (cell:UITableViewCell, indexPath:IndexPath) in
                 if let label = cell.textLabel {
                     
                     label.text          = name
@@ -234,7 +234,7 @@ class GenericControllerOfSettings : UITableViewController
     func createCellForColor(color0:UIColor, postProcess:((UITableViewCell) -> Void)! = nil, name:String = "Color", title:String, key:Data.Manager.Key, action:Action! = nil) -> FunctionOnCell
     {
         return
-            { (cell:UITableViewCell, indexPath:NSIndexPath) in
+            { (cell:UITableViewCell, indexPath:IndexPath) in
                 if let label = cell.textLabel {
                     
                     label.text          = name

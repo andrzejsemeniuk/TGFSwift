@@ -55,17 +55,17 @@ class GenericControllerOfPickerOfFont : UITableViewController
     
     
     
-    func numberOfSectionsInTableView   (tableView: UITableView) -> Int
+    override func numberOfSections      (in: UITableView) -> Int
     {
         return 1
     }
     
-    override func tableView                     (_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView             (_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return names.count
     }
     
-    func tableView                     (tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView             (_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let name = names[indexPath.row]
         
@@ -112,7 +112,7 @@ class GenericControllerOfPickerOfFont : UITableViewController
     
     var update: (() -> ()) = {}
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         selected = names[indexPath.row]
         

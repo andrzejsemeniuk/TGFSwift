@@ -15,11 +15,11 @@ class GenericControllerOfList : UITableViewController
     
     var selected:String!        = nil
     
-    var handlerForCellForRowAtIndexPath:((_ controller:GenericControllerOfList,_ indexPath:NSIndexPath) -> UITableViewCell)! = nil
+    var handlerForCellForRowAtIndexPath:((_ controller:GenericControllerOfList,_ indexPath:IndexPath) -> UITableViewCell)! = nil
     
-    var handlerForDidSelectRowAtIndexPath:((_ controller:GenericControllerOfList,_ indexPath:NSIndexPath) -> Void)! = nil
+    var handlerForDidSelectRowAtIndexPath:((_ controller:GenericControllerOfList,_ indexPath:IndexPath) -> Void)! = nil
     
-    var handlerForCommitEditingStyle:((_ controller:GenericControllerOfList,_ commitEditingStyle:UITableViewCellEditingStyle,_ indexPath:NSIndexPath) -> Bool)! = nil
+    var handlerForCommitEditingStyle:((_ controller:GenericControllerOfList,_ commitEditingStyle:UITableViewCellEditingStyle,_ indexPath:IndexPath) -> Bool)! = nil
     
     
     
@@ -44,17 +44,17 @@ class GenericControllerOfList : UITableViewController
     
     
     
-    func numberOfSectionsInTableView   (tableView: UITableView) -> Int
+    override func numberOfSections      (in: UITableView) -> Int
     {
         return 1
     }
     
-    override func tableView                     (_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView             (_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return items.count
     }
     
-    func tableView                     (_ tableView: UITableView, cellForRowAt indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView                      (_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         if handlerForCellForRowAtIndexPath != nil {
             return handlerForCellForRowAtIndexPath(self,indexPath)
@@ -80,7 +80,7 @@ class GenericControllerOfList : UITableViewController
     
     
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         if handlerForDidSelectRowAtIndexPath != nil {
             handlerForDidSelectRowAtIndexPath(self,indexPath)
@@ -90,7 +90,7 @@ class GenericControllerOfList : UITableViewController
     
     
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
         if handlerForCommitEditingStyle != nil {
             if handlerForCommitEditingStyle(self,editingStyle,indexPath) {
